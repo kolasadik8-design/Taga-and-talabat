@@ -1,27 +1,17 @@
 {
-  "name": "ALL NATIONS PRO - مطعم جاموس جوبا",
-  "short_name": "ALL NATIONS PRO",
-  "description": "نظام كاشير ومدير احترافي - اوفلاين 100% - تعديل الطلب برقم الطاولة - مصروفات - تقرير يومي - Sync",
-  "start_url": "./",
+  "name": "ALL NATIONS PRO V4.12 FULL",
+  "short_name": "ALL NATIONS",
+  "description": "مطعم جاموس - طاولات - مطبخ - منيو - مصروفات - تقارير - أوفلاين 100%",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#7A0C1A",
   "theme_color": "#7A0C1A",
   "orientation": "portrait",
-  "lang": "ar",
-  "dir": "rtl",
-  "scope": "./",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
+      "type": "image/png"
     }
   ]
 }
