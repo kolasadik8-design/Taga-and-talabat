@@ -1,15 +1,20 @@
 {
-  "name": "SSNPS E-Library",
-  "short_name": "SSNPS",
-  "start_url": "/SSNP-E-LIBRARY/",
+  "name": "ALL NATION'S PRO - مطعم جاموس",
+  "short_name": "ALL NATIONS PRO",
+  "description": "نظام إدارة مطعم ALL NATION'S PRO - أوفلاين - جوبا",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#060a18",
-  "theme_color": "#101a38",
+  "background_color": "#7A0C1A",
+  "theme_color": "#7A0C1A",
+  "orientation": "portrait",
+  "lang": "ar",
+  "dir": "rtl",
   "icons": [
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/29/29302.png",
+      "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
