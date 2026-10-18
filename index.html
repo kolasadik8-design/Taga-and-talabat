@@ -3,57 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL NATIONS PRO V4.8 - Hidden Passwords</title>
-<link rel="manifest" href="./manifest.json">
+<title>ALL NATIONS PRO V4.8.1 FIXED</title>
+<meta name="theme-color" content="#7A0C1A">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI}
-body{background:#0f172a;color:#fff;min-height:100vh;display:flex;flex-direction:column}
-header{background:#7A0C1A;padding:10px;text-align:center;font-weight:900}
-.login-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%;max-width:420px}
-.choice{border-radius:16px;padding:20px;text-align:center;cursor:pointer}
-.manager-choice{background:linear-gradient(135deg,#7A0C1A,#c0392b)}
-.cashier-choice{background:linear-gradient(135deg,#0f766e,#14b8a6)}
-.card{background:white;color:#222;border-radius:12px;padding:12px;margin:8px}
-.hidden{display:none}
+body{background:#f8f5f0;color:#222;min-height:100vh}
+header{background:#7A0C1A;color:white;padding:10px;text-align:center;font-weight:900}
+.login-wrap{min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:#0f172a;color:white}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:400px}
+.choice{border-radius:18px;padding:24px;text-align:center;cursor:pointer;border:3px solid rgba(255,255,255,.2)}
+.manager-choice{background:linear-gradient(135deg,#7A0C1A,#ef4444)}
+.cashier-choice{background:linear-gradient(135deg,#0f766e,#06b6d4)}
+.card{background:white;border-radius:12px;padding:12px;margin:8px;color:#222}
+.hidden{display:none!important}
 button{background:#7A0C1A;color:white;border:none;padding:10px;border-radius:8px;font-weight:800;cursor:pointer;width:100%}
-input{padding:10px;border:1px solid #cbd5e1;border-radius:8px;width:100%;margin:6px 0}
+input,select{padding:10px;border:1px solid #cbd5e1;border-radius:8px;width:100%;margin:4px 0}
+.item-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px dashed #ddd}
 </style>
 </head>
 <body>
-<header>ALL NATIONS PRO V4.8 - OFFLINE</header>
+<header>ALL NATIONS PRO V4.8.1 - OFFLINE - FIXED</header>
+
 <div id="loginPage" class="login-wrap">
+<h2>ALL NATIONS PRO</h2>
+<p style="opacity:.7;font-size:12px;margin:6px 0 16px">زرين بس - بدون كلمات سر ظاهرة</p>
 <div class="choice-grid">
-<div class="choice manager-choice" onclick="selectRole('manager')">👑<br><b>المدير</b></div>
-<div class="choice cashier-choice" onclick="selectRole('cashier')">🧾<br><b>الكاشير</b></div>
+<div class="choice manager-choice" onclick="selectRole('manager')">👑<br><b>المدير</b><br><span>MANAGER</span></div>
+<div class="choice cashier-choice" onclick="selectRole('cashier')">🧾<br><b>الكاشير</b><br><span>CASHIER</span></div>
 </div>
-<div id="passBox" class="card hidden" style="width:100%;max-width:420px;margin-top:16px">
-<h4 id="selectedRoleText"></h4>
+<div id="passBox" class="card hidden" style="width:100%;max-width:380px;margin-top:18px">
+<h4 id="selectedRoleText" style="text-align:center"></h4>
 <input id="passwordInput" type="password" placeholder="كلمة السر">
-<button onclick="doLogin()">دخول</button>
-<div id="loginMsg" style="color:red;font-size:11px"></div>
+<button onclick="doLogin()" style="background:#10b981">دخول</button>
+<button onclick="cancelRole()" style="background:#334155">رجوع</button>
+<div id="loginMsg" style="color:red;font-size:12px;text-align:center"></div>
 </div>
 </div>
-<div id="appPage" class="hidden"></div>
+
+<div id="appPage" class="hidden">
+<div style="background:#1e293b;color:white;padding:8px;display:flex;justify-content:space-between"><span id="userInfo"></span><button onclick="logout()" style="width:auto;background:black;padding:6px 12px">خروج</button></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px">
+<div class="card"><b>🍽️ طلب جديد - للكل</b><select id="tableNum"><option>طاولة 1</option><option>طاولة 2</option><option>طاولة 3</option><option>سفري</option></select><select id="orderItem"></select><input id="orderQty" type="number" value="1"><button onclick="addOrder()" style="background:#0f766e">إضافة طلب</button></div>
+<div class="card"><b>📊 الطلبات</b><div id="ordersList"></div><button onclick="clearOrders()" id="clearBtn" style="background:#64748b;margin-top:6px">مسح - مدير فقط</button></div>
+</div>
+<div class="card" style="margin:8px;border:2px solid #f59e0b"><h4>🍖 المنيو - مدير فقط</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newItemName" placeholder="اسم الصنف"><input id="newItemPrice" type="number" placeholder="السعر"><button onclick="addMenuItem()" id="addMenuBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة</button></div><div id="menuList"></div></div>
+<div class="card" style="margin:8px;border:2px solid #f59e0b"><h4>➕ الإضافات - مدير فقط</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newExtraName" placeholder="اسم الإضافة"><input id="newExtraPrice" type="number" placeholder="السعر"><button onclick="addExtraItem()" id="addExtraBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة</button></div><div id="extrasList"></div></div>
+</div>
+
 <script>
-const SECRET_USERS = {
- manager: {pass: "admin123", role:"manager"},
- cashier: {pass: "1234", role:"cashier"}
-};
-let selectedRoleKey=null; let currentUser=null;
-function selectRole(role){
- selectedRoleKey=role;
- document.getElementById('passBox').classList.remove('hidden');
- document.getElementById('selectedRoleText').textContent = role==='manager' ? '👑 دخول المدير' : '🧾 دخول الكاشير';
-}
-function doLogin(){
- let p=document.getElementById('passwordInput').value;
- if(SECRET_USERS[selectedRoleKey].pass !== p){ document.getElementById('loginMsg').textContent='كلمة السر خطأ'; return; }
- currentUser={username:selectedRoleKey, role:SECRET_USERS[selectedRoleKey].role};
- document.getElementById('loginPage').classList.add('hidden');
- document.getElementById('appPage').classList.remove('hidden');
-}
-// ... باقي كود المنيو - المدير فقط - نفس V4.7
+const SECRET_USERS={manager:{pass:"admin",role:"manager",name:"المدير"},cashier:{pass:"cash",role:"cashier",name:"الكاشير"}};
+let selectedRoleKey=null,currentUser=null;
+let menu=JSON.parse(localStorage.getItem('menuFix')||'[{"name":"لحم جاموس","price":8000},{"name":"كوارع","price":6000},{"name":"بارد","price":1000}]');
+let extras=JSON.parse(localStorage.getItem('extrasFix')||'[{"name":"بارد إضافي","price":1000}]');
+let orders=JSON.parse(localStorage.getItem('ordersFix')||'[]');
+function saveAll(){localStorage.setItem('menuFix',JSON.stringify(menu));localStorage.setItem('extrasFix',JSON.stringify(extras));localStorage.setItem('ordersFix',JSON.stringify(orders));}
+function selectRole(r){selectedRoleKey=r;document.getElementById('passBox').classList.remove('hidden');document.getElementById('selectedRoleText').textContent=r==='manager'?'👑 دخول المدير':'🧾 دخول الكاشير';}
+function cancelRole(){document.getElementById('passBox').classList.add('hidden');}
+function doLogin(){let p=document.getElementById('passwordInput').value;let u=SECRET_USERS[selectedRoleKey];if(!u||u.pass!==p){document.getElementById('loginMsg').textContent='كلمة السر خطأ';return;}currentUser={username:selectedRoleKey,role:u.role,name:u.name};document.getElementById('loginPage').classList.add('hidden');document.getElementById('appPage').classList.remove('hidden');document.getElementById('userInfo').textContent=u.name;renderAll();}
+function renderAll(){renderMenu();renderExtras();renderOrders();renderOrderSelect();applyRules();}
+function applyRules(){let isM=currentUser&&currentUser.role==='manager';document.getElementById('addMenuBtn').style.display=isM?'block':'none';document.getElementById('addExtraBtn').style.display=isM?'block':'none';document.getElementById('clearBtn').style.display=isM?'block':'none';document.querySelectorAll('.deleteItemBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.deleteExtraBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.priceInput').forEach(i=>{i.disabled=!isM});}
+function renderMenu(){document.getElementById('menuList').innerHTML=menu.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="priceInput" type="number" value="${it.price}" onchange="updateMenuPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteItemBtn" onclick="deleteMenuItem(${i})" style="width:auto;background:#ef4444;padding:4px 8px">حذف</button></span></div>`).join('');}
+function renderExtras(){document.getElementById('extrasList').innerHTML=extras.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="extraPriceInput" type="number" value="${it.price}" onchange="updateExtraPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteExtraBtn" onclick="deleteExtraItem(${i})" style="width:auto;background:#ef4444;padding:4px 8px">حذف</button></span></div>`).join('');}
+function renderOrderSelect(){document.getElementById('orderItem').innerHTML=menu.map(m=>`<option>${m.name} - ${m.price}</option>`).join('')+extras.map(e=>`<option>إضافة: ${e.name}</option>`).join('');}
+function renderOrders(){document.getElementById('ordersList').innerHTML=orders.map((o,i)=>`${o.table} - ${o.item} x${o.qty}`).join('<br>')||'لا طلبات';}
+function addMenuItem(){if(currentUser.role!=='manager')return;let n=document.getElementById('newItemName').value;let p=parseInt(document.getElementById('newItemPrice').value);menu.push({name:n,price:p});saveAll();renderAll();}
+function deleteMenuItem(i){menu.splice(i,1);saveAll();renderAll();}
+function updateMenuPrice(i,v){menu[i].price=parseInt(v);saveAll();renderOrderSelect();}
+function addExtraItem(){let n=document.getElementById('newExtraName').value;let p=parseInt(document.getElementById('newExtraPrice').value);extras.push({name:n,price:p});saveAll();renderAll();}
+function deleteExtraItem(i){extras.splice(i,1);saveAll();renderAll();}
+function updateExtraPrice(i,v){extras[i].price=parseInt(v);saveAll();}
+function addOrder(){orders.push({table:document.getElementById('tableNum').value,item:document.getElementById('orderItem').value,qty:document.getElementById('orderQty').value});saveAll();renderOrders();}
+function clearOrders(){orders=[];saveAll();renderOrders();}
+function logout(){currentUser=null;document.getElementById('appPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');}
 </script>
 </body>
 </html>
