@@ -1,7 +1,7 @@
 {
-  "name": "ALL NATION'S PRO ",
+  "name": "ALL NATION'S PRO",
   "short_name": "ALL NATIONS PRO",
-  "description": "نظام إدارة مطعم ALL NATION'S PRO - أوفلاين - جوبا",
+  "description": "نظام كاشير ومدير - أوفلاين 100% - مع Sync لما النت يجي - جوبا",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#7A0C1A",
@@ -15,6 +15,11 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
+      "sizes": "192x192",
+      "type": "image/png"
     }
   ]
 }
