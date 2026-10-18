@@ -1,14 +1,15 @@
 {
-  "name": "ALL NATION'S PRO - مطعم جاموس",
+  "name": "ALL NATIONS PRO - مطعم جاموس جوبا",
   "short_name": "ALL NATIONS PRO",
-  "description": "نظام كاشير ومدير - أوفلاين 100% - مع Sync لما النت يجي - جوبا",
-  "start_url": "/",
+  "description": "نظام كاشير ومدير احترافي - اوفلاين 100% - تعديل الطلب برقم الطاولة - مصروفات - تقرير يومي - Sync",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#7A0C1A",
   "theme_color": "#7A0C1A",
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
+  "scope": "./",
   "icons": [
     {
       "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
@@ -19,7 +20,8 @@
     {
       "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
