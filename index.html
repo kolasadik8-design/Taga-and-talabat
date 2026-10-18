@@ -3,78 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL NATIONS PRO V4.8.1 FIXED</title>
+<title>ALL NATIONS PRO V4.9 FULL</title>
 <meta name="theme-color" content="#7A0C1A">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Tahoma}
 body{background:#f8f5f0;color:#222;min-height:100vh}
-header{background:#7A0C1A;color:white;padding:10px;text-align:center;font-weight:900}
-.login-wrap{min-height:85vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:#0f172a;color:white}
-.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:400px}
-.choice{border-radius:18px;padding:24px;text-align:center;cursor:pointer;border:3px solid rgba(255,255,255,.2)}
+header{background:#7A0C1A;color:white;padding:10px;text-align:center;font-weight:900;position:sticky;top:0;z-index:20}
+.login-wrap{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;background:#0f172a;color:white}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:100%;max-width:420px}
+.choice{border-radius:20px;padding:28px;text-align:center;cursor:pointer;border:3px solid rgba(255,255,255,.2);transition:.2s}
+.choice:active{transform:scale(.95)}
 .manager-choice{background:linear-gradient(135deg,#7A0C1A,#ef4444)}
 .cashier-choice{background:linear-gradient(135deg,#0f766e,#06b6d4)}
-.card{background:white;border-radius:12px;padding:12px;margin:8px;color:#222}
+.kitchen-choice{background:linear-gradient(135deg,#334155,#64748b);margin-top:12px;grid-column:span 2}
+.card{background:white;border-radius:12px;padding:12px;margin:8px;box-shadow:0 2px 8px rgba(0,0,0,.08);color:#222}
 .hidden{display:none!important}
-button{background:#7A0C1A;color:white;border:none;padding:10px;border-radius:8px;font-weight:800;cursor:pointer;width:100%}
-input,select{padding:10px;border:1px solid #cbd5e1;border-radius:8px;width:100%;margin:4px 0}
-.item-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px dashed #ddd}
+button{background:#7A0C1A;color:white;border:none;padding:9px 12px;border-radius:8px;font-weight:800;cursor:pointer;width:100%;margin:3px 0}
+button.small{padding:4px 8px;font-size:11px;width:auto;display:inline-block}
+input,select{padding:9px;border:1px solid #cbd5e1;border-radius:8px;width:100%;margin:4px 0;background:white}
+.table-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(80px,1fr));gap:8px}
+.table{background:white;border:2px solid #e2e8f0;border-radius:10px;padding:10px;text-align:center;cursor:pointer}
+.table.busy{border-color:#ef4444;background:#fef2f2}
+.table.free{border-color:#10b981;background:#f0fdf4}
+.tabs{display:flex;gap:6px;overflow:auto;padding:6px;background:#1e293b}
+.tab{padding:8px 14px;background:#334155;color:white;border-radius:20px;cursor:pointer;white-space:nowrap;font-size:12px}
+.tab.active{background:#f59e0b;color:black}
+.item-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-bottom:1px dashed #ddd;background:white;margin:2px 0;border-radius:6px;font-size:13px}
+.manager-only{border:2px solid #f59e0b!important}
 </style>
 </head>
 <body>
-<header>ALL NATIONS PRO V4.8.1 - OFFLINE - FIXED</header>
+<header>ALL NATIONS PRO V4.9 FULL - OFFLINE - JUBA</header>
 
+<!-- LOGIN - زرين + مطبخ -->
 <div id="loginPage" class="login-wrap">
-<h2>ALL NATIONS PRO</h2>
-<p style="opacity:.7;font-size:12px;margin:6px 0 16px">زرين بس - بدون كلمات سر ظاهرة</p>
+<h2 style="font-size:26px">ALL NATIONS PRO</h2>
+<p style="opacity:.7;font-size:12px;margin:8px 0 18px">مطعم جاموس - أوفلاين 100%</p>
 <div class="choice-grid">
-<div class="choice manager-choice" onclick="selectRole('manager')">👑<br><b>المدير</b><br><span>MANAGER</span></div>
-<div class="choice cashier-choice" onclick="selectRole('cashier')">🧾<br><b>الكاشير</b><br><span>CASHIER</span></div>
+<div class="choice manager-choice" onclick="selectRole('manager')">👑<br><b>المدير</b><br><span style="font-size:11px">إدارة كاملة<br>منيو + أسعار + تقارير</span></div>
+<div class="choice cashier-choice" onclick="selectRole('cashier')">🧾<br><b>الكاشير</b><br><span style="font-size:11px">طلبات فقط<br>بدون تعديل منيو</span></div>
+<div class="choice kitchen-choice" onclick="selectRole('kitchen')">👨‍🍳<br><b>المطبخ - بدون باسورد</b><br><span style="font-size:11px">عرض الطلبات للمطبخ</span></div>
 </div>
 <div id="passBox" class="card hidden" style="width:100%;max-width:380px;margin-top:18px">
 <h4 id="selectedRoleText" style="text-align:center"></h4>
-<input id="passwordInput" type="password" placeholder="كلمة السر">
+<input id="passwordInput" type="password" placeholder="كلمة السر - Password">
 <button onclick="doLogin()" style="background:#10b981">دخول</button>
 <button onclick="cancelRole()" style="background:#334155">رجوع</button>
-<div id="loginMsg" style="color:red;font-size:12px;text-align:center"></div>
+<div id="loginMsg" style="color:red;font-size:12px;text-align:center;margin-top:6px"></div>
 </div>
 </div>
 
+<!-- APP -->
 <div id="appPage" class="hidden">
-<div style="background:#1e293b;color:white;padding:8px;display:flex;justify-content:space-between"><span id="userInfo"></span><button onclick="logout()" style="width:auto;background:black;padding:6px 12px">خروج</button></div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px">
-<div class="card"><b>🍽️ طلب جديد - للكل</b><select id="tableNum"><option>طاولة 1</option><option>طاولة 2</option><option>طاولة 3</option><option>سفري</option></select><select id="orderItem"></select><input id="orderQty" type="number" value="1"><button onclick="addOrder()" style="background:#0f766e">إضافة طلب</button></div>
-<div class="card"><b>📊 الطلبات</b><div id="ordersList"></div><button onclick="clearOrders()" id="clearBtn" style="background:#64748b;margin-top:6px">مسح - مدير فقط</button></div>
+<div style="background:#1e293b;color:white;padding:8px;display:flex;justify-content:space-between;align-items:center"><span id="userInfo" style="font-size:12px"></span><span id="clock" style="font-size:10px"></span><button onclick="logout()" style="width:auto;background:black;padding:6px 12px;font-size:11px">خروج</button></div>
+<div class="tabs">
+<div class="tab active" onclick="showTab('tables')" id="tab-tables">🪑 الطاولات</div>
+<div class="tab" onclick="showTab('orders')" id="tab-orders">📊 الطلبات</div>
+<div class="tab" onclick="showTab('menu')" id="tab-menu">🍖 المنيو - مدير</div>
+<div class="tab" onclick="showTab('extras')" id="tab-extras">➕ الإضافات - مدير</div>
+<div class="tab" onclick="showTab('kitchen')" id="tab-kitchen">👨‍🍳 المطبخ</div>
+<div class="tab" onclick="showTab('expenses')" id="tab-expenses">💸 مصروفات</div>
+<div class="tab" onclick="showTab('reports')" id="tab-reports">📈 تقارير</div>
 </div>
-<div class="card" style="margin:8px;border:2px solid #f59e0b"><h4>🍖 المنيو - مدير فقط</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newItemName" placeholder="اسم الصنف"><input id="newItemPrice" type="number" placeholder="السعر"><button onclick="addMenuItem()" id="addMenuBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة</button></div><div id="menuList"></div></div>
-<div class="card" style="margin:8px;border:2px solid #f59e0b"><h4>➕ الإضافات - مدير فقط</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newExtraName" placeholder="اسم الإضافة"><input id="newExtraPrice" type="number" placeholder="السعر"><button onclick="addExtraItem()" id="addExtraBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة</button></div><div id="extrasList"></div></div>
+
+<!-- TABLES -->
+<div id="view-tables" class="card"><h4>🪑 الطاولات - 12 طاولة + سفري</h4><div id="tablesGrid" class="table-grid" style="margin-top:8px"></div>
+<div style="margin-top:12px" id="tableOrderBox" class="hidden"><h5 id="selectedTableTitle"></h5><select id="orderItem"></select><input id="orderQty" type="number" value="1" min="1"><select id="orderExtra"></select><button onclick="addOrderToTable()" style="background:#0f766e">إضافة للطاولة</button><div id="tableOrdersList" style="font-size:12px;margin-top:8px"></div><button onclick="closeTable()" id="closeTableBtn" style="background:#10b981;margin-top:6px">إقفال الطاولة - فاتورة</button></div>
+</div>
+
+<!-- ORDERS -->
+<div id="view-orders" class="card hidden"><h4>📊 كل الطلبات - أوفلاين</h4><div id="ordersList" style="font-size:12px;max-height:400px;overflow:auto"></div><button onclick="clearOrders()" id="clearBtn" style="background:#64748b;margin-top:8px">مسح كل الطلبات - مدير فقط</button></div>
+
+<!-- MENU -->
+<div id="view-menu" class="card hidden manager-only"><h4>🍖 المنيو - إضافة / حذف / سعر - مدير فقط 👑</h4><p style="font-size:10px;color:#92400e">الكاشير ما بيشوف زر الإضافة والحذف والسعر مقفول</p><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newItemName" placeholder="اسم الصنف - مثلاً كوارع"><input id="newItemPrice" type="number" placeholder="السعر"><button onclick="addMenuItem()" id="addMenuBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة صنف</button></div><div id="menuList" style="margin-top:10px"></div></div>
+
+<!-- EXTRAS -->
+<div id="view-extras" class="card hidden manager-only"><h4>➕ الإضافات - مدير فقط 👑</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px;margin-top:8px"><input id="newExtraName" placeholder="اسم الإضافة"><input id="newExtraPrice" type="number" placeholder="السعر"><button onclick="addExtraItem()" id="addExtraBtn" style="background:#f59e0b;color:black;width:auto">+ إضافة</button></div><div id="extrasList" style="margin-top:10px"></div></div>
+
+<!-- KITCHEN -->
+<div id="view-kitchen" class="card hidden"><h4>👨‍🍳 المطبخ - الطلبات الجاهزة</h4><div id="kitchenList" style="font-size:13px"></div><button onclick="clearKitchen()" style="background:#334155;margin-top:8px">مسح المطبخ - مدير فقط</button></div>
+
+<!-- EXPENSES -->
+<div id="view-expenses" class="card hidden"><h4>💸 المصروفات - مدير فقط</h4><div style="display:grid;grid-template-columns:1fr 100px auto;gap:6px"><input id="expName" placeholder="المصروف - إيجار - خضار"><input id="expAmount" type="number" placeholder="المبلغ"><button onclick="addExpense()" id="addExpBtn" style="background:#f59e0b;color:black;width:auto">+ مصروف</button></div><div id="expensesList" style="font-size:12px;margin-top:8px"></div><div id="expTotal" style="font-weight:900;margin-top:6px"></div></div>
+
+<!-- REPORTS -->
+<div id="view-reports" class="card hidden"><h4>📈 تقرير يومي - أوفلاين</h4><div id="reportData" style="font-size:13px;background:#f8fafc;padding:8px;border-radius:8px"></div><button onclick="generateReport()" style="background:#0f766e;margin-top:8px">تحديث التقرير</button><button onclick="clearAllData()" style="background:#7f1d1d;margin-top:8px">مسح كل البيانات - مدير فقط - خطر</button></div>
 </div>
 
 <script>
-const SECRET_USERS={manager:{pass:"admin123",role:"manager",name:"المدير"},cashier:{pass:"1234",role:"cashier",name:"الكاشير"}};
-let selectedRoleKey=null,currentUser=null;
-let menu=JSON.parse(localStorage.getItem('menuFix')||'[{"name":"لحم جاموس","price":8000},{"name":"كوارع","price":6000},{"name":"بارد","price":1000}]');
-let extras=JSON.parse(localStorage.getItem('extrasFix')||'[{"name":"بارد إضافي","price":1000}]');
-let orders=JSON.parse(localStorage.getItem('ordersFix')||'[]');
-function saveAll(){localStorage.setItem('menuFix',JSON.stringify(menu));localStorage.setItem('extrasFix',JSON.stringify(extras));localStorage.setItem('ordersFix',JSON.stringify(orders));}
-function selectRole(r){selectedRoleKey=r;document.getElementById('passBox').classList.remove('hidden');document.getElementById('selectedRoleText').textContent=r==='manager'?'👑 دخول المدير':'🧾 دخول الكاشير';}
-function cancelRole(){document.getElementById('passBox').classList.add('hidden');}
-function doLogin(){let p=document.getElementById('passwordInput').value;let u=SECRET_USERS[selectedRoleKey];if(!u||u.pass!==p){document.getElementById('loginMsg').textContent='كلمة السر خطأ';return;}currentUser={username:selectedRoleKey,role:u.role,name:u.name};document.getElementById('loginPage').classList.add('hidden');document.getElementById('appPage').classList.remove('hidden');document.getElementById('userInfo').textContent=u.name;renderAll();}
-function renderAll(){renderMenu();renderExtras();renderOrders();renderOrderSelect();applyRules();}
-function applyRules(){let isM=currentUser&&currentUser.role==='manager';document.getElementById('addMenuBtn').style.display=isM?'block':'none';document.getElementById('addExtraBtn').style.display=isM?'block':'none';document.getElementById('clearBtn').style.display=isM?'block':'none';document.querySelectorAll('.deleteItemBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.deleteExtraBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.priceInput').forEach(i=>{i.disabled=!isM});}
-function renderMenu(){document.getElementById('menuList').innerHTML=menu.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="priceInput" type="number" value="${it.price}" onchange="updateMenuPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteItemBtn" onclick="deleteMenuItem(${i})" style="width:auto;background:#ef4444;padding:4px 8px">حذف</button></span></div>`).join('');}
-function renderExtras(){document.getElementById('extrasList').innerHTML=extras.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="extraPriceInput" type="number" value="${it.price}" onchange="updateExtraPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteExtraBtn" onclick="deleteExtraItem(${i})" style="width:auto;background:#ef4444;padding:4px 8px">حذف</button></span></div>`).join('');}
-function renderOrderSelect(){document.getElementById('orderItem').innerHTML=menu.map(m=>`<option>${m.name} - ${m.price}</option>`).join('')+extras.map(e=>`<option>إضافة: ${e.name}</option>`).join('');}
-function renderOrders(){document.getElementById('ordersList').innerHTML=orders.map((o,i)=>`${o.table} - ${o.item} x${o.qty}`).join('<br>')||'لا طلبات';}
-function addMenuItem(){if(currentUser.role!=='manager')return;let n=document.getElementById('newItemName').value;let p=parseInt(document.getElementById('newItemPrice').value);menu.push({name:n,price:p});saveAll();renderAll();}
-function deleteMenuItem(i){menu.splice(i,1);saveAll();renderAll();}
-function updateMenuPrice(i,v){menu[i].price=parseInt(v);saveAll();renderOrderSelect();}
-function addExtraItem(){let n=document.getElementById('newExtraName').value;let p=parseInt(document.getElementById('newExtraPrice').value);extras.push({name:n,price:p});saveAll();renderAll();}
-function deleteExtraItem(i){extras.splice(i,1);saveAll();renderAll();}
-function updateExtraPrice(i,v){extras[i].price=parseInt(v);saveAll();}
-function addOrder(){orders.push({table:document.getElementById('tableNum').value,item:document.getElementById('orderItem').value,qty:document.getElementById('orderQty').value});saveAll();renderOrders();}
-function clearOrders(){orders=[];saveAll();renderOrders();}
-function logout(){currentUser=null;document.getElementById('appPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');}
+// ===== كلمات سر مخفية - ما ظاهرة =====
+const SECRET_USERS={manager:{pass:"admin123",role:"manager",name:"المدير"},cashier:{pass:"1234",role:"cashier",name:"الكاشير"},kitchen:{pass:"",role:"kitchen",name:"المطبخ"}};
+let selectedRoleKey=null,currentUser=null,selectedTable=null;
+let tables=JSON.parse(localStorage.getItem('anp_tables')||'[{"id":1,"name":"طاولة 1","busy":false},{"id":2,"name":"طاولة 2","busy":false},{"id":3,"name":"طاولة 3","busy":false},{"id":4,"name":"طاولة 4","busy":false},{"id":5,"name":"طاولة 5","busy":false},{"id":6,"name":"طاولة 6","busy":false},{"id":7,"name":"طاولة 7","busy":false},{"id":8,"name":"طاولة 8","busy":false},{"id":9,"name":"طاولة 9","busy":false},{"id":10,"name":"طاولة 10","busy":false},{"id":11,"name":"طاولة 11","busy":false},{"id":12,"name":"طاولة 12","busy":false},{"id":13,"name":"سفري","busy":false}]');
+let menu=JSON.parse(localStorage.getItem('anp_menu_full')||'[{"name":"لحم جاموس","price":8000},{"name":"كوارع","price":6000},{"name":"كمونية","price":5000},{"name":"بارد","price":1000},{"name":"شاي","price":500}]');
+let extras=JSON.parse(localStorage.getItem('anp_extras_full')||'[{"name":"بارد إضافي","price":1000},{"name":"شطة إضافية","price":500}]');
+let orders=JSON.parse(localStorage.getItem('anp_orders_full')||'[]');
+let expenses=JSON.parse(localStorage.getItem('anp_expenses_full')||'[]');
+
+function saveAll(){localStorage.setItem('anp_tables',JSON.stringify(tables));localStorage.setItem('anp_menu_full',JSON.stringify(menu));localStorage.setItem('anp_extras_full',JSON.stringify(extras));localStorage.setItem('anp_orders_full',JSON.stringify(orders));localStorage.setItem('anp_expenses_full',JSON.stringify(expenses));}
+
+function selectRole(r){selectedRoleKey=r;if(r==='kitchen'){doLoginDirect();return;}document.getElementById('passBox').classList.remove('hidden');document.getElementById('selectedRoleText').textContent=r==='manager'?'👑 دخول المدير':'🧾 دخول الكاشير';document.getElementById('passwordInput').value='';document.getElementById('passwordInput').focus();}
+function cancelRole(){document.getElementById('passBox').classList.add('hidden');document.getElementById('loginMsg').textContent='';}
+function doLoginDirect(){currentUser={username:'kitchen',role:'kitchen',name:'المطبخ'};document.getElementById('loginPage').classList.add('hidden');document.getElementById('appPage').classList.remove('hidden');document.getElementById('userInfo').textContent='المطبخ - بدون باسورد';renderAll();showTab('kitchen');}
+function doLogin(){let p=document.getElementById('passwordInput').value.trim();let u=SECRET_USERS[selectedRoleKey];if(!u||u.pass!==p){document.getElementById('loginMsg').textContent='كلمة السر خطأ';return;}currentUser={username:selectedRoleKey,role:u.role,name:u.name};document.getElementById('loginPage').classList.add('hidden');document.getElementById('appPage').classList.remove('hidden');document.getElementById('userInfo').textContent=u.name+' - '+selectedRoleKey;renderAll();showTab('tables');}
+
+function showTab(name){document.querySelectorAll('[id^="view-"]').forEach(d=>d.classList.add('hidden'));document.getElementById('view-'+name).classList.remove('hidden');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+name).classList.add('active');if(name==='kitchen')renderKitchen();if(name==='reports')generateReport();}
+
+function renderAll(){renderTables();renderMenu();renderExtras();renderOrders();renderOrderSelect();renderExpenses();applyManagerRules();setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString();},1000);}
+function applyManagerRules(){let isM=currentUser&&currentUser.role==='manager';document.getElementById('addMenuBtn').style.display=isM?'block':'none';document.getElementById('addExtraBtn').style.display=isM?'block':'none';document.getElementById('clearBtn').style.display=isM?'block':'none';document.getElementById('addExpBtn').style.display=isM?'block':'none';document.getElementById('closeTableBtn').style.display=isM?'block':'none';document.querySelectorAll('.deleteItemBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.deleteExtraBtn').forEach(b=>b.style.display=isM?'inline-block':'none');document.querySelectorAll('.priceInput').forEach(i=>{i.disabled=!isM;i.style.background=isM?'white':'#eee';});document.querySelectorAll('.extraPriceInput').forEach(i=>{i.disabled=!isM;i.style.background=isM?'white':'#eee';});}
+
+function renderTables(){document.getElementById('tablesGrid').innerHTML=tables.map(t=>`<div class="table ${t.busy?'busy':'free'}" onclick="openTable(${t.id})"><b>${t.name}</b><br><span style="font-size:10px">${t.busy?'🔴 مشغول':'🟢 فاضي'}</span></div>`).join('');}
+function openTable(id){selectedTable=tables.find(t=>t.id===id);document.getElementById('tableOrderBox').classList.remove('hidden');document.getElementById('selectedTableTitle').textContent='الطلب لـ '+selectedTable.name;renderTableOrders();}
+function renderTableOrders(){let list=orders.filter(o=>o.tableId===selectedTable.id);document.getElementById('tableOrdersList').innerHTML=list.map((o,i)=>`${o.item} x${o.qty} - ${o.price} <button class="small" onclick="deleteTableOrder(${o.globalIndex})" style="background:#ef4444">حذف</button>`).join('<br>')||'لا طلبات';}
+function renderOrderSelect(){document.getElementById('orderItem').innerHTML=menu.map(m=>`<option value="${m.name}|${m.price}">${m.name} - ${m.price}</option>`).join('');document.getElementById('orderExtra').innerHTML='<option value="0">بدون إضافة</option>'+extras.map(e=>`<option value="${e.name}|${e.price}">${e.name} - ${e.price}</option>`).join('');document.getElementById('orderExtra').innerHTML+='';}
+function addOrderToTable(){if(!selectedTable)return;let itemVal=document.getElementById('orderItem').value.split('|');let extraVal=document.getElementById('orderExtra').value;let qty=parseInt(document.getElementById('orderQty').value);let price=parseInt(itemVal[1])*qty;let extraPrice=0,extraName='';if(extraVal!=='0'){let ep=extraVal.split('|');extraName=ep[0];extraPrice=parseInt(ep[1])*qty;price+=extraPrice;}orders.push({tableId:selectedTable.id,tableName:selectedTable.name,item:itemVal[0]+(extraName?' + '+extraName:''),qty,price,globalIndex:orders.length,time:new Date().toLocaleString()});selectedTable.busy=true;saveAll();renderTables();renderOrders();renderTableOrders();renderKitchen();}
+function deleteTableOrder(globalIndex){orders.splice(globalIndex,1);orders.forEach((o,i)=>o.globalIndex=i);saveAll();renderTables();renderOrders();renderTableOrders();}
+function closeTable(){if(!selectedTable)return;if(currentUser.role!=='manager'){alert('مدير فقط يقفل الطاولة');return;}if(!confirm('إقفال '+selectedTable.name+' ؟'))return;orders=orders.filter(o=>o.tableId!==selectedTable.id);selectedTable.busy=false;saveAll();renderTables();renderOrders();document.getElementById('tableOrderBox').classList.add('hidden');}
+
+function renderMenu(){document.getElementById('menuList').innerHTML=menu.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="priceInput" type="number" value="${it.price}" onchange="updateMenuPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteItemBtn small" onclick="deleteMenuItem(${i})" style="background:#ef4444">حذف - مدير</button></span></div>`).join('');}
+function renderExtras(){document.getElementById('extrasList').innerHTML=extras.map((it,i)=>`<div class="item-row"><b>${it.name}</b><span><input class="extraPriceInput" type="number" value="${it.price}" onchange="updateExtraPrice(${i},this.value)" style="width:80px;display:inline-block"> <button class="deleteExtraBtn small" onclick="deleteExtraItem(${i})" style="background:#ef4444">حذف</button></span></div>`).join('');}
+function renderOrders(){document.getElementById('ordersList').innerHTML=orders.map((o,i)=>`${o.tableName} - ${o.item} x${o.qty} = ${o.price} - ${o.time} <button class="small" onclick="deleteTableOrder(${i})" style="background:#ef4444">x</button>`).join('<br>')||'لا طلبات';}
+function renderKitchen(){document.getElementById('kitchenList').innerHTML=orders.map(o=>`<div class="item-row"><b>${o.tableName}</b> ${o.item} x${o.qty} - ${o.time}</div>`).join('')||'المطبخ فاضي';}
+
+function addMenuItem(){if(currentUser.role!=='manager'){alert('مدير فقط');return;}let n=document.getElementById('newItemName').value.trim();let p=parseInt(document.getElementById('newItemPrice').value);if(!n||!p){alert('اسم وسعر');return;}menu.push({name:n,price:p});saveAll();renderMenu();renderOrderSelect();document.getElementById('newItemName').value='';document.getElementById('newItemPrice').value='';}
+function deleteMenuItem(i){if(currentUser.role!=='manager')return;if(!confirm('حذف؟'))return;menu.splice(i,1);saveAll();renderMenu();renderOrderSelect();}
+function updateMenuPrice(i,v){if(currentUser.role!=='manager'){alert('مدير فقط');renderMenu();applyManagerRules();return;}menu[i].price=parseInt(v);saveAll();renderOrderSelect();}
+function addExtraItem(){if(currentUser.role!=='manager')return;let n=document.getElementById('newExtraName').value.trim();let p=parseInt(document.getElementById('newExtraPrice').value);if(!n||!p)return;extras.push({name:n,price:p});saveAll();renderExtras();renderOrderSelect();}
+function deleteExtraItem(i){if(currentUser.role!=='manager')return;extras.splice(i,1);saveAll();renderExtras();renderOrderSelect();}
+function updateExtraPrice(i,v){if(currentUser.role!=='manager')return;extras[i].price=parseInt(v);saveAll();renderOrderSelect();}
+
+function renderExpenses(){document.getElementById('expensesList').innerHTML=expenses.map((e,i)=>`${e.name} - ${e.amount} - ${e.time} <button class="small" onclick="deleteExpense(${i})" style="background:#ef4444">حذف</button>`).join('<br>')||'لا مصروفات';let total=expenses.reduce((s,e)=>s+e.amount,0);document.getElementById('expTotal').textContent='إجمالي المصروفات: '+total;}
+function addExpense(){let n=document.getElementById('expName').value.trim();let a=parseInt(document.getElementById('expAmount').value);if(!n||!a)return;expenses.push({name:n,amount:a,time:new Date().toLocaleString()});saveAll();renderExpenses();generateReport();}
+function deleteExpense(i){expenses.splice(i,1);saveAll();renderExpenses();generateReport();}
+
+function generateReport(){let sales=orders.reduce((s,o)=>s+o.price,0);let exp=expenses.reduce((s,e)=>s+e.amount,0);let net=sales-exp;document.getElementById('reportData').innerHTML=`<b>مبيعات اليوم:</b> ${sales}<br><b>مصروفات:</b> ${exp}<br><b>صافي الربح:</b> ${net}<br><b>عدد الطلبات:</b> ${orders.length}<br><b>عدد الطاولات المشغولة:</b> ${tables.filter(t=>t.busy).length}`;}
+function clearOrders(){if(currentUser.role!=='manager'){alert('مدير فقط');return;}if(!confirm('مسح كل الطلبات؟'))return;orders=[];tables.forEach(t=>t.busy=false);saveAll();renderAll();}
+function clearKitchen(){orders=[];tables.forEach(t=>t.busy=false);saveAll();renderAll();}
+function clearAllData(){if(currentUser.role!=='manager'){alert('مدير فقط');return;}if(!confirm('خطر - مسح كل شي؟'))return;orders=[];expenses=[];tables.forEach(t=>t.busy=false);saveAll();renderAll();}
+function logout(){currentUser=null;selectedTable=null;document.getElementById('appPage').classList.add('hidden');document.getElementById('loginPage').classList.remove('hidden');document.getElementById('passBox').classList.add('hidden');document.getElementById('passwordInput').value='';}
 </script>
 </body>
-</html>
+  </html>
