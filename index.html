@@ -3,61 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ALL NATIONS RESTAURANT V4.17 - iPhone Professional</title>
-
-<!-- PWA - Android + iPhone -->
+<title>ALL NATIONS V4.17.1 - No Customer Name - iPhone Pro</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#7A0C1A">
-<meta name="background-color" content="#7A0C1A">
-
-<!-- iPhone - Professional - Required for iOS -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ALL NATIONS">
 <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
-<link rel="apple-touch-icon" sizes="152x152" href="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
-<link rel="apple-touch-icon" sizes="180x180" href="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
-<link rel="apple-touch-icon" sizes="167x167" href="https://cdn-icons-png.flaticon.com/512/1046/1046784.png">
-<meta name="format-detection" content="telephone=no">
-
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto}
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,Segoe UI}
 body{background:#f8f5f0;color:#1e293b;-webkit-tap-highlight-color:transparent}
-header{background:linear-gradient(90deg,#7A0C1A,#b91c1c);color:white;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30;backdrop-filter:blur(10px)}
-.card{background:white;border-radius:16px;padding:16px;margin:10px;box-shadow:0 4px 16px rgba(0,0,0,.08);border:1px solid #e7e5e4}
+header{background:linear-gradient(90deg,#7A0C1A,#b91c1c);color:white;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30}
+.card{background:white;border-radius:16px;padding:16px;margin:10px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
 .hidden{display:none!important}
-button{background:#7A0C1A;color:white;border:none;padding:11px 16px;border-radius:10px;font-weight:800;cursor:pointer;width:100%;transition:.2s;font-size:14px;-webkit-appearance:none}
-button:active{transform:scale(.98)}
-button.small{padding:6px 12px;font-size:11px;width:auto;display:inline-block;border-radius:20px}
-button.green{background:#059669}
-button.orange{background:#f59e0b;color:black}
-button.dark{background:#1e293b}
-input,select{padding:12px;border:1.5px solid #cbd5e1;border-radius:10px;width:100%;margin:5px 0;font-size:15px;background:white;-webkit-appearance:none}
-input:focus,select:focus{outline:none;border-color:#7A0C1A;box-shadow:0 0 0 3px rgba(122,12,26,.1)}
+button{background:#7A0C1A;color:white;border:none;padding:11px 16px;border-radius:10px;font-weight:800;cursor:pointer;width:100%;font-size:14px;-webkit-appearance:none}
+button.small{padding:6px 12px;font-size:11px;width:auto;border-radius:20px}
+button.green{background:#059669}button.orange{background:#f59e0b;color:black}button.dark{background:#1e293b}
+input,select{padding:12px;border:1.5px solid #cbd5e1;border-radius:10px;width:100%;margin:5px 0;font-size:15px;background:white}
 .tabs{display:flex;gap:6px;padding:10px;background:#1e293b;overflow:auto;position:sticky;top:56px;z-index:20;-webkit-overflow-scrolling:touch}
 .tab{padding:10px 16px;background:#334155;color:#e2e8f0;border-radius:20px;cursor:pointer;white-space:nowrap;font-size:11px;font-weight:700;flex-shrink:0}
 .tab.active{background:#f59e0b;color:black}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px}
-.menu-card{border:1.5px solid #e7e5e4;border-radius:12px;padding:12px;text-align:center;background:#fffbeb;cursor:pointer;transition:.2s}
-.menu-card:active{transform:scale(.97)}
+.menu-card{border:1.5px solid #e7e5e4;border-radius:12px;padding:12px;text-align:center;background:#fffbeb;cursor:pointer}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
 .stat{background:#1e293b;color:white;padding:12px;border-radius:12px;text-align:center}
 .firebase-on{background:#dcfce7;border:2px solid #22c55e;padding:10px;border-radius:10px;text-align:center;color:#166534;font-size:11px;font-weight:700}
 .firebase-off{background:#fee2e2;border:2px solid #ef4444;padding:10px;border-radius:10px;text-align:center;color:#7f1d1d;font-size:11px}
-.ios-banner{position:fixed;bottom:0;left:0;right:0;background:#1e293b;color:white;padding:14px;text-align:center;z-index:9999;font-size:13px;border-top:3px solid #f59e0b;animation:slideUp .4s}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ios-banner{position:fixed;bottom:0;left:0;right:0;background:#1e293b;color:white;padding:14px;text-align:center;z-index:9999;font-size:13px;border-top:3px solid #f59e0b}
 </style>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-<header>
-<div><b>🍖 ALL NATIONS V4.17</b><br><span style="font-size:10px;opacity:.9">iPhone Pro • Salafiyat • Firebase DB • <span id="fbStatus">Checking...</span></span></div>
-<button onclick="location.reload()" class="small" style="background:rgba(0,0,0,.25)">Refresh</button>
-</header>
-
-<div id="firebaseBadge" class="firebase-off" style="margin:10px">🔴 Firebase: Add Config in line 95 for Online Sync</div>
-
+<header><div><b>🍖 ALL NATIONS V4.17.1</b><br><span style="font-size:10px">No Customer Name • iPhone Pro • <span id="fbStatus">Checking...</span></span></div><button onclick="location.reload()" class="small" style="background:rgba(0,0,0,.25)">Refresh</button></header>
+<div id="firebaseBadge" class="firebase-off" style="margin:10px">Checking Firebase...</div>
 <div class="tabs">
 <div class="tab active" onclick="showTab('pos')" id="tab-pos">💰 طلب جديد</div>
 <div class="tab" onclick="showTab('live')" id="tab-live">📊 الطلبات الحية</div>
@@ -69,54 +48,41 @@ input:focus,select:focus{outline:none;border-color:#7A0C1A;box-shadow:0 0 0 3px 
 <div class="tab" onclick="showTab('reports')" id="tab-reports">📈 التقارير</div>
 </div>
 
-<div id="view-pos" class="card"><h3>💰 طلب جديد - Professional</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><select id="orderType"><option value="محلي">🍽️ محلي</option><option value="سفري">🥡 سفري</option><option value="توصيل">🛵 توصيل</option></select><input id="customerName" placeholder="اسم الزبون"></div><input id="searchMenu" placeholder="🔍 بحث في المنيو..." oninput="renderMenuSelect()" style="margin-top:8px"><div id="menuSelect" class="grid" style="margin-top:10px;max-height:240px;overflow:auto;-webkit-overflow-scrolling:touch"></div><h4 style="margin-top:12px">➕ إضافات - مثل المطعم القديم</h4><div id="extrasSelect" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div><div style="margin-top:14px;background:#fffbeb;border:1.5px solid #fde68a;padding:12px;border-radius:12px"><h4>🛒 السلة - <span id="cartCount">0 صنف</span></h4><div id="cartList" style="margin-top:8px;font-size:13px"></div><div style="display:flex;justify-content:space-between;font-weight:900;margin-top:8px;padding-top:8px;border-top:1.5px dashed #f59e0b"><span>الإجمالي:</span><span id="cartTotal">0 SSP</span></div><button onclick="placeOrder()" class="green" style="margin-top:10px;font-size:15px">✅ إرسال للمطبخ - Place Order</button></div></div>
+<div id="view-pos" class="card">
+<h3>💰 طلب جديد - بدون اسم زبون - Professional</h3>
+<div style="margin-top:8px">
+<label style="font-size:11px;font-weight:700">نوع الطلب</label>
+<select id="orderType"><option value="محلي">🍽️ محلي</option><option value="سفري">🥡 سفري</option><option value="توصيل">🛵 توصيل</option></select>
+</div>
+<input id="searchMenu" placeholder="🔍 بحث في المنيو..." oninput="renderMenuSelect()" style="margin-top:8px">
+<div id="menuSelect" class="grid" style="margin-top:10px;max-height:240px;overflow:auto"></div>
+<h4 style="margin-top:12px">➕ إضافات</h4>
+<div id="extrasSelect" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px"></div>
+<div style="margin-top:14px;background:#fffbeb;border:1.5px solid #fde68a;padding:12px;border-radius:12px">
+<h4>🛒 السلة - <span id="cartCount">0 صنف</span></h4>
+<div id="cartList" style="margin-top:8px;font-size:13px"></div>
+<div style="display:flex;justify-content:space-between;font-weight:900;margin-top:8px;padding-top:8px;border-top:1.5px dashed #f59e0b"><span>الإجمالي:</span><span id="cartTotal">0 SSP</span></div>
+<button onclick="placeOrder()" class="green" style="margin-top:10px">✅ إرسال للمطبخ - Place Order</button>
+</div>
+</div>
 
-<div id="view-live" class="card hidden"><h3>📊 الطلبات الحية - Live Orders</h3><div id="liveList" style="margin-top:10px"></div></div>
-<div id="view-kitchen" class="card hidden"><h3>👨‍🍳 المطبخ - Kitchen - Professional</h3><div id="kitchenList" style="margin-top:10px"></div></div>
-<div id="view-menu" class="card hidden"><h3>🍖 إدارة المنيو - بدون جاموس - Professional</h3><div id="menuList" style="margin-top:10px"></div><div style="margin-top:12px;background:#eff6ff;border:1.5px dashed #93c5fd;padding:12px;border-radius:12px"><h4>➕ إضافة وجبة جديدة</h4><input id="newMealName" placeholder="اسم الوجبة - مثال: لحم ضان - كبدة"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input id="newMealPrice" type="number" placeholder="السعر SSP"><input id="newMealQty" type="number" placeholder="الكمية"></div><button onclick="addMeal()" class="orange" style="margin-top:8px">+ إضافة للمنيو</button></div></div>
-<div id="view-extras" class="card hidden"><h3>➕ الإضافات - مثل المطعم القديم</h3><div id="extrasList" style="margin-top:10px"></div><div style="margin-top:12px;background:#ecfdf5;border:1.5px dashed #6ee7b7;padding:12px;border-radius:12px"><div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px"><input id="newExtraName" placeholder="اسم الإضافة"><input id="newExtraPrice" type="number" placeholder="السعر"><button onclick="addExtra()" class="green" style="width:auto">+ إضافة</button></div></div></div>
-<div id="view-expenses" class="card hidden"><h3>💸 مصروفات المطعم - Professional</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><select id="expCategory"><option>مشتريات لحم</option><option>خضار</option><option>غاز وفحم</option><option>بارد</option><option>مواصلات</option><option>كهرباء</option><option>رواتب</option><option>أخرى</option></select><select id="expShift"><option>صباح</option><option>مساء</option></select></div><input id="expName" placeholder="تفاصيل المصروف"><div style="display:grid;grid-template-columns:1fr 130px auto;gap:6px"><input id="expAmount" type="number" placeholder="المبلغ"><input id="expDate" type="date"><button onclick="addExpense()" class="green" style="width:auto">+ حفظ</button></div><div id="expList" style="margin-top:12px"></div><div style="display:flex;justify-content:space-between;font-weight:900;background:#1e293b;color:white;padding:10px;border-radius:10px;margin-top:10px"><span>الإجمالي:</span><span id="expTotal">0 SSP</span></div></div>
+<div id="view-live" class="card hidden"><h3>📊 الطلبات الحية</h3><div id="liveList"></div></div>
+<div id="view-kitchen" class="card hidden"><h3>👨‍🍳 المطبخ</h3><div id="kitchenList"></div></div>
+<div id="view-menu" class="card hidden"><h3>🍖 المنيو - بدون جاموس</h3><div id="menuList"></div><div style="margin-top:12px;background:#eff6ff;padding:12px;border-radius:10px"><input id="newMealName" placeholder="اسم الوجبة"><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><input id="newMealPrice" type="number" placeholder="السعر"><input id="newMealQty" type="number" placeholder="الكمية"></div><button onclick="addMeal()" class="orange" style="margin-top:8px">+ إضافة</button></div></div>
+<div id="view-extras" class="card hidden"><h3>➕ الإضافات</h3><div id="extrasList"></div><div style="margin-top:12px;background:#ecfdf5;padding:12px;border-radius:10px"><div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px"><input id="newExtraName" placeholder="اسم الإضافة"><input id="newExtraPrice" type="number" placeholder="السعر"><button onclick="addExtra()" class="green" style="width:auto">+ إضافة</button></div></div></div>
+<div id="view-expenses" class="card hidden"><h3>💸 المصروفات</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><select id="expCategory"><option>مشتريات لحم</option><option>خضار</option><option>غاز وفحم</option><option>بارد</option><option>مواصلات</option><option>كهرباء</option><option>رواتب</option><option>أخرى</option></select><select id="expShift"><option>صباح</option><option>مساء</option></select></div><input id="expName" placeholder="تفاصيل المصروف"><div style="display:grid;grid-template-columns:1fr 130px auto;gap:6px"><input id="expAmount" type="number" placeholder="المبلغ"><input id="expDate" type="date"><button onclick="addExpense()" class="green" style="width:auto">+ حفظ</button></div><div id="expList" style="margin-top:12px"></div><div style="display:flex;justify-content:space-between;font-weight:900;background:#1e293b;color:white;padding:10px;border-radius:10px;margin-top:10px"><span>الإجمالي:</span><span id="expTotal">0 SSP</span></div></div>
 
 <div id="view-salafiyat" class="card hidden">
-<h3>💳 السلفيات والديون - منفصلة - Professional</h3>
-<div style="background:#dcfce7;border:2px solid #22c55e;padding:12px;border-radius:12px;margin-top:10px">
-<h4 style="color:#166534">💰 لنا عند الناس - المديونين</h4>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="debtorName" placeholder="اسم المديون"><input id="debtorReason" placeholder="السبب - سلفية مرتب"></div>
-<div style="display:grid;grid-template-columns:1fr 120px auto;gap:6px"><input id="debtorAmount" type="number" placeholder="المبلغ"><input id="debtorDate" type="date"><button onclick="addDebtor()" class="green" style="width:auto">+ إضافة</button></div>
-<div id="debtorsList" style="margin-top:10px;max-height:300px;overflow:auto;background:white;padding:8px;border-radius:8px;-webkit-overflow-scrolling:touch"></div>
-<div style="display:flex;justify-content:space-between;font-weight:900;background:#166534;color:white;padding:8px;border-radius:8px;margin-top:8px"><span>إجمالي لنا:</span><span id="debtorsTotal">0 SSP</span></div>
-</div>
-<div style="background:#fee2e2;border:2px solid #ef4444;padding:12px;border-radius:12px;margin-top:14px">
-<h4 style="color:#7f1d1d">🔴 علينا - ديون المطعم</h4>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="creditorName" placeholder="اسم الدائن - مورد"><input id="creditorReason" placeholder="السبب - لحم آجل"></div>
-<div style="display:grid;grid-template-columns:1fr 120px auto;gap:6px"><input id="creditorAmount" type="number" placeholder="المبلغ"><input id="creditorDate" type="date"><button onclick="addCreditor()" style="background:#dc2626;width:auto">+ إضافة</button></div>
-<div id="creditorsList" style="margin-top:10px;max-height:300px;overflow:auto;background:white;padding:8px;border-radius:8px;-webkit-overflow-scrolling:touch"></div>
-<div style="display:flex;justify-content:space-between;font-weight:900;background:#7f1d1d;color:white;padding:8px;border-radius:8px;margin-top:8px"><span>إجمالي علينا:</span><span id="creditorsTotal">0 SSP</span></div>
-</div>
+<h3>💳 السلفيات والديون</h3>
+<div style="background:#dcfce7;border:2px solid #22c55e;padding:12px;border-radius:12px;margin-top:10px"><h4 style="color:#166534">💰 لنا عند الناس</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="debtorName" placeholder="اسم المديون"><input id="debtorReason" placeholder="السبب"></div><div style="display:grid;grid-template-columns:1fr 120px auto;gap:6px"><input id="debtorAmount" type="number" placeholder="المبلغ"><input id="debtorDate" type="date"><button onclick="addDebtor()" class="green" style="width:auto">+ إضافة</button></div><div id="debtorsList" style="margin-top:10px;max-height:300px;overflow:auto;background:white;padding:8px;border-radius:8px"></div><div style="display:flex;justify-content:space-between;font-weight:900;background:#166534;color:white;padding:8px;border-radius:8px;margin-top:8px"><span>إجمالي لنا:</span><span id="debtorsTotal">0 SSP</span></div></div>
+<div style="background:#fee2e2;border:2px solid #ef4444;padding:12px;border-radius:12px;margin-top:14px"><h4 style="color:#7f1d1d">🔴 علينا - ديون المطعم</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px"><input id="creditorName" placeholder="اسم الدائن"><input id="creditorReason" placeholder="السبب"></div><div style="display:grid;grid-template-columns:1fr 120px auto;gap:6px"><input id="creditorAmount" type="number" placeholder="المبلغ"><input id="creditorDate" type="date"><button onclick="addCreditor()" style="background:#dc2626;width:auto">+ إضافة</button></div><div id="creditorsList" style="margin-top:10px;max-height:300px;overflow:auto;background:white;padding:8px;border-radius:8px"></div><div style="display:flex;justify-content:space-between;font-weight:900;background:#7f1d1d;color:white;padding:8px;border-radius:8px;margin-top:8px"><span>إجمالي علينا:</span><span id="creditorsTotal">0 SSP</span></div></div>
 <div style="background:#1e293b;color:white;padding:12px;border-radius:12px;margin-top:14px;display:flex;justify-content:space-between;font-weight:900"><span>الصافي:</span><b id="netDebt">0 SSP</b></div>
-<div style="margin-top:10px;display:flex;gap:6px"><button onclick="printDebts()" class="dark small" style="width:auto">🖨️ طباعة</button><button onclick="clearDebts()" class="small" style="width:auto;background:#64748b">مسح الكل</button></div>
 </div>
 
-<div id="view-reports" class="card hidden">
-<h3>📈 التقارير الكاملة - من الأكثر مبيعا لأسفل - Professional</h3>
-<div class="stat-grid" style="margin-top:10px">
-<div class="stat"><span style="font-size:9px">الطلبات</span><br><b id="rOrders">0</b></div>
-<div class="stat" style="background:#065f46"><span style="font-size:9px">المبيعات</span><br><b id="rSales">0</b></div>
-<div class="stat" style="background:#7f1d1d"><span style="font-size:9px">المصروفات</span><br><b id="rExpenses">0</b></div>
-<div class="stat" style="background:#7A0C1A"><span style="font-size:9px">صافي الربح</span><br><b id="rProfit">0</b></div>
-<div class="stat" style="background:#166534"><span style="font-size:9px">لنا</span><br><b id="rDebtors">0</b></div>
-<div class="stat" style="background:#7f1d1d"><span style="font-size:9px">علينا</span><br><b id="rCreditors">0</b></div>
-</div>
-<div id="reportBox" style="background:#fffbeb;padding:12px;border-radius:10px;margin-top:10px;font-size:13px;border:1px solid #fde68a"></div>
-<h4 style="margin-top:14px">🏆 الوجبات - من الأكثر مبيعا - إيراد كل صنف</h4><div id="rankedMeals" style="margin-top:8px"></div>
-<h4 style="margin-top:14px">➕ تقرير الإضافات</h4><div id="rankedExtras" style="margin-top:8px"></div>
-<h4 style="margin-top:14px">👨‍🍳 تقرير المطبخ - بيانات المطبخ</h4><div id="kitchenReport" style="background:#f8fafc;padding:10px;border-radius:10px;font-size:12px;margin-top:6px"></div>
-<h4 style="margin-top:14px">💸 تقرير المصروفات</h4><div id="expenseReport" style="margin-top:8px"></div>
-<div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><button onclick="renderReports()" class="dark small" style="width:auto">🔄 تحديث</button><button onclick="printReports()" class="small" style="width:auto;background:#7A0C1A">🖨️ طباعة التقرير</button><button onclick="clearAll()" class="small" style="width:auto;background:#64748b">🗑️ مسح كل البيانات</button></div>
-</div>
+<div id="view-reports" class="card hidden"><h3>📈 التقارير الكاملة - من الأكثر مبيعا</h3><div class="stat-grid" style="margin-top:10px"><div class="stat"><span style="font-size:9px">الطلبات</span><br><b id="rOrders">0</b></div><div class="stat" style="background:#065f46"><span style="font-size:9px">المبيعات</span><br><b id="rSales">0</b></div><div class="stat" style="background:#7f1d1d"><span style="font-size:9px">المصروفات</span><br><b id="rExpenses">0</b></div><div class="stat" style="background:#7A0C1A"><span style="font-size:9px">صافي الربح</span><br><b id="rProfit">0</b></div><div class="stat" style="background:#166534"><span style="font-size:9px">لنا</span><br><b id="rDebtors">0</b></div><div class="stat" style="background:#7f1d1d"><span style="font-size:9px">علينا</span><br><b id="rCreditors">0</b></div></div><div id="reportBox" style="background:#fffbeb;padding:12px;border-radius:10px;margin-top:10px;font-size:13px"></div><h4 style="margin-top:14px">🏆 الوجبات من الأكثر مبيعا</h4><div id="rankedMeals" style="margin-top:8px"></div><h4 style="margin-top:14px">➕ الإضافات</h4><div id="rankedExtras" style="margin-top:8px"></div><h4 style="margin-top:14px">👨‍🍳 بيانات المطبخ</h4><div id="kitchenReport" style="background:#f8fafc;padding:10px;border-radius:10px;font-size:12px;margin-top:6px"></div><div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><button onclick="renderReports()" class="dark small" style="width:auto">🔄 تحديث</button><button onclick="printReports()" class="small" style="width:auto;background:#7A0C1A">🖨️ طباعة</button><button onclick="clearAll()" class="small" style="width:auto;background:#64748b">🗑️ مسح كل البيانات</button></div></div>
 
 <script>
-// ========== FIREBASE CONFIG - Professional - ضع الـ Config الحقيقي ==========
+const firebaseConfig = {
 const firebaseConfig = {
   apiKey: "AIzaSyAF6tqp2q2YSzyE_YZFBi4h_nt0zzYVCsI",
   authDomain: "tajdera-596d1.firebaseapp.com",
@@ -125,33 +91,31 @@ const firebaseConfig = {
   messagingSenderId: "947869925949",
   appId: "1:947869925949:web:0f210e6050211d78ed2054"
 };
-// ==========================================================================
-
 let db=null, firebaseConnected=false;
-let menu=JSON.parse(localStorage.getItem('r_v417p_menu')||'[{"name":"لحم ضان","price":5000,"qty":100},{"name":"كبدة","price":4500,"qty":50},{"name":"كوارع","price":6000,"qty":30},{"name":"فراخ","price":4000,"qty":80},{"name":"سمك","price":5500,"qty":40},{"name":"فول","price":1500,"qty":200}]');
-let extras=JSON.parse(localStorage.getItem('r_v417p_extras')||'[{"name":"سلطة خضراء","price":500},{"name":"سلطة أسود","price":600},{"name":"شطة","price":200},{"name":"عيش إضافي","price":300},{"name":"بارد","price":1000},{"name":"موية","price":500}]');
-let orders=JSON.parse(localStorage.getItem('r_v417p_orders')||'[]');
-let expenses=JSON.parse(localStorage.getItem('r_v417p_expenses')||'[]');
-let debtors=JSON.parse(localStorage.getItem('r_v417p_debtors')||'[]');
-let creditors=JSON.parse(localStorage.getItem('r_v417p_creditors')||'[]');
+let menu=JSON.parse(localStorage.getItem('r_v4171nc_menu')||'[{"name":"لحم ضان","price":5000,"qty":100},{"name":"كبدة","price":4500,"qty":50},{"name":"كوارع","price":6000,"qty":30},{"name":"فراخ","price":4000,"qty":80},{"name":"سمك","price":5500,"qty":40},{"name":"فول","price":1500,"qty":200}]');
+let extras=JSON.parse(localStorage.getItem('r_v4171nc_extras')||'[{"name":"سلطة خضراء","price":500},{"name":"سلطة أسود","price":600},{"name":"شطة","price":200},{"name":"عيش إضافي","price":300},{"name":"بارد","price":1000},{"name":"موية","price":500}]');
+let orders=JSON.parse(localStorage.getItem('r_v4171nc_orders')||'[]');
+let expenses=JSON.parse(localStorage.getItem('r_v4171nc_expenses')||'[]');
+let debtors=JSON.parse(localStorage.getItem('r_v4171nc_debtors')||'[]');
+let creditors=JSON.parse(localStorage.getItem('r_v4171nc_creditors')||'[]');
 let cart=[];
 
 async function initFirebase(){
  const badge=document.getElementById('firebaseBadge');
  const status=document.getElementById('fbStatus');
  try{
-   if(firebaseConfig.apiKey.includes("REPLACE_WITH")) throw new Error("Add Firebase Config in line 95 for Online Sync - Works Offline until configured");
-   firebase.initializeApp(firebaseConfig);
+   if(firebaseConfig.apiKey.includes("REPLACE_WITH")) throw new Error("Add Config for Online");
+   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
    db=firebase.firestore();
    await db.collection('menu').limit(1).get();
    firebaseConnected=true;
    badge.className='firebase-on';
-   badge.textContent='🟢 Firebase Connected - iPhone + Android - Online DB - All Devices Synced - Professional';
-   status.textContent='ONLINE - iPhone Ready - Cloud';
+   badge.textContent='🟢 Firebase Connected - iPhone Pro - Online';
+   status.textContent='ONLINE - iPhone Ready';
    loadAllFromFirebase();
  }catch(e){
    badge.className='firebase-off';
-   badge.textContent='🔴 Firebase Offline - Local Professional Mode - '+e.message;
+   badge.textContent='🔴 Offline - Local - '+e.message;
    status.textContent='OFFLINE - Local - iPhone Ready';
    renderAll();
  }
@@ -161,132 +125,257 @@ async function loadAllFromFirebase(){
  try{
    let m=await db.collection('menu').get(); if(!m.empty) menu=m.docs.map(d=>({id:d.id,...d.data()}));
    let ex=await db.collection('extras').get(); if(!ex.empty) extras=ex.docs.map(d=>({id:d.id,...d.data()}));
-   let o=await db.collection('orders').orderBy('createdAt','desc').limit(200).get(); orders=o.docs.map(d=>({id:d.id,...d.data()}));
-   let exp=await db.collection('expenses').orderBy('createdAt','desc').limit(200).get(); expenses=exp.docs.map(d=>({id:d.id,...d.data()}));
-   let deb=await db.collection('debtors').get(); debtors=deb.docs.map(d=>({id:d.id,...d.data()}));
-   let cred=await db.collection('creditors').get(); creditors=cred.docs.map(d=>({id:d.id,...d.data()}));
+   let o=await db.collection('orders').orderBy('createdAt','desc').limit(200).get(); orders=o.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
+   let exp=await db.collection('expenses').orderBy('createdAt','desc').limit(200).get(); expenses=exp.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
+   let deb=await db.collection('debtors').get(); debtors=deb.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
+   let cred=await db.collection('creditors').get(); creditors=cred.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
    renderAll();
- }catch(e){console.error(e); renderAll();}
+ }catch(e){ renderAll(); }
 }
 function save(){
- localStorage.setItem('r_v417p_menu', JSON.stringify(menu));
- localStorage.setItem('r_v417p_extras', JSON.stringify(extras));
- localStorage.setItem('r_v417p_orders', JSON.stringify(orders));
- localStorage.setItem('r_v417p_expenses', JSON.stringify(expenses));
- localStorage.setItem('r_v417p_debtors', JSON.stringify(debtors));
- localStorage.setItem('r_v417p_creditors', JSON.stringify(creditors));
+ localStorage.setItem('r_v4171nc_menu', JSON.stringify(menu));
+ localStorage.setItem('r_v4171nc_extras', JSON.stringify(extras));
+ localStorage.setItem('r_v4171nc_orders', JSON.stringify(orders));
+ localStorage.setItem('r_v4171nc_expenses', JSON.stringify(expenses));
+ localStorage.setItem('r_v4171nc_debtors', JSON.stringify(debtors));
+ localStorage.setItem('r_v4171nc_creditors', JSON.stringify(creditors));
 }
-function showTab(n){document.querySelectorAll('[id^="view-"]').forEach(d=>d.classList.add('hidden'));document.getElementById('view-'+n).classList.remove('hidden');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('tab-'+n).classList.add('active');if(n==='reports')renderReports();if(n==='expenses')renderExpenses();if(n==='salafiyat')renderSalafiyat();}
-function renderMenuSelect(){let q=(document.getElementById('searchMenu')?.value||'').toLowerCase();let filtered=menu.filter(m=>m.name.toLowerCase().includes(q));document.getElementById('menuSelect').innerHTML=filtered.map(m=>`<div class="menu-card" onclick="addToCart('${m.name.replace(/'/g,"\\'")}')"><b>${m.name}</b><br><span style="font-size:12px;color:#059669;font-weight:800">${m.price} SSP</span><br><span style="font-size:10px;color:#64748b">${m.qty} متبقي</span></div>`).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا وجبات</p>';document.getElementById('extrasSelect').innerHTML=extras.map(e=>`<button class="small orange" style="width:auto" onclick="addExtraToCart('${e.name.replace(/'/g,"\\'")}')">${e.name} - ${e.price}</button>`).join('');}
-function renderMenu(){document.getElementById('menuList').innerHTML=menu.map(m=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${m.name}</b> - ${m.price} - ${m.qty}</span><button class="small" style="background:#ef4444" onclick="deleteMeal('${m.name.replace(/'/g,"\\'")}')">حذف</button></div>`).join('');renderMenuSelect();}
-async function addMeal(){let n=document.getElementById('newMealName').value.trim(), p=parseFloat(document.getElementById('newMealPrice').value), q=parseInt(document.getElementById('newMealQty').value)||0;if(!n||isNaN(p)){alert('اكتب الاسم والسعر');return;}if(n.includes('جاموس')){alert('تم إزالة جاموس من التطبيق');return;}try{if(firebaseConnected){await db.collection('menu').add({name:n, price:p, qty:q, createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{let idx=menu.findIndex(m=>m.name===n);if(idx>=0){menu[idx].price=p;menu[idx].qty+=q;}else menu.push({name:n, price:p, qty:q});save();renderMenu();}document.getElementById('newMealName').value='';document.getElementById('newMealPrice').value='';document.getElementById('newMealQty').value='';}catch(e){alert(e.message);}}
-async function deleteMeal(name){if(!confirm('حذف '+name+'؟'))return;try{if(firebaseConnected){let m=menu.find(x=>x.name===name);if(m&&m.id)await db.collection('menu').doc(m.id).delete();await loadAllFromFirebase();}else{menu=menu.filter(m=>m.name!==name);save();renderMenu();}}catch(e){alert(e.message);}}
-function renderExtras(){document.getElementById('extrasList').innerHTML=extras.map(e=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${e.name}</b> - ${e.price} SSP</span><button class="small" style="background:#ef4444" onclick="deleteExtra('${e.name.replace(/'/g,"\\'")}')">حذف</button></div>`).join('');}
-async function addExtra(){let n=document.getElementById('newExtraName').value.trim(), p=parseFloat(document.getElementById('newExtraPrice').value);if(!n||isNaN(p))return alert('اكتب الاسم والسعر');try{if(firebaseConnected){await db.collection('extras').add({name:n, price:p, createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{extras.push({name:n, price:p});save();renderExtras();renderMenuSelect();}document.getElementById('newExtraName').value='';document.getElementById('newExtraPrice').value='';}catch(e){alert(e.message);}}
-async function deleteExtra(name){try{if(firebaseConnected){let e=extras.find(x=>x.name===name);if(e&&e.id)await db.collection('extras').doc(e.id).delete();await loadAllFromFirebase();}else{extras=extras.filter(x=>x.name!==name);save();renderExtras();renderMenuSelect();}}catch(e){alert(e.message);}}
-function addToCart(name){let m=menu.find(x=>x.name===name);if(!m||m.qty<=0){alert('انتهت الكمية');return;}let ex=cart.find(c=>c.name===name&&c.type==='meal');if(ex){if(ex.qty>=m.qty){alert('الكمية فقط '+m.qty);return;}ex.qty++;}else cart.push({name, price:m.price, qty:1, type:'meal'});renderCart();}
-function addExtraToCart(name){let e=extras.find(x=>x.name===name);if(!e)return;let ex=cart.find(c=>c.name===name&&c.type==='extra');if(ex)ex.qty++;else cart.push({name, price:e.price, qty:1, type:'extra'});renderCart();}
-function renderCart(){let total=cart.reduce((s,c)=>s+c.price*c.qty,0);document.getElementById('cartList').innerHTML=cart.map((c,i)=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #fde68a"><span>${c.type==='extra'?'➕':''} ${c.name} x${c.qty} = ${c.price*c.qty} SSP</span><button class="small" style="background:#ef4444" onclick="cart.splice(${i},1);renderCart()">x</button></div>`).join('')||'السلة فارغة';document.getElementById('cartTotal').textContent=total+' SSP';document.getElementById('cartCount').textContent=cart.reduce((s,c)=>s+c.qty,0)+' صنف';}
-async function placeOrder(){if(cart.length===0)return alert('السلة فارغة');let type=document.getElementById('orderType').value, customer=document.getElementById('customerName').value.trim()||'زبون';let total=cart.reduce((s,c)=>s+c.price*c.qty,0);let baseItems=cart.filter(c=>c.type==='meal'), extraItems=cart.filter(c=>c.type==='extra');try{if(firebaseConnected){for(let c of cart){if(c.type==='meal'){let m=menu.find(mm=>mm.name===c.name);if(m&&m.id)await db.collection('menu').doc(m.id).update({qty:m.qty-c.qty});}}await db.collection('orders').add({customer, type, items:cart, base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{cart.forEach(c=>{if(c.type==='meal'){let m=menu.find(mm=>mm.name===c.name);if(m)m.qty-=c.qty;}});orders.push({id:Date.now(), customer, type, items:JSON.parse(JSON.stringify(cart)), base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString()});save();renderMenu();renderLive();renderKitchen();}cart=[];renderCart();document.getElementById('customerName').value='';alert('✅ تم إرسال الطلب للمطبخ - '+total+' SSP');showTab('live');}catch(e){alert(e.message);}}
-function renderLive(){document.getElementById('liveList').innerHTML=orders.slice().reverse().map(o=>`<div style="border:1.5px solid ${o.status==='تم'?'#22c55e':'#f59e0b'};border-radius:12px;padding:10px;margin:6px 0;background:${o.status==='تم'?'#dcfce7':'#fffbeb'}"><div style="display:flex;justify-content:space-between"><b>${o.customer} - ${o.type}</b><span style="background:${o.status==='تم'?'#16a34a':'#f59e0b'};color:white;padding:3px 10px;border-radius:20px;font-size:10px">${o.status}</span></div><div style="font-size:12px;margin-top:4px"><b>وجبات:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(', ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>${o.total} SSP</b> - ${o.time}</div><div style="display:flex;gap:6px;margin-top:6px"><button class="small green" onclick="updateStatus('${o.id}')">✅ تم</button><button class="small" style="background:#ef4444" onclick="deleteOrder('${o.id}')">حذف</button></div></div>`).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا طلبات حية</p>';}
-async function updateStatus(id){try{if(firebaseConnected){await db.collection('orders').doc(id).update({status:'تم', kitchenStatus:'تم الطبخ'});await loadAllFromFirebase();}else{let o=orders.find(x=>x.id==id);if(o){o.status='تم';o.kitchenStatus='تم الطبخ';save();renderLive();renderKitchen();}}}catch(e){alert(e.message);}}
-async function deleteOrder(id){if(!confirm('حذف الطلب؟'))return;try{if(firebaseConnected){await db.collection('orders').doc(id).delete();await loadAllFromFirebase();}else{orders=orders.filter(o=>o.id!=id);save();renderLive();renderKitchen();}}catch(e){alert(e.message);}}
-function renderKitchen(){document.getElementById('kitchenList').innerHTML=orders.filter(o=>o.status!=='تم').slice().reverse().map(o=>`<div style="border:1.5px solid #334155;border-radius:12px;padding:10px;margin:6px 0;background:#f8fafc"><b>👨‍🍳 ${o.customer} - ${o.type} - ${o.time}</b><br><span style="font-size:12px"><b>للمطبخ:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(' + ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>حالة:</b> <select onchange="updateKitchenStatus('${o.id}',this.value)" style="width:auto;display:inline-block;padding:6px"><option ${o.kitchenStatus==='قيد الانتظار'?'selected':''}>قيد الانتظار</option><option ${o.kitchenStatus==='قيد الطبخ'?'selected':''}>قيد الطبخ</option><option ${o.kitchenStatus==='جاهز'?'selected':''}>جاهز</option><option ${o.kitchenStatus==='تم الطبخ'?'selected':''}>تم الطبخ</option></select></span><div style="margin-top:8px"><button class="small green" onclick="updateKitchenStatus('${o.id}','تم الطبخ');updateStatus('${o.id}')">✅ تم الطبخ وجاهز</button></div></div>`).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">المطبخ فاضي - لا طلبات</p>';}
-async function updateKitchenStatus(id,status){try{if(firebaseConnected){await db.collection('orders').doc(id).update({kitchenStatus:status});await loadAllFromFirebase();}else{let o=orders.find(x=>x.id==id);if(o){o.kitchenStatus=status;save();renderKitchen();}}}catch(e){alert(e.message);}}
-function renderExpenses(){let total=expenses.reduce((s,e)=>s+e.amount,0);document.getElementById('expList').innerHTML=expenses.slice().reverse().map(e=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed #ddd;font-size:12px"><div><b>${e.category}</b> - ${e.name}<br><span style="font-size:10px;color:#64748b">${e.date} - ${e.shift||''}</span></div><div><b style="color:#7f1d1d">${e.amount} SSP</b> <button class="small" style="background:#ef4444" onclick="deleteExp('${e.id}')">x</button></div></div>`).join('')||'لا مصروفات';document.getElementById('expTotal').textContent=total+' SSP';}
-async function addExpense(){let cat=document.getElementById('expCategory').value, shift=document.getElementById('expShift').value, name=document.getElementById('expName').value.trim(), amount=parseFloat(document.getElementById('expAmount').value), date=document.getElementById('expDate').value||new Date().toISOString().split('T')[0];if(!name||isNaN(amount))return alert('اكتب التفاصيل والمبلغ');try{if(firebaseConnected){await db.collection('expenses').add({category:cat, shift, name, amount, date, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{expenses.push({id:Date.now(), category:cat, shift, name, amount, date, time:new Date().toLocaleString()});save();renderExpenses();}document.getElementById('expName').value='';document.getElementById('expAmount').value='';}catch(e){alert(e.message);}}
-async function deleteExp(id){try{if(firebaseConnected){await db.collection('expenses').doc(id).delete();await loadAllFromFirebase();}else{expenses=expenses.filter(e=>e.id!=id);save();renderExpenses();}}catch(e){alert(e.message);}}
+function showTab(n){
+ document.querySelectorAll('[id^="view-"]').forEach(d=>d.classList.add('hidden'));
+ document.getElementById('view-'+n).classList.remove('hidden');
+ document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+ document.getElementById('tab-'+n).classList.add('active');
+ if(n==='reports') renderReports();
+ if(n==='expenses') renderExpenses();
+ if(n==='salafiyat') renderSalafiyat();
+}
+function renderMenuSelect(){
+ let q=(document.getElementById('searchMenu')?.value||'').toLowerCase();
+ let filtered=menu.filter(m=>m.name.toLowerCase().includes(q));
+ document.getElementById('menuSelect').innerHTML=filtered.map(m=>{
+   let realIdx=menu.indexOf(m);
+   return `<div class="menu-card" onclick="addToCartByIndex(${realIdx})"><b>${m.name}</b><br><span style="font-size:12px;color:#059669;font-weight:800">${m.price} SSP</span><br><span style="font-size:10px">${m.qty} متبقي</span></div>`;
+ }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا وجبات</p>';
+ document.getElementById('extrasSelect').innerHTML=extras.map((e,i)=>`<button class="small orange" style="width:auto" onclick="addExtraToCartByIndex(${i})">${e.name} - ${e.price}</button>`).join('');
+}
+function renderMenu(){
+ document.getElementById('menuList').innerHTML=menu.map((m,i)=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${m.name}</b> - ${m.price} - ${m.qty}</span><button class="small" style="background:#ef4444" onclick="deleteMealByIndex(${i})">حذف</button></div>`).join('');
+ renderMenuSelect();
+}
+async function addMeal(){
+ let n=document.getElementById('newMealName').value.trim();
+ let p=parseFloat(document.getElementById('newMealPrice').value);
+ let q=parseInt(document.getElementById('newMealQty').value)||0;
+ if(!n||isNaN(p)){alert('اكتب الاسم والسعر');return;}
+ if(n.includes('جاموس')){alert('تم إزالة جاموس');return;}
+ try{
+   if(firebaseConnected){ await db.collection('menu').add({name:n, price:p, qty:q, createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
+   else{ let idx=menu.findIndex(m=>m.name===n); if(idx>=0){menu[idx].price=p;menu[idx].qty+=q;}else menu.push({name:n, price:p, qty:q}); save(); renderMenu(); }
+   document.getElementById('newMealName').value='';document.getElementById('newMealPrice').value='';document.getElementById('newMealQty').value='';
+ }catch(e){alert(e.message);}
+}
+async function deleteMealByIndex(i){
+ let m=menu[i];
+ if(!confirm('حذف '+m.name+'؟'))return;
+ try{
+   if(firebaseConnected && m.id){ await db.collection('menu').doc(m.id).delete(); await loadAllFromFirebase(); }
+   else{ menu.splice(i,1); save(); renderMenu(); }
+ }catch(e){alert(e.message);}
+}
+function renderExtras(){
+ document.getElementById('extrasList').innerHTML=extras.map((e,i)=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${e.name}</b> - ${e.price}</span><button class="small" style="background:#ef4444" onclick="deleteExtraByIndex(${i})">حذف</button></div>`).join('');
+}
+async function addExtra(){
+ let n=document.getElementById('newExtraName').value.trim();
+ let p=parseFloat(document.getElementById('newExtraPrice').value);
+ if(!n||isNaN(p)) return alert('اكتب الاسم والسعر');
+ try{
+   if(firebaseConnected){ await db.collection('extras').add({name:n, price:p, createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
+   else{ extras.push({name:n, price:p}); save(); renderExtras(); renderMenuSelect(); }
+   document.getElementById('newExtraName').value='';document.getElementById('newExtraPrice').value='';
+ }catch(e){alert(e.message);}
+}
+async function deleteExtraByIndex(i){
+ let e=extras[i];
+ try{
+   if(firebaseConnected && e.id){ await db.collection('extras').doc(e.id).delete(); await loadAllFromFirebase(); }
+   else{ extras.splice(i,1); save(); renderExtras(); renderMenuSelect(); }
+ }catch(e2){alert(e2.message);}
+}
+function addToCartByIndex(i){
+ let m=menu[i];
+ if(!m||m.qty<=0){alert('انتهت الكمية');return;}
+ let ex=cart.find(c=>c.name===m.name && c.type==='meal');
+ if(ex){ if(ex.qty>=m.qty){alert('الكمية فقط '+m.qty);return;} ex.qty++; }
+ else cart.push({name:m.name, price:m.price, qty:1, type:'meal'});
+ renderCart();
+}
+function addExtraToCartByIndex(i){
+ let e=extras[i];
+ if(!e) return;
+ let ex=cart.find(c=>c.name===e.name && c.type==='extra');
+ if(ex) ex.qty++; else cart.push({name:e.name, price:e.price, qty:1, type:'extra'});
+ renderCart();
+}
+function renderCart(){
+ let total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+ document.getElementById('cartList').innerHTML=cart.map((c,i)=>`<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed #fde68a"><span>${c.type==='extra'?'➕':''} ${c.name} x${c.qty} = ${c.price*c.qty} SSP</span><button class="small" style="background:#ef4444" onclick="cart.splice(${i},1);renderCart()">x</button></div>`).join('')||'السلة فارغة';
+ document.getElementById('cartTotal').textContent=total+' SSP';
+ document.getElementById('cartCount').textContent=cart.reduce((s,c)=>s+c.qty,0)+' صنف';
+}
+async function placeOrder(){
+ if(cart.length===0) return alert('السلة فارغة');
+ let type=document.getElementById('orderType').value;
+ let total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+ let baseItems=cart.filter(c=>c.type==='meal');
+ let extraItems=cart.filter(c=>c.type==='extra');
+ try{
+   if(firebaseConnected){
+     for(let c of cart){ if(c.type==='meal'){ let m=menu.find(mm=>mm.name===c.name); if(m&&m.id) await db.collection('menu').doc(m.id).update({qty:m.qty-c.qty}); } }
+     await db.collection('orders').add({type, items:cart, base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+     await loadAllFromFirebase();
+   }else{
+     cart.forEach(c=>{ if(c.type==='meal'){ let m=menu.find(mm=>mm.name===c.name); if(m) m.qty-=c.qty; } });
+     orders.push({id:Date.now(), id_str:Date.now().toString(), type, items:JSON.parse(JSON.stringify(cart)), base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString()});
+     save();renderMenu();renderLive();renderKitchen();
+   }
+   cart=[];renderCart();alert('✅ تم إرسال الطلب للمطبخ - '+total+' SSP');showTab('live');
+ }catch(e){alert(e.message);}
+}
+function renderLive(){
+ document.getElementById('liveList').innerHTML=orders.slice().reverse().map(o=>{
+   let id=o.id_str||o.id;
+   return `<div style="border:1.5px solid ${o.status==='تم'?'#22c55e':'#f59e0b'};border-radius:12px;padding:10px;margin:6px 0;background:${o.status==='تم'?'#dcfce7':'#fffbeb'}"><div style="display:flex;justify-content:space-between"><b>${o.type}</b><span style="background:${o.status==='تم'?'#16a34a':'#f59e0b'};color:white;padding:3px 10px;border-radius:20px;font-size:10px">${o.status}</span></div><div style="font-size:12px;margin-top:4px"><b>وجبات:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(', ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>${o.total} SSP</b> - ${o.time}</div><div style="display:flex;gap:6px;margin-top:6px"><button class="small green" onclick="updateStatus('${id}')">✅ تم</button><button class="small" style="background:#ef4444" onclick="deleteOrder('${id}')">حذف</button></div></div>`;
+ }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا طلبات حية</p>';
+}
+async function updateStatus(id){
+ try{
+   if(firebaseConnected){ await db.collection('orders').doc(id).update({status:'تم', kitchenStatus:'تم الطبخ'}); await loadAllFromFirebase(); }
+   else{ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.status='تم'; o.kitchenStatus='تم الطبخ'; save(); renderLive(); renderKitchen(); } }
+ }catch(e){alert(e.message);}
+}
+async function deleteOrder(id){
+ if(!confirm('حذف الطلب؟'))return;
+ try{
+   if(firebaseConnected){ await db.collection('orders').doc(id).delete(); await loadAllFromFirebase(); }
+   else{ orders=orders.filter(o=> (o.id_str||o.id).toString()!==id.toString()); save(); renderLive(); renderKitchen(); }
+ }catch(e){alert(e.message);}
+}
+function renderKitchen(){
+ document.getElementById('kitchenList').innerHTML=orders.filter(o=>o.status!=='تم').slice().reverse().map(o=>{
+   let id=o.id_str||o.id;
+   return `<div style="border:1.5px solid #334155;border-radius:12px;padding:10px;margin:6px 0;background:#f8fafc"><b>👨‍🍳 ${o.type} - ${o.time}</b><br><span style="font-size:12px"><b>للمطبخ:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(' + ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>حالة:</b> <select onchange="updateKitchenStatus('${id}',this.value)" style="width:auto;padding:6px"><option ${o.kitchenStatus==='قيد الانتظار'?'selected':''}>قيد الانتظار</option><option ${o.kitchenStatus==='قيد الطبخ'?'selected':''}>قيد الطبخ</option><option ${o.kitchenStatus==='جاهز'?'selected':''}>جاهز</option><option ${o.kitchenStatus==='تم الطبخ'?'selected':''}>تم الطبخ</option></select></span><div style="margin-top:8px"><button class="small green" onclick="updateKitchenStatus('${id}','تم الطبخ');updateStatus('${id}')">✅ تم الطبخ وجاهز</button></div></div>`;
+ }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">المطبخ فاضي</p>';
+}
+async function updateKitchenStatus(id,status){
+ try{
+   if(firebaseConnected){ await db.collection('orders').doc(id).update({kitchenStatus:status}); await loadAllFromFirebase(); }
+   else{ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.kitchenStatus=status; save(); renderKitchen(); } }
+ }catch(e){alert(e.message);}
+}
+function renderExpenses(){
+ let total=expenses.reduce((s,e)=>s+e.amount,0);
+ document.getElementById('expList').innerHTML=expenses.slice().reverse().map(e=>{
+   let id=e.id_str||e.id;
+   return `<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px dashed #ddd;font-size:12px"><div><b>${e.category}</b> - ${e.name}<br><span style="font-size:10px">${e.date}</span></div><div><b style="color:#7f1d1d">${e.amount} SSP</b> <button class="small" style="background:#ef4444" onclick="deleteExp('${id}')">x</button></div></div>`;
+ }).join('')||'لا مصروفات';
+ document.getElementById('expTotal').textContent=total+' SSP';
+}
+async function addExpense(){
+ let cat=document.getElementById('expCategory').value;
+ let shift=document.getElementById('expShift').value;
+ let name=document.getElementById('expName').value.trim();
+ let amount=parseFloat(document.getElementById('expAmount').value);
+ let date=document.getElementById('expDate').value||new Date().toISOString().split('T')[0];
+ if(!name||isNaN(amount)) return alert('اكتب التفاصيل والمبلغ');
+ try{
+   if(firebaseConnected){ await db.collection('expenses').add({category:cat, shift, name, amount, date, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
+   else{ expenses.push({id:Date.now(), id_str:Date.now().toString(), category:cat, shift, name, amount, date, time:new Date().toLocaleString()}); save(); renderExpenses(); }
+   document.getElementById('expName').value='';document.getElementById('expAmount').value='';
+ }catch(e){alert(e.message);}
+}
+async function deleteExp(id){
+ try{
+   if(firebaseConnected){ await db.collection('expenses').doc(id).delete(); await loadAllFromFirebase(); }
+   else{ expenses=expenses.filter(e=> (e.id_str||e.id).toString()!==id.toString()); save(); renderExpenses(); }
+ }catch(e){alert(e.message);}
+}
 function renderSalafiyat(){
- let debtorsFiltered=debtors.slice().reverse();
  let debtorsTotal=debtors.reduce((s,d)=>s+(d.paid?0:d.amount),0);
- document.getElementById('debtorsList').innerHTML=debtorsFiltered.map(d=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #bbf7d0;font-size:12px;background:${d.paid?'#dcfce7':'white'};border-radius:8px;margin:4px 0"><div><b>${d.name}</b> - ${d.reason}<br><span style="font-size:10px">${d.date} - ${d.paid?'✅ مسدد':'❌ غير مسدد'}</span></div><div style="text-align:left"><b style="color:#166534">${d.amount} SSP</b><br>${!d.paid?`<button class="small green" onclick="payDebtor('${d.id}')">سدد</button>`:''}<button class="small" style="background:#ef4444" onclick="deleteDebtor('${d.id}')">x</button></div></div>`).join('')||'<p style="text-align:center;color:#16a34a;padding:10px">لا مديونين - الحمد لله</p>';
+ document.getElementById('debtorsList').innerHTML=debtors.slice().reverse().map(d=>{
+   let id=d.id_str||d.id;
+   return `<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #bbf7d0;font-size:12px;background:${d.paid?'#dcfce7':'white'};border-radius:8px;margin:4px 0"><div><b>${d.name}</b> - ${d.reason}<br><span style="font-size:10px">${d.date} - ${d.paid?'✅ مسدد':'❌ غير مسدد'}</span></div><div><b style="color:#166534">${d.amount} SSP</b><br>${!d.paid?`<button class="small green" onclick="payDebtor('${id}')">سدد</button>`:''}<button class="small" style="background:#ef4444" onclick="deleteDebtor('${id}')">x</button></div></div>`;
+ }).join('')||'لا مديونين';
  document.getElementById('debtorsTotal').textContent=debtorsTotal+' SSP';
  let creditorsTotal=creditors.reduce((s,c)=>s+(c.paid?0:c.amount),0);
- document.getElementById('creditorsList').innerHTML=creditors.slice().reverse().map(c=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #fecaca;font-size:12px;background:${c.paid?'#dcfce7':'white'};border-radius:8px;margin:4px 0"><div><b>${c.name}</b> - ${c.reason}<br><span style="font-size:10px">${c.date} - ${c.paid?'✅ مسدد':'❌ غير مسدد'}</span></div><div style="text-align:left"><b style="color:#7f1d1d">${c.amount} SSP</b><br>${!c.paid?`<button class="small green" onclick="payCreditor('${c.id}')">سددنا</button>`:''}<button class="small" style="background:#ef4444" onclick="deleteCreditor('${c.id}')">x</button></div></div>`).join('')||'<p style="text-align:center;color:#7f1d1d;padding:10px">لا ديون علينا</p>';
+ document.getElementById('creditorsList').innerHTML=creditors.slice().reverse().map(c=>{
+   let id=c.id_str||c.id;
+   return `<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #fecaca;font-size:12px;background:${c.paid?'#dcfce7':'white'};border-radius:8px;margin:4px 0"><div><b>${c.name}</b> - ${c.reason}<br><span style="font-size:10px">${c.date} - ${c.paid?'✅ مسدد':'❌ غير مسدد'}</span></div><div><b style="color:#7f1d1d">${c.amount} SSP</b><br>${!c.paid?`<button class="small green" onclick="payCreditor('${id}')">سددنا</button>`:''}<button class="small" style="background:#ef4444" onclick="deleteCreditor('${id}')">x</button></div></div>`;
+ }).join('')||'لا ديون';
  document.getElementById('creditorsTotal').textContent=creditorsTotal+' SSP';
  document.getElementById('netDebt').textContent=(debtorsTotal-creditorsTotal)+' SSP '+(debtorsTotal>=creditorsTotal?'لنا ✅':'علينا 🔴');
 }
-async function addDebtor(){let name=document.getElementById('debtorName').value.trim(), reason=document.getElementById('debtorReason').value.trim(), amount=parseFloat(document.getElementById('debtorAmount').value), date=document.getElementById('debtorDate').value||new Date().toISOString().split('T')[0];if(!name||isNaN(amount))return alert('اكتب الاسم والمبلغ');try{if(firebaseConnected){await db.collection('debtors').add({name, reason, amount, date, paid:false, type:'لنا', time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{debtors.push({id:Date.now(), name, reason, amount, date, paid:false});save();renderSalafiyat();}document.getElementById('debtorName').value='';document.getElementById('debtorReason').value='';document.getElementById('debtorAmount').value='';}catch(e){alert(e.message);}}
-async function addCreditor(){let name=document.getElementById('creditorName').value.trim(), reason=document.getElementById('creditorReason').value.trim(), amount=parseFloat(document.getElementById('creditorAmount').value), date=document.getElementById('creditorDate').value||new Date().toISOString().split('T')[0];if(!name||isNaN(amount))return alert('اكتب الاسم والمبلغ');try{if(firebaseConnected){await db.collection('creditors').add({name, reason, amount, date, paid:false, type:'علينا', time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});await loadAllFromFirebase();}else{creditors.push({id:Date.now(), name, reason, amount, date, paid:false});save();renderSalafiyat();}document.getElementById('creditorName').value='';document.getElementById('creditorReason').value='';document.getElementById('creditorAmount').value='';}catch(e){alert(e.message);}}
-async function payDebtor(id){try{if(firebaseConnected){await db.collection('debtors').doc(id).update({paid:true});await loadAllFromFirebase();}else{let d=debtors.find(x=>x.id==id);if(d)d.paid=true;save();renderSalafiyat();}}catch(e){alert(e.message);}}
-async function payCreditor(id){try{if(firebaseConnected){await db.collection('creditors').doc(id).update({paid:true});await loadAllFromFirebase();}else{let c=creditors.find(x=>x.id==id);if(c)c.paid=true;save();renderSalafiyat();}}catch(e){alert(e.message);}}
-async function deleteDebtor(id){if(!confirm('حذف؟'))return;try{if(firebaseConnected){await db.collection('debtors').doc(id).delete();await loadAllFromFirebase();}else{debtors=debtors.filter(x=>x.id!=id);save();renderSalafiyat();}}catch(e){alert(e.message);}}
-async function deleteCreditor(id){if(!confirm('حذف؟'))return;try{if(firebaseConnected){await db.collection('creditors').doc(id).delete();await loadAllFromFirebase();}else{creditors=creditors.filter(x=>x.id!=id);save();renderSalafiyat();}}catch(e){alert(e.message);}}
-function printDebts(){let w=window.open('','','width=900,height=700');w.document.write(`<html><head><title>كشف المديونيات</title></head><body style="font-family:sans-serif;padding:20px;direction:rtl"><h2>💳 كشف السلفيات والديون - ALL NATIONS - ${new Date().toLocaleString()}</h2>${document.getElementById('view-salafiyat').innerHTML}<script>window.print()<\/script></body></html>`);w.document.close();}
-function clearDebts(){if(!confirm('مسح كل السلفيات والديون؟'))return;if(firebaseConnected){alert('امسح من Firebase Console لحماية البيانات');return;}debtors=[];creditors=[];save();renderSalafiyat();}
+async function addDebtor(){
+ let name=document.getElementById('debtorName').value.trim();
+ let reason=document.getElementById('debtorReason').value.trim();
+ let amount=parseFloat(document.getElementById('debtorAmount').value);
+ let date=document.getElementById('debtorDate').value||new Date().toISOString().split('T')[0];
+ if(!name||isNaN(amount)) return alert('اكتب الاسم والمبلغ');
+ try{
+   if(firebaseConnected){ await db.collection('debtors').add({name, reason, amount, date, paid:false, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
+   else{ debtors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat(); }
+   document.getElementById('debtorName').value='';document.getElementById('debtorReason').value='';document.getElementById('debtorAmount').value='';
+ }catch(e){alert(e.message);}
+}
+async function addCreditor(){
+ let name=document.getElementById('creditorName').value.trim();
+ let reason=document.getElementById('creditorReason').value.trim();
+ let amount=parseFloat(document.getElementById('creditorAmount').value);
+ let date=document.getElementById('creditorDate').value||new Date().toISOString().split('T')[0];
+ if(!name||isNaN(amount)) return alert('اكتب الاسم والمبلغ');
+ try{
+   if(firebaseConnected){ await db.collection('creditors').add({name, reason, amount, date, paid:false, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
+   else{ creditors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat(); }
+   document.getElementById('creditorName').value='';document.getElementById('creditorReason').value='';document.getElementById('creditorAmount').value='';
+ }catch(e){alert(e.message);}
+}
+async function payDebtor(id){ try{ if(firebaseConnected){ await db.collection('debtors').doc(id).update({paid:true}); await loadAllFromFirebase(); }else{ let d=debtors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(d) d.paid=true; save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
+async function payCreditor(id){ try{ if(firebaseConnected){ await db.collection('creditors').doc(id).update({paid:true}); await loadAllFromFirebase(); }else{ let c=creditors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(c) c.paid=true; save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
+async function deleteDebtor(id){ if(!confirm('حذف؟'))return; try{ if(firebaseConnected){ await db.collection('debtors').doc(id).delete(); await loadAllFromFirebase(); }else{ debtors=debtors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
+async function deleteCreditor(id){ if(!confirm('حذف؟'))return; try{ if(firebaseConnected){ await db.collection('creditors').doc(id).delete(); await loadAllFromFirebase(); }else{ creditors=creditors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
 function renderReports(){
  let totalSales=orders.reduce((s,o)=>s+o.total,0), totalExp=expenses.reduce((s,e)=>s+e.amount,0), net=totalSales-totalExp;
  let debtorsTotal=debtors.filter(d=>!d.paid).reduce((s,d)=>s+d.amount,0), creditorsTotal=creditors.filter(c=>!c.paid).reduce((s,c)=>s+c.amount,0);
  document.getElementById('rOrders').textContent=orders.length;document.getElementById('rSales').textContent=totalSales+' SSP';document.getElementById('rExpenses').textContent=totalExp+' SSP';document.getElementById('rProfit').textContent=net+' SSP';document.getElementById('rDebtors').textContent=debtorsTotal+' SSP';document.getElementById('rCreditors').textContent=creditorsTotal+' SSP';
- let mealGrouped={};orders.forEach(o=>{(o.baseItems||[]).forEach(item=>{if(!mealGrouped[item.name])mealGrouped[item.name]={name:item.name, qty:0, revenue:0, orders:0};mealGrouped[item.name].qty+=item.qty;mealGrouped[item.name].revenue+=item.price*item.qty;mealGrouped[item.name].orders+=1;}));let mealArr=Object.values(mealGrouped).sort((a,b)=>b.qty-a.qty);
- document.getElementById('rankedMeals').innerHTML=mealArr.length?`<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#1e293b;color:white"><th style="padding:8px">الترتيب</th><th>الوجبة</th><th>الكمية</th><th>الإيراد</th><th>طلبات</th></tr>${mealArr.map((g,i)=>`<tr style="background:${i===0?'#fef3c7':i===1?'#f1f5f9':'white'};border-bottom:1px solid #eee"><td style="padding:8px;text-align:center">${i===0?'🥇':i===1?'🥈':i===2?'🥉':''} ${i+1}</td><td style="padding:8px"><b>${g.name}</b></td><td style="padding:8px;text-align:center"><b>${g.qty}</b></td><td style="padding:8px;text-align:center;color:#059669;font-weight:800">${g.revenue} SSP</td><td style="padding:8px;text-align:center">${g.orders}</td></tr>`).join('')}</table>`:'<p style="text-align:center;color:#94a3b8;padding:10px">لا مبيعات</p>';
- let extraGrouped={};orders.forEach(o=>{(o.extraItems||[]).forEach(item=>{if(!extraGrouped[item.name])extraGrouped[item.name]={name:item.name, qty:0, revenue:0};extraGrouped[item.name].qty+=item.qty;extraGrouped[item.name].revenue+=item.price*item.qty;}));let extraArr=Object.values(extraGrouped).sort((a,b)=>b.qty-a.qty);
- document.getElementById('rankedExtras').innerHTML=extraArr.length?`<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#334155;color:white"><th style="padding:6px">الإضافة</th><th>الكمية</th><th>الإيراد</th></tr>${extraArr.map(g=>`<tr style="border-bottom:1px solid #ddd"><td style="padding:6px"><b>${g.name}</b></td><td style="text-align:center">${g.qty}</td><td style="text-align:center;color:#059669">${g.revenue} SSP</td></tr>`).join('')}</table>`:'لا إضافات';
- let kitchenStats={};orders.forEach(o=>{let s=o.kitchenStatus||'قيد الانتظار';if(!kitchenStats[s])kitchenStats[s]=0;kitchenStats[s]++;});
- document.getElementById('kitchenReport').innerHTML=`<b>بيانات المطبخ:</b><br>قيد الانتظار: ${kitchenStats['قيد الانتظار']||0} طلب<br>قيد الطبخ: ${kitchenStats['قيد الطبخ']||0} طلب<br>جاهز: ${kitchenStats['جاهز']||0} طلب<br>تم الطبخ: ${kitchenStats['تم الطبخ']||0} طلب<br><b>الإجمالي: ${orders.length} طلب</b>`;
- let expGrouped={};expenses.forEach(e=>{if(!expGrouped[e.category])expGrouped[e.category]=0;expGrouped[e.category]+=e.amount;});let expArr=Object.entries(expGrouped).sort((a,b)=>b[1]-a[1]);
- document.getElementById('expenseReport').innerHTML=expArr.length?`<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#7f1d1d;color:white"><th style="padding:6px">التصنيف</th><th>المبلغ</th><th>النسبة</th></tr>${expArr.map(([cat,amt])=>`<tr style="border-bottom:1px solid #ddd"><td style="padding:6px"><b>${cat}</b></td><td>${amt} SSP</td><td>${totalExp?Math.round(amt/totalExp*100):0}%</td></tr>`).join('')}</table>`:'لا مصروفات';
- document.getElementById('reportBox').innerHTML=`<b>ملخص ALL NATIONS - ${new Date().toLocaleDateString()}:</b><br>الطلبات: ${orders.length}<br>المبيعات: ${totalSales} SSP<br>المصروفات: ${totalExp} SSP<br><b style="font-size:15px;color:${net>=0?'#059669':'#dc2626'}">صافي الربح: ${net} SSP (مبيعات - مصروفات)</b><br>لنا عند الناس: ${debtorsTotal} SSP<br>علينا: ${creditorsTotal} SSP<br>الصافي: ${debtorsTotal-creditorsTotal} SSP ${debtorsTotal>=creditorsTotal?'لنا ✅':'علينا 🔴'}<br>🏆 أكثر وجبة: ${mealArr[0]?mealArr[0].name+' - '+mealArr[0].qty+' - '+mealArr[0].revenue+' SSP':'لا يوجد'}`;
+ let mealGrouped={};orders.forEach(o=>{(o.baseItems||[]).forEach(item=>{if(!mealGrouped[item.name])mealGrouped[item.name]={name:item.name, qty:0, revenue:0};mealGrouped[item.name].qty+=item.qty;mealGrouped[item.name].revenue+=item.price*item.qty;}));let mealArr=Object.values(mealGrouped).sort((a,b)=>b.qty-a.qty);
+ document.getElementById('rankedMeals').innerHTML=mealArr.length?`<table style="width:100%;font-size:12px;border-collapse:collapse"><tr style="background:#1e293b;color:white"><th style="padding:8px">الترتيب</th><th>الوجبة</th><th>الكمية</th><th>الإيراد</th></tr>${mealArr.map((g,i)=>`<tr style="background:${i===0?'#fef3c7':'white'}"><td style="padding:8px;text-align:center">${i+1}</td><td><b>${g.name}</b></td><td style="text-align:center">${g.qty}</td><td style="text-align:center;color:#059669">${g.revenue} SSP</td></tr>`).join('')}</table>`:'لا مبيعات';
+ document.getElementById('reportBox').innerHTML=`الطلبات: ${orders.length}<br>المبيعات: ${totalSales} SSP<br>المصروفات: ${totalExp} SSP<br><b>صافي الربح: ${net} SSP</b><br>لنا: ${debtorsTotal} SSP<br>علينا: ${creditorsTotal} SSP`;
 }
-function printReports(){let w=window.open('','','width=900,height=700');w.document.write(`<html><head><title>تقرير ALL NATIONS</title><style>body{font-family:sans-serif;padding:20px;direction:rtl}table{width:100%;border-collapse:collapse}th,td{padding:8px;border:1px solid #ddd}</style></head><body><h2>🍖 ALL NATIONS - التقرير الكامل - ${new Date().toLocaleString()}</h2>${document.getElementById('view-reports').innerHTML}<script>window.print()<\/script></body></html>`);w.document.close();}
-function clearAll(){if(!confirm('مسح كل البيانات؟ لا يمكن التراجع'))return;if(firebaseConnected){alert('امسح من Firebase Console');return;}orders=[];expenses=[];save();renderLive();renderKitchen();renderExpenses();renderReports();}
-function renderAll(){renderMenu();renderExtras();renderMenuSelect();renderLive();renderKitchen();renderExpenses();renderSalafiyat();renderReports();}
-
-// INIT
+function printReports(){ let w=window.open('','','width=900,height=700'); w.document.write(`<html><body style="font-family:sans-serif;padding:20px;direction:rtl"><h2>ALL NATIONS - ${new Date().toLocaleString()}</h2>${document.getElementById('view-reports').innerHTML}<script>window.print()<\/script></body></html>`); w.document.close(); }
+function clearAll(){ if(!confirm('مسح كل البيانات؟'))return; if(firebaseConnected){alert('امسح من Firebase Console');return;} orders=[];expenses=[];save();renderLive();renderKitchen();renderExpenses();renderReports(); }
+function renderAll(){ try{ renderMenu();renderExtras();renderMenuSelect();renderLive();renderKitchen();renderExpenses();renderSalafiyat();renderReports(); }catch(e){ console.log(e); } }
 document.getElementById('expDate').value=new Date().toISOString().split('T')[0];
 document.getElementById('debtorDate').value=new Date().toISOString().split('T')[0];
 document.getElementById('creditorDate').value=new Date().toISOString().split('T')[0];
 initFirebase();
-renderAll();
+setTimeout(()=>renderAll(), 500);
 </script>
-
-<!-- iPhone PWA Install - Professional -->
 <script>
-// Register Service Worker - iPhone + Android
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('PWA Ready - iPhone Professional - SW Registered'))
-      .catch(err => console.log('SW failed', err));
+    navigator.serviceWorker.register('sw.js').then(()=>console.log('PWA Ready - No Customer Name')).catch(()=>{});
   });
 }
-
-// iPhone Detection - Show Add to Home Screen Banner
-const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 const isStandalone = window.navigator.standalone;
-
 if (isIOS && !isStandalone) {
   setTimeout(() => {
-    let banner = document.createElement('div');
-    banner.className = 'ios-banner';
-    banner.innerHTML = `
-      <div><b>📱 للآيفون - كيف تنزل التطبيق كتطبيق احترافي:</b></div>
-      <div style="margin-top:6px">اضغط زر المشاركة <span style="font-size:20px">⬆️</span> في الأسفل → انزل → <b>Add to Home Screen</b> → <b>Add</b></div>
-      <div style="font-size:11px;opacity:.8;margin-top:4px">حينزل أيقونة ALL NATIONS في الشاشة - يفتح كتطبيق بدون Safari - يشتغل بدون نت</div>
-      <button onclick="this.parentElement.remove()" style="background:#f59e0b;color:black;padding:8px 18px;border-radius:20px;margin-top:10px;font-weight:800;width:auto">فهمت - Got it ✓</button>
-    `;
+    let banner=document.createElement('div');
+    banner.className='ios-banner';
+    banner.innerHTML=`<div><b>📱 للآيفون - كيف تنزل التطبيق:</b></div><div style="margin-top:6px">اضغط مشاركة ⬆️ → Add to Home Screen → Add</div><button onclick="this.parentElement.remove()" style="background:#f59e0b;color:black;padding:8px 18px;border-radius:20px;margin-top:10px;font-weight:800;width:auto">فهمت ✓</button>`;
     document.body.appendChild(banner);
   }, 2500);
 }
-
-// Android Install Prompt
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-  let btn = document.createElement('button');
-  btn.textContent = '📥 نزل التطبيق - Install App - Professional';
-  btn.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#7A0C1A;color:white;padding:12px 24px;border-radius:25px;font-weight:800;z-index:9999;box-shadow:0 6px 20px rgba(0,0,0,.3);animation:slideUp .4s';
-  btn.onclick = () => {
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => {
-      deferredPrompt = null;
-      btn.remove();
-    });
-  };
-  document.body.appendChild(btn);
-  setTimeout(() => btn.remove(), 20000);
-});
 </script>
 </body>
-</html>
+  </html>
