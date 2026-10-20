@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALL NATIONS V4.17.1 - Normal System - Firebase</title>
+<title>ALL NATIONS V4.17.1 - Local Only - No Firebase</title>
 <meta name="theme-color" content="#7A0C1A">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,Tahoma}
@@ -24,16 +24,13 @@ input,select{padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;width:100
 .menu-card{border:1.5px solid #e7e5e4;border-radius:10px;padding:10px;text-align:center;background:#fffbeb;cursor:pointer}
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
 .stat{background:#1e293b;color:white;padding:12px;border-radius:10px;text-align:center}
-.firebase-on{background:#dcfce7;border:2px solid #22c55e;padding:10px;border-radius:10px;text-align:center;color:#166534;font-size:11px;font-weight:700}
-.firebase-off{background:#fee2e2;border:2px solid #ef4444;padding:10px;border-radius:10px;text-align:center;color:#7f1d1d;font-size:11px}
+.local-badge{background:#dcfce7;border:2px solid #22c55e;padding:10px;border-radius:10px;text-align:center;color:#166534;font-size:11px;font-weight:700}
 </style>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
-<header><div><b>🍖 ALL NATIONS V4.17.1</b><br><span style="font-size:10px">Normal System • Firebase DB • <span id="fbStatus">Checking...</span></span></div><button onclick="location.reload()" class="small" style="width:auto;background:rgba(0,0,0,.25)">Refresh</button></header>
+<header><div><b>🍖 ALL NATIONS V4.17.1</b><br><span style="font-size:10px">Local Only • No Firebase • تخزين الهاتف فقط</span></div><button onclick="location.reload()" class="small" style="width:auto;background:rgba(0,0,0,.25)">Refresh</button></header>
 
-<div id="firebaseBadge" class="firebase-off" style="margin:10px">Checking Firebase...</div>
+<div class="local-badge" style="margin:10px">🟢 Local Storage Only - تخزين بالهاتف فقط - بدون إنترنت - Offline - سريع</div>
 
 <div class="tabs">
 <div class="tab active" onclick="showTab('pos')" id="tab-pos">💰 طلب جديد</div>
@@ -47,7 +44,7 @@ input,select{padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;width:100
 </div>
 
 <div id="view-pos" class="card">
-<h3>💰 طلب جديد - بدون اسم زبون</h3>
+<h3>💰 طلب جديد - بدون اسم زبون - Local</h3>
 <div style="margin-top:8px">
 <label style="font-size:11px;font-weight:700">نوع الطلب</label>
 <select id="orderType"><option value="محلي">🍽️ محلي</option><option value="سفري">🥡 سفري</option><option value="توصيل">🛵 توصيل</option></select>
@@ -96,65 +93,21 @@ input,select{padding:10px;border:1.5px solid #cbd5e1;border-radius:8px;width:100
 </div>
 
 <script>
-// ========== FIREBASE CONFIG - ضع Config الحقيقي هنا ==========
-const firebaseConfig = {
-  apiKey: "AIzaSyAF6tqp2q2YSzyE_YZFBi4h_nt0zzYVCsI",
-  authDomain: "tajdera-596d1.firebaseapp.com",
-  projectId: "tajdera-596d1",
-  storageBucket: "tajdera-596d1.firebasestorage.app",
-  messagingSenderId: "947869925949",
-  appId: "1:947869925949:web:0f210e6050211d78ed2054"
-};
-// ==============================================================
-
-let db=null, firebaseConnected=false;
-let menu=JSON.parse(localStorage.getItem('r_v4171n_menu')||'[{"name":"لحم ضان","price":5000,"qty":100},{"name":"كبدة","price":4500,"qty":50},{"name":"كوارع","price":6000,"qty":30},{"name":"فراخ","price":4000,"qty":80},{"name":"سمك","price":5500,"qty":40},{"name":"فول","price":1500,"qty":200}]');
-let extras=JSON.parse(localStorage.getItem('r_v4171n_extras')||'[{"name":"سلطة خضراء","price":500},{"name":"سلطة أسود","price":600},{"name":"شطة","price":200},{"name":"عيش إضافي","price":300},{"name":"بارد","price":1000},{"name":"موية","price":500}]');
-let orders=JSON.parse(localStorage.getItem('r_v4171n_orders')||'[]');
-let expenses=JSON.parse(localStorage.getItem('r_v4171n_expenses')||'[]');
-let debtors=JSON.parse(localStorage.getItem('r_v4171n_debtors')||'[]');
-let creditors=JSON.parse(localStorage.getItem('r_v4171n_creditors')||'[]');
+let menu=JSON.parse(localStorage.getItem('r_local_menu')||'[{"name":"لحم ضان","price":5000,"qty":100},{"name":"كبدة","price":4500,"qty":50},{"name":"كوارع","price":6000,"qty":30},{"name":"فراخ","price":4000,"qty":80},{"name":"سمك","price":5500,"qty":40},{"name":"فول","price":1500,"qty":200}]');
+let extras=JSON.parse(localStorage.getItem('r_local_extras')||'[{"name":"سلطة خضراء","price":500},{"name":"سلطة أسود","price":600},{"name":"شطة","price":200},{"name":"عيش إضافي","price":300},{"name":"بارد","price":1000},{"name":"موية","price":500}]');
+let orders=JSON.parse(localStorage.getItem('r_local_orders')||'[]');
+let expenses=JSON.parse(localStorage.getItem('r_local_expenses')||'[]');
+let debtors=JSON.parse(localStorage.getItem('r_local_debtors')||'[]');
+let creditors=JSON.parse(localStorage.getItem('r_local_creditors')||'[]');
 let cart=[];
 
-async function initFirebase(){
- const badge=document.getElementById('firebaseBadge');
- const status=document.getElementById('fbStatus');
- try{
-   if(firebaseConfig.apiKey.includes("REPLACE_WITH")) throw new Error("Add Firebase Config - Works Offline");
-   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-   db=firebase.firestore();
-   await db.collection('menu').limit(1).get();
-   firebaseConnected=true;
-   badge.className='firebase-on';
-   badge.textContent='🟢 Firebase Connected - Online DB - All Devices Synced - Normal System';
-   status.textContent='ONLINE - Firebase';
-   loadAllFromFirebase();
- }catch(e){
-   badge.className='firebase-off';
-   badge.textContent='🔴 Offline Mode - Local - '+e.message;
-   status.textContent='OFFLINE - Local';
-   renderAll();
- }
-}
-async function loadAllFromFirebase(){
- if(!db) return;
- try{
-   let m=await db.collection('menu').get(); if(!m.empty) menu=m.docs.map(d=>({id:d.id,...d.data()}));
-   let ex=await db.collection('extras').get(); if(!ex.empty) extras=ex.docs.map(d=>({id:d.id,...d.data()}));
-   let o=await db.collection('orders').orderBy('createdAt','desc').limit(200).get(); orders=o.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
-   let exp=await db.collection('expenses').orderBy('createdAt','desc').limit(200).get(); expenses=exp.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
-   let deb=await db.collection('debtors').get(); debtors=deb.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
-   let cred=await db.collection('creditors').get(); creditors=cred.docs.map(d=>({id:d.id,...d.data(), id_str:d.id}));
-   renderAll();
- }catch(e){ renderAll(); }
-}
 function save(){
- localStorage.setItem('r_v4171n_menu', JSON.stringify(menu));
- localStorage.setItem('r_v4171n_extras', JSON.stringify(extras));
- localStorage.setItem('r_v4171n_orders', JSON.stringify(orders));
- localStorage.setItem('r_v4171n_expenses', JSON.stringify(expenses));
- localStorage.setItem('r_v4171n_debtors', JSON.stringify(debtors));
- localStorage.setItem('r_v4171n_creditors', JSON.stringify(creditors));
+ localStorage.setItem('r_local_menu', JSON.stringify(menu));
+ localStorage.setItem('r_local_extras', JSON.stringify(extras));
+ localStorage.setItem('r_local_orders', JSON.stringify(orders));
+ localStorage.setItem('r_local_expenses', JSON.stringify(expenses));
+ localStorage.setItem('r_local_debtors', JSON.stringify(debtors));
+ localStorage.setItem('r_local_creditors', JSON.stringify(creditors));
 }
 function showTab(n){
  document.querySelectorAll('[id^="view-"]').forEach(d=>d.classList.add('hidden'));
@@ -168,7 +121,7 @@ function showTab(n){
 function renderMenuSelect(){
  let q=(document.getElementById('searchMenu')?.value||'').toLowerCase();
  let filtered=menu.filter(m=>m.name.toLowerCase().includes(q));
- document.getElementById('menuSelect').innerHTML=filtered.map(m=>{
+ document.getElementById('menuSelect').innerHTML=filtered.map((m,i)=>{
    let realIdx=menu.indexOf(m);
    return `<div class="menu-card" onclick="addToCartByIndex(${realIdx})"><b>${m.name}</b><br><span style="font-size:12px;color:#059669;font-weight:800">${m.price} SSP</span><br><span style="font-size:10px">${m.qty} متبقي</span></div>`;
  }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا وجبات</p>';
@@ -178,46 +131,29 @@ function renderMenu(){
  document.getElementById('menuList').innerHTML=menu.map((m,i)=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${m.name}</b> - ${m.price} - ${m.qty}</span><button class="small" style="background:#ef4444" onclick="deleteMealByIndex(${i})">حذف</button></div>`).join('');
  renderMenuSelect();
 }
-async function addMeal(){
+function addMeal(){
  let n=document.getElementById('newMealName').value.trim();
  let p=parseFloat(document.getElementById('newMealPrice').value);
  let q=parseInt(document.getElementById('newMealQty').value)||0;
  if(!n||isNaN(p)){alert('اكتب الاسم والسعر');return;}
  if(n.includes('جاموس')){alert('تم إزالة جاموس');return;}
- try{
-   if(firebaseConnected){ await db.collection('menu').add({name:n, price:p, qty:q, createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
-   else{ let idx=menu.findIndex(m=>m.name===n); if(idx>=0){menu[idx].price=p;menu[idx].qty+=q;}else menu.push({name:n, price:p, qty:q}); save(); renderMenu(); }
-   document.getElementById('newMealName').value='';document.getElementById('newMealPrice').value='';document.getElementById('newMealQty').value='';
- }catch(e){alert(e.message);}
+ let idx=menu.findIndex(m=>m.name===n);
+ if(idx>=0){menu[idx].price=p;menu[idx].qty+=q;}else menu.push({name:n, price:p, qty:q});
+ save();renderMenu();
+ document.getElementById('newMealName').value='';document.getElementById('newMealPrice').value='';document.getElementById('newMealQty').value='';
 }
-async function deleteMealByIndex(i){
- let m=menu[i];
- if(!confirm('حذف '+m.name+'؟'))return;
- try{
-   if(firebaseConnected && m.id){ await db.collection('menu').doc(m.id).delete(); await loadAllFromFirebase(); }
-   else{ menu.splice(i,1); save(); renderMenu(); }
- }catch(e){alert(e.message);}
-}
+function deleteMealByIndex(i){ if(!confirm('حذف '+menu[i].name+'؟'))return; menu.splice(i,1); save(); renderMenu(); }
 function renderExtras(){
  document.getElementById('extrasList').innerHTML=extras.map((e,i)=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #eee"><span><b>${e.name}</b> - ${e.price}</span><button class="small" style="background:#ef4444" onclick="deleteExtraByIndex(${i})">حذف</button></div>`).join('');
 }
-async function addExtra(){
+function addExtra(){
  let n=document.getElementById('newExtraName').value.trim();
  let p=parseFloat(document.getElementById('newExtraPrice').value);
  if(!n||isNaN(p)) return alert('اكتب الاسم والسعر');
- try{
-   if(firebaseConnected){ await db.collection('extras').add({name:n, price:p, createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
-   else{ extras.push({name:n, price:p}); save(); renderExtras(); renderMenuSelect(); }
-   document.getElementById('newExtraName').value='';document.getElementById('newExtraPrice').value='';
- }catch(e){alert(e.message);}
+ extras.push({name:n, price:p}); save(); renderExtras(); renderMenuSelect();
+ document.getElementById('newExtraName').value='';document.getElementById('newExtraPrice').value='';
 }
-async function deleteExtraByIndex(i){
- let e=extras[i];
- try{
-   if(firebaseConnected && e.id){ await db.collection('extras').doc(e.id).delete(); await loadAllFromFirebase(); }
-   else{ extras.splice(i,1); save(); renderExtras(); renderMenuSelect(); }
- }catch(e2){alert(e2.message);}
-}
+function deleteExtraByIndex(i){ extras.splice(i,1); save(); renderExtras(); renderMenuSelect(); }
 function addToCartByIndex(i){
  let m=menu[i];
  if(!m||m.qty<=0){alert('انتهت الكمية');return;}
@@ -239,24 +175,16 @@ function renderCart(){
  document.getElementById('cartTotal').textContent=total+' SSP';
  document.getElementById('cartCount').textContent=cart.reduce((s,c)=>s+c.qty,0)+' صنف';
 }
-async function placeOrder(){
+function placeOrder(){
  if(cart.length===0) return alert('السلة فارغة');
  let type=document.getElementById('orderType').value;
  let total=cart.reduce((s,c)=>s+c.price*c.qty,0);
  let baseItems=cart.filter(c=>c.type==='meal');
  let extraItems=cart.filter(c=>c.type==='extra');
- try{
-   if(firebaseConnected){
-     for(let c of cart){ if(c.type==='meal'){ let m=menu.find(mm=>mm.name===c.name); if(m&&m.id) await db.collection('menu').doc(m.id).update({qty:m.qty-c.qty}); } }
-     await db.collection('orders').add({type, items:cart, base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()});
-     await loadAllFromFirebase();
-   }else{
-     cart.forEach(c=>{ if(c.type==='meal'){ let m=menu.find(mm=>mm.name===c.name); if(m) m.qty-=c.qty; } });
-     orders.push({id:Date.now(), id_str:Date.now().toString(), type, items:JSON.parse(JSON.stringify(cart)), base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString()});
-     save();renderMenu();renderLive();renderKitchen();
-   }
-   cart=[];renderCart();alert('✅ تم إرسال الطلب للمطبخ - '+total+' SSP');showTab('live');
- }catch(e){alert(e.message);}
+ cart.forEach(c=>{ if(c.type==='meal'){ let m=menu.find(mm=>mm.name===c.name); if(m) m.qty-=c.qty; } });
+ orders.push({id:Date.now(), id_str:Date.now().toString(), type, items:JSON.parse(JSON.stringify(cart)), base:baseItems.map(b=>b.name).join(' + '), baseItems, extraItems, total, status:'جديد', kitchenStatus:'قيد الانتظار', date:new Date().toISOString().split('T')[0], time:new Date().toLocaleString()});
+ save();renderMenu();renderLive();renderKitchen();
+ cart=[];renderCart();alert('✅ تم إرسال الطلب للمطبخ - '+total+' SSP');showTab('live');
 }
 function renderLive(){
  document.getElementById('liveList').innerHTML=orders.slice().reverse().map(o=>{
@@ -264,31 +192,15 @@ function renderLive(){
    return `<div style="border:1.5px solid ${o.status==='تم'?'#22c55e':'#f59e0b'};border-radius:10px;padding:10px;margin:6px 0;background:${o.status==='تم'?'#dcfce7':'#fffbeb'}"><div style="display:flex;justify-content:space-between"><b>${o.type}</b><span style="background:${o.status==='تم'?'#16a34a':'#f59e0b'};color:white;padding:3px 10px;border-radius:20px;font-size:10px">${o.status}</span></div><div style="font-size:12px;margin-top:4px"><b>وجبات:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(', ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>${o.total} SSP</b> - ${o.time}</div><div style="display:flex;gap:6px;margin-top:6px"><button class="small green" onclick="updateStatus('${id}')">✅ تم</button><button class="small" style="background:#ef4444" onclick="deleteOrder('${id}')">حذف</button></div></div>`;
  }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">لا طلبات حية</p>';
 }
-async function updateStatus(id){
- try{
-   if(firebaseConnected){ await db.collection('orders').doc(id).update({status:'تم', kitchenStatus:'تم الطبخ'}); await loadAllFromFirebase(); }
-   else{ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.status='تم'; o.kitchenStatus='تم الطبخ'; save(); renderLive(); renderKitchen(); } }
- }catch(e){alert(e.message);}
-}
-async function deleteOrder(id){
- if(!confirm('حذف الطلب؟'))return;
- try{
-   if(firebaseConnected){ await db.collection('orders').doc(id).delete(); await loadAllFromFirebase(); }
-   else{ orders=orders.filter(o=> (o.id_str||o.id).toString()!==id.toString()); save(); renderLive(); renderKitchen(); }
- }catch(e){alert(e.message);}
-}
+function updateStatus(id){ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.status='تم'; o.kitchenStatus='تم الطبخ'; save(); renderLive(); renderKitchen(); } }
+function deleteOrder(id){ if(!confirm('حذف الطلب؟'))return; orders=orders.filter(o=> (o.id_str||o.id).toString()!==id.toString()); save(); renderLive(); renderKitchen(); }
 function renderKitchen(){
  document.getElementById('kitchenList').innerHTML=orders.filter(o=>o.status!=='تم').slice().reverse().map(o=>{
    let id=o.id_str||o.id;
    return `<div style="border:1.5px solid #334155;border-radius:10px;padding:10px;margin:6px 0;background:#f8fafc"><b>👨‍🍳 ${o.type} - ${o.time}</b><br><span style="font-size:12px"><b>للمطبخ:</b> ${(o.baseItems||[]).map(b=>b.name+' x'+b.qty).join(' + ')}<br><b>إضافات:</b> ${(o.extraItems||[]).map(e=>e.name).join(', ')||'لا يوجد'}<br><b>حالة:</b> <select onchange="updateKitchenStatus('${id}',this.value)" style="width:auto;padding:6px"><option ${o.kitchenStatus==='قيد الانتظار'?'selected':''}>قيد الانتظار</option><option ${o.kitchenStatus==='قيد الطبخ'?'selected':''}>قيد الطبخ</option><option ${o.kitchenStatus==='جاهز'?'selected':''}>جاهز</option><option ${o.kitchenStatus==='تم الطبخ'?'selected':''}>تم الطبخ</option></select></span><div style="margin-top:8px"><button class="small green" onclick="updateKitchenStatus('${id}','تم الطبخ');updateStatus('${id}')">✅ تم الطبخ وجاهز</button></div></div>`;
  }).join('')||'<p style="text-align:center;color:#94a3b8;padding:20px">المطبخ فاضي</p>';
 }
-async function updateKitchenStatus(id,status){
- try{
-   if(firebaseConnected){ await db.collection('orders').doc(id).update({kitchenStatus:status}); await loadAllFromFirebase(); }
-   else{ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.kitchenStatus=status; save(); renderKitchen(); } }
- }catch(e){alert(e.message);}
-}
+function updateKitchenStatus(id,status){ let o=orders.find(x=> (x.id_str||x.id).toString()===id.toString()); if(o){ o.kitchenStatus=status; save(); renderKitchen(); } }
 function renderExpenses(){
  let total=expenses.reduce((s,e)=>s+e.amount,0);
  document.getElementById('expList').innerHTML=expenses.slice().reverse().map(e=>{
@@ -297,25 +209,17 @@ function renderExpenses(){
  }).join('')||'لا مصروفات';
  document.getElementById('expTotal').textContent=total+' SSP';
 }
-async function addExpense(){
+function addExpense(){
  let cat=document.getElementById('expCategory').value;
  let shift=document.getElementById('expShift').value;
  let name=document.getElementById('expName').value.trim();
  let amount=parseFloat(document.getElementById('expAmount').value);
  let date=document.getElementById('expDate').value||new Date().toISOString().split('T')[0];
  if(!name||isNaN(amount)) return alert('اكتب التفاصيل والمبلغ');
- try{
-   if(firebaseConnected){ await db.collection('expenses').add({category:cat, shift, name, amount, date, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
-   else{ expenses.push({id:Date.now(), id_str:Date.now().toString(), category:cat, shift, name, amount, date, time:new Date().toLocaleString()}); save(); renderExpenses(); }
-   document.getElementById('expName').value='';document.getElementById('expAmount').value='';
- }catch(e){alert(e.message);}
+ expenses.push({id:Date.now(), id_str:Date.now().toString(), category:cat, shift, name, amount, date, time:new Date().toLocaleString()}); save(); renderExpenses();
+ document.getElementById('expName').value='';document.getElementById('expAmount').value='';
 }
-async function deleteExp(id){
- try{
-   if(firebaseConnected){ await db.collection('expenses').doc(id).delete(); await loadAllFromFirebase(); }
-   else{ expenses=expenses.filter(e=> (e.id_str||e.id).toString()!==id.toString()); save(); renderExpenses(); }
- }catch(e){alert(e.message);}
-}
+function deleteExp(id){ expenses=expenses.filter(e=> (e.id_str||e.id).toString()!==id.toString()); save(); renderExpenses(); }
 function renderSalafiyat(){
  let debtorsTotal=debtors.reduce((s,d)=>s+(d.paid?0:d.amount),0);
  document.getElementById('debtorsList').innerHTML=debtors.slice().reverse().map(d=>{
@@ -331,34 +235,28 @@ function renderSalafiyat(){
  document.getElementById('creditorsTotal').textContent=creditorsTotal+' SSP';
  document.getElementById('netDebt').textContent=(debtorsTotal-creditorsTotal)+' SSP '+(debtorsTotal>=creditorsTotal?'لنا ✅':'علينا 🔴');
 }
-async function addDebtor(){
+function addDebtor(){
  let name=document.getElementById('debtorName').value.trim();
  let reason=document.getElementById('debtorReason').value.trim();
  let amount=parseFloat(document.getElementById('debtorAmount').value);
  let date=document.getElementById('debtorDate').value||new Date().toISOString().split('T')[0];
  if(!name||isNaN(amount)) return alert('اكتب الاسم والمبلغ');
- try{
-   if(firebaseConnected){ await db.collection('debtors').add({name, reason, amount, date, paid:false, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
-   else{ debtors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat(); }
-   document.getElementById('debtorName').value='';document.getElementById('debtorReason').value='';document.getElementById('debtorAmount').value='';
- }catch(e){alert(e.message);}
+ debtors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat();
+ document.getElementById('debtorName').value='';document.getElementById('debtorReason').value='';document.getElementById('debtorAmount').value='';
 }
-async function addCreditor(){
+function addCreditor(){
  let name=document.getElementById('creditorName').value.trim();
  let reason=document.getElementById('creditorReason').value.trim();
  let amount=parseFloat(document.getElementById('creditorAmount').value);
  let date=document.getElementById('creditorDate').value||new Date().toISOString().split('T')[0];
  if(!name||isNaN(amount)) return alert('اكتب الاسم والمبلغ');
- try{
-   if(firebaseConnected){ await db.collection('creditors').add({name, reason, amount, date, paid:false, time:new Date().toLocaleString(), createdAt:firebase.firestore.FieldValue.serverTimestamp()}); await loadAllFromFirebase(); }
-   else{ creditors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat(); }
-   document.getElementById('creditorName').value='';document.getElementById('creditorReason').value='';document.getElementById('creditorAmount').value='';
- }catch(e){alert(e.message);}
+ creditors.push({id:Date.now(), id_str:Date.now().toString(), name, reason, amount, date, paid:false}); save(); renderSalafiyat();
+ document.getElementById('creditorName').value='';document.getElementById('creditorReason').value='';document.getElementById('creditorAmount').value='';
 }
-async function payDebtor(id){ try{ if(firebaseConnected){ await db.collection('debtors').doc(id).update({paid:true}); await loadAllFromFirebase(); }else{ let d=debtors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(d) d.paid=true; save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
-async function payCreditor(id){ try{ if(firebaseConnected){ await db.collection('creditors').doc(id).update({paid:true}); await loadAllFromFirebase(); }else{ let c=creditors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(c) c.paid=true; save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
-async function deleteDebtor(id){ if(!confirm('حذف؟'))return; try{ if(firebaseConnected){ await db.collection('debtors').doc(id).delete(); await loadAllFromFirebase(); }else{ debtors=debtors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
-async function deleteCreditor(id){ if(!confirm('حذف؟'))return; try{ if(firebaseConnected){ await db.collection('creditors').doc(id).delete(); await loadAllFromFirebase(); }else{ creditors=creditors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); } }catch(e){alert(e.message);} }
+function payDebtor(id){ let d=debtors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(d) d.paid=true; save(); renderSalafiyat(); }
+function payCreditor(id){ let c=creditors.find(x=> (x.id_str||x.id).toString()===id.toString()); if(c) c.paid=true; save(); renderSalafiyat(); }
+function deleteDebtor(id){ if(!confirm('حذف؟'))return; debtors=debtors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); }
+function deleteCreditor(id){ if(!confirm('حذف؟'))return; creditors=creditors.filter(x=> (x.id_str||x.id).toString()!==id.toString()); save(); renderSalafiyat(); }
 function renderReports(){
  let totalSales=orders.reduce((s,o)=>s+o.total,0), totalExp=expenses.reduce((s,e)=>s+e.amount,0), net=totalSales-totalExp;
  let debtorsTotal=debtors.filter(d=>!d.paid).reduce((s,d)=>s+d.amount,0), creditorsTotal=creditors.filter(c=>!c.paid).reduce((s,c)=>s+c.amount,0);
@@ -374,13 +272,12 @@ function renderReports(){
  document.getElementById('reportBox').innerHTML=`الطلبات: ${orders.length}<br>المبيعات: ${totalSales} SSP<br>المصروفات: ${totalExp} SSP<br><b>صافي الربح: ${net} SSP</b><br>لنا: ${debtorsTotal} SSP<br>علينا: ${creditorsTotal} SSP<br>الصافي: ${debtorsTotal-creditorsTotal} SSP`;
 }
 function printReports(){ let w=window.open('','','width=900,height=700'); w.document.write(`<html><body style="font-family:sans-serif;padding:20px;direction:rtl"><h2>ALL NATIONS - التقرير الكامل - ${new Date().toLocaleString()}</h2>${document.getElementById('view-reports').innerHTML}<script>window.print()<\/script></body></html>`); w.document.close(); }
-function clearAll(){ if(!confirm('مسح كل البيانات؟'))return; if(firebaseConnected){alert('امسح من Firebase Console');return;} orders=[];expenses=[];save();renderLive();renderKitchen();renderExpenses();renderReports(); }
+function clearAll(){ if(!confirm('مسح كل البيانات؟ لا يمكن التراجع - كل شي في الهاتف حيتمسح'))return; orders=[];expenses=[];debtors=[];creditors=[];save();renderLive();renderKitchen();renderExpenses();renderSalafiyat();renderReports(); }
 function renderAll(){ try{ renderMenu();renderExtras();renderMenuSelect();renderLive();renderKitchen();renderExpenses();renderSalafiyat();renderReports(); }catch(e){ console.log(e); } }
 document.getElementById('expDate').value=new Date().toISOString().split('T')[0];
 document.getElementById('debtorDate').value=new Date().toISOString().split('T')[0];
 document.getElementById('creditorDate').value=new Date().toISOString().split('T')[0];
-initFirebase();
-setTimeout(()=>renderAll(), 500);
+renderAll();
 </script>
 </body>
 </html>
