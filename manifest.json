@@ -1,17 +1,16 @@
 {
-  "name": "ALL NATIONS PRO V4.12 FULL",
+  "name": "ALL NATIONS RESTAURANT V4.17 - iPhone Professional",
   "short_name": "ALL NATIONS",
-  "description": "مطعم جاموس - طاولات - مطبخ - منيو - مصروفات - تقارير - أوفلاين 100%",
-  "start_url": "./index.html",
+  "description": "Complete Restaurant System - Menu, Kitchen, Orders, Expenses, Debts - iPhone Professional - No Buffalo",
+  "start_url": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "background_color": "#7A0C1A",
   "theme_color": "#7A0C1A",
   "orientation": "portrait",
+  "scope": "/",
   "icons": [
-    {
-      "src": "https://cdn-icons-png.flaticon.com/512/857/857681.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
+    {"src": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png","sizes": "192x192","type": "image/png","purpose": "any maskable"},
+    {"src": "https://cdn-icons-png.flaticon.com/512/1046/1046784.png","sizes": "512x512","type": "image/png","purpose": "any maskable"}
   ]
 }
