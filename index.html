@@ -1,151 +1,70 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARINA - License & Registration System</title>
+<title>ARINA - License & Logbook Management System</title>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0A2540">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--yellow:#FFC107;--dark:#0A2540;--dark2:#102E50;--dark3:#15395F;--bg:#F4F7FB;--card:#FFF;--text:#1A2A44;--muted:#6B7A90;--green:#10B981;--red:#EF4444;--border:#E2E8F0}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+:root{--yellow:#FFC107;--dark:#0A2540;--dark2:#102E50;--bg:#F4F7FB;--card:#FFF;--border:#E2E8F0;--text:#1A2A44;--muted:#6B7A90;--green:#10B981;--red:#EF4444}
+*{box-sizing:border-box;font-family:'Inter',sans-serif;margin:0;padding:0}
 body{background:var(--bg);color:var(--text)}
-.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark) 0%,var(--dark3) 100%);padding:20px}
-.login-card{background:var(--card);width:100%;max-width:420px;border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.login-logo{text-align:center;margin-bottom:24px}
-.login-logo .icon{width:60px;height:60px;background:var(--yellow);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:30px;font-weight:800;color:var(--dark)}
-.login-card label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px;color:var(--dark2)}
-.login-card input,.login-card select{width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;outline:none}
-.btn-primary{width:100%;margin-top:20px;background:var(--dark);color:white;padding:13px;border-radius:10px;font-weight:700;cursor:pointer;border:none}
-.demo-box{margin-top:16px;background:#FFF8E1;border:1px dashed #FFC107;padding:12px;border-radius:10px;font-size:12px;line-height:1.7}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark),var(--dark2));padding:20px}
+.login-card{background:white;width:100%;max-width:460px;border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.tabs{display:flex;background:#F1F5F9;border-radius:10px;padding:4px;margin:16px 0}
+.tab{flex:1;padding:10px;text-align:center;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+.tab.active{background:var(--dark);color:white}
+.input-group{margin-top:12px}
+.input-group label{font-size:12px;font-weight:600;display:block;margin-bottom:6px}
+.input-group input,.input-group select{width:100%;padding:11px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;outline:none}
+.input-group input:focus{border-color:var(--yellow)}
+.btn{padding:11px 16px;border-radius:9px;font-weight:700;font-size:13px;border:none;cursor:pointer}
+.btn-dark{background:var(--dark);color:white;width:100%;margin-top:16px}
+.btn-yellow{background:var(--yellow);color:var(--dark)}
+.file-drop{border:2px dashed #FFC107;background:#FFF8E1;padding:18px;border-radius:12px;text-align:center;font-size:12px;margin-top:10px;cursor:pointer}
 .app{display:none;min-height:100vh}
-.sidebar{position:fixed;right:0;top:0;bottom:0;width:270px;background:var(--dark);color:white;display:flex;flex-direction:column;z-index:100}
-.sidebar-head{padding:22px 20px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:12px}
-.sidebar-head .logo{width:44px;height:44px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-weight:900;font-size:20px}
-.nav{flex:1;padding:14px 10px;overflow-y:auto}
-.nav-item{display:flex;gap:10px;padding:11px 12px;border-radius:10px;font-size:13.5px;color:#B8C6DA;margin-bottom:4px;cursor:pointer}
-.nav-item:hover,.nav-item.active{background:rgba(255,193,7,0.12);color:var(--yellow)}
-.nav-section{margin:16px 0 6px;padding:0 12px;font-size:10.5px;color:#6D829E}
-.sidebar-foot{padding:14px 16px;border-top:1px solid rgba(255,255,255,0.08);font-size:11px;color:#7A90AD}
-.main{margin-right:270px;min-height:100vh}
-.topbar{background:var(--card);padding:14px 24px;display:flex;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.sidebar{position:fixed;right:0;top:0;bottom:0;width:270px;background:var(--dark);color:white;display:flex;flex-direction:column}
+.main{margin-right:270px}
+.topbar{background:white;padding:14px 24px;display:flex;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
 .badge{background:var(--yellow);color:var(--dark);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-.content{padding:22px}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
-.card{background:var(--card);border-radius:16px;padding:18px;border:1px solid var(--border)}
-.form-box{background:var(--card);border-radius:16px;padding:18px;border:1px solid var(--border);margin-bottom:16px}
+.content{padding:20px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px}
+.card{background:white;border-radius:14px;padding:16px;border:1px solid var(--border)}
+.form-box{background:white;border-radius:14px;padding:18px;border:1px solid var(--border);margin-bottom:16px}
 .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{font-size:12px;font-weight:600;margin:8px 0 4px;display:block}
-input,select,textarea{width:100%;padding:10px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;outline:none}
-.btn{padding:10px 16px;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;border:none}
-.btn-dark{background:var(--dark);color:white}
-.btn-outline{background:white;border:1.5px solid var(--border)}
 table{width:100%;border-collapse:collapse;margin-top:12px}
-th,td{padding:10px 8px;text-align:right;font-size:12.5px;border-bottom:1px solid var(--border)}
+th,td{padding:9px 8px;font-size:12px;border-bottom:1px solid var(--border);text-align:left}
 th{background:#F8FAFC;color:var(--muted);font-size:11px}
-.status{padding:3px 8px;border-radius:20px;font-size:10px;font-weight:700}
-.s-ok{background:#D1FAE5;color:#065F46}
-.modal{display:none;position:fixed;inset:0;background:rgba(10,37,64,0.6);z-index:200;align-items:center;justify-content:center;padding:16px}
-.modal.active{display:flex}
-.modal-card{background:white;border-radius:16px;max-width:800px;width:100%;max-height:90vh;overflow:auto}
-.dev-mark{position:fixed;left:12px;bottom:12px;background:var(--dark);color:white;padding:6px 12px;border-radius:20px;font-size:10px;z-index:999}
-.dev-mark b{color:var(--yellow)}
-.print-area{display:none}
-@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;width:100%;display:block!important}}
-@media(max-width:1024px){.sidebar{transform:translateX(100%)}.main{margin-right:0}.cards{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}}
+.nav-item{padding:10px 12px;border-radius:9px;color:#B8C6DA;font-size:13px;cursor:pointer;margin-bottom:3px}
+.nav-item.active,.nav-item:hover{background:rgba(255,193,7,0.12);color:var(--yellow)}
+.dev-mark{position:fixed;left:10px;bottom:10px;background:var(--dark);color:white;padding:6px 12px;border-radius:20px;font-size:10px}
+@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;width:100%}}
 </style>
 </head>
 <body>
 <div class="login-wrap" id="loginWrap">
   <div class="login-card">
-    <div class="login-logo"><div class="icon">A</div><h1>ARINA GENERAL SERVICES</h1><p>Driving License & Vehicle Registration</p></div>
-    <label>الفرع / Branch</label><select id="branchSelect"><option value="main">الفرع الرئيسي - Main (Juba)</option><option value="wau">Wau</option><option value="malakal">Malakal</option><option value="yambio">Yambio</option></select>
-    <label>المستخدم</label><input id="userInput" value="admin">
-    <label>كلمة المرور</label><input id="passInput" type="password" value="admin123">
-    <button class="btn-primary" onclick="login()">دخول / Login</button>
-    <div class="demo-box"><b>تجريبي:</b><br>main / admin / admin123 = مدير عام<br>wau / manager / 123<br>wau / finance / 123<br>wau / tech / 123</div>
-    <div style="text-align:center;font-size:11px;color:#6B7A90;margin-top:10px">Developed by <b>E-Mutwokil Sadik</b></div>
+    <div style="text-align:center"><div style="width:56px;height:56px;background:var(--yellow);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:24px;color:var(--dark)">A</div><h2 style="margin-top:10px">ARINA</h2><p style="font-size:12px;color:var(--muted)">License & Logbook System V3</p></div>
+    <div class="tabs"><div class="tab active" id="tab-staff" onclick="switchTab('staff')">Staff Login</div><div class="tab" id="tab-admin" onclick="switchTab('admin')">Admin Token</div></div>
+    <div id="staffLogin">
+      <div class="input-group"><label>Branch Code</label><select id="branchSelect"><option value="main">main - Juba Main</option><option value="wau">wau - Wau</option><option value="malakal">malakal - Malakal</option><option value="yambio">yambio - Yambio</option></select></div>
+      <div class="input-group"><label>Username</label><input id="userInput" placeholder="Enter username"></div>
+      <div class="input-group"><label>Password</label><input id="passInput" type="password" placeholder="Enter password"></div>
+      <button class="btn btn-dark" onclick="loginStaff()">Login</button>
+    </div>
+    <div id="adminLogin" style="display:none">
+      <div class="input-group"><label>Admin Username</label><input id="adminUser" value="admin"></div>
+      <div class="input-group"><label>Admin Password</label><input id="adminPass" type="password" placeholder="Admin password"></div>
+      <div class="file-drop" onclick="document.getElementById('tokenFile').click()">📁 Click to Select USB Token File (arina_admin_token.key)<input type="file" id="tokenFile" accept=".key,.txt" style="display:none" onchange="handleTokenFile(this)"><div id="tokenStatus" style="margin-top:8px;color:var(--muted)">No file selected</div></div>
+      <button class="btn btn-dark" onclick="loginWithToken()">Login with USB Token</button>
+      <div style="margin-top:10px;text-align:center"><a href="#" onclick="loginStaffAdminFallback()" style="font-size:11px;color:var(--muted)">Or login with normal admin password (fallback)</a></div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#94A3B8;margin-top:14px">Secure Login • Encrypted Token • Developed by <b>E-Mutwokil Sadik</b></div>
   </div>
 </div>
-<div class="app" id="app">
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-head"><div class="logo">A</div><div><h2>ARINA</h2><span id="branchLabel">Main Branch</span></div></div>
-    <div class="nav">
-      <div class="nav-item active" onclick="showPage('dashboard')">📊 الداشبورد</div>
-      <div class="nav-section">الخدمات</div>
-      <div class="nav-item" onclick="showPage('license')">🪪 رخصة قيادة</div>
-      <div class="nav-item" onclick="showPage('registration')">📄 شهادة بحث</div>
-      <div class="nav-section">المالية</div>
-      <div class="nav-item" onclick="showPage('expenses')">💸 مصروفات</div>
-      <div class="nav-item" onclick="showPage('employees')">👥 موظفين ومرتبات</div>
-      <div class="nav-item" onclick="showPage('advances')">💳 سلفيات</div>
-      <div class="nav-section">التقارير</div>
-      <div class="nav-item" onclick="showPage('reports')">📈 تقارير</div>
-      <div class="nav-item" onclick="showPage('branches')">🏢 تقارير الفروع</div>
-      <div class="nav-item" onclick="showPage('settings')">⚙️ إعدادات الفروع</div>
     </div>
-    <div class="sidebar-foot"><div id="userRoleLabel"></div><div style="margin-top:6px">Developed by <b style="color:#FFC107">E-Mutwokil Sadik</b></div><button class="btn btn-outline" style="width:100%;margin-top:10px" onclick="logout()">خروج</button></div>
-  </div>
-  <div class="main">
-    <div class="topbar"><h3 id="pageTitle">الداشبورد</h3><div><span class="badge" id="roleBadge">MAIN</span></div></div>
-    <div class="content">
-      <div class="page" id="page-dashboard">
-        <div class="cards">
-          <div class="card"><span>إجمالي رخص</span><h4 id="statLicense">0</h4></div>
-          <div class="card"><span>شهادات بحث</span><h4 id="statReg">0</h4></div>
-          <div class="card"><span>المصروفات</span><h4 id="statExp">$0</h4></div>
-          <div class="card"><span>صافي الربح</span><h4 id="statProfit">$0</h4></div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-          <div class="form-box"><h4>آخر العمليات</h4><table><thead><tr><th>النوع</th><th>العميل</th><th>المبلغ</th><th>الفرع</th><th>الحالة</th></tr></thead><tbody id="recentTable"></tbody></table></div>
-          <div class="form-box"><h4>ملخص مالي</h4><div id="financeSummary" style="font-size:13px;line-height:2"></div><button class="btn btn-dark" style="margin-top:12px" onclick="showPage('reports')">تقرير كامل</button></div>
-        </div>
-      </div>
-            <div class="page" id="page-license" style="display:none">
-        <div class="form-box"><h4>🪪 إيصال رخصة قيادة</h4>
-          <div class="row"><div><label>اسم العميل</label><input id="lic_name"></div><div><label>الهاتف</label><input id="lic_phone"></div></div>
-          <div class="row"><div><label>نوع الرخصة</label><select id="lic_type"><option>خاصة - Private</option><option>عامة - Public</option><option>دراجة - Motorcycle</option><option>شاحنة - Truck</option></select></div><div><label>المدة</label><select id="lic_duration"><option>1 سنة - $50</option><option>3 سنوات - $120</option><option>5 سنوات - $180</option></select></div></div>
-          <div class="row"><div><label>المبلغ $</label><input id="lic_amount" type="number" value="50"></div><div><label>الدفع</label><select id="lic_pay"><option>كاش</option><option>بنكك</option><option>تحويل</option></select></div></div>
-          <label>ملاحظات</label><textarea id="lic_notes" rows="2"></textarea>
-          <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-dark" onclick="createLicense()">إصدار + طباعة + واتساب</button><button class="btn btn-outline" onclick="clearForm('license')">مسح</button></div>
-        </div>
-        <div class="form-box"><h4>سجل الرخص</h4><table><thead><tr><th>رقم الإيصال</th><th>العميل</th><th>النوع</th><th>المبلغ</th><th>الفرع</th><th>طباعة</th></tr></thead><tbody id="licTable"></tbody></table></div>
-      </div>
-
-      <div class="page" id="page-registration" style="display:none">
-        <div class="form-box"><h4>📄 إيصال شهادة بحث</h4>
-          <div class="row"><div><label>اسم المالك</label><input id="reg_name"></div><div><label>رقم اللوحة</label><input id="reg_plate"></div></div>
-          <div class="row"><div><label>نوع المركبة</label><select id="reg_vtype"><option>سيارة</option><option>موتر</option><option>شاحنة</option><option>بص</option></select></div><div><label>موديل</label><input id="reg_model"></div></div>
-          <div class="row"><div><label>رقم الشاسي</label><input id="reg_chassis"></div><div><label>المبلغ $</label><input id="reg_amount" type="number" value="80"></div></div>
-          <div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-dark" onclick="createRegistration()">إصدار + طباعة</button><button class="btn btn-outline" onclick="clearForm('registration')">مسح</button></div>
-        </div>
-        <div class="form-box"><h4>سجل شهادات البحث</h4><table><thead><tr><th>رقم الإيصال</th><th>المالك</th><th>اللوحة</th><th>المبلغ</th><th>الفرع</th><th>طباعة</th></tr></thead><tbody id="regTable"></tbody></table></div>
-      </div>
-
-      <div class="page" id="page-expenses" style="display:none">
-        <div class="form-box"><h4>💸 مصروف</h4><div class="row"><div><label>البند</label><select id="exp_item"><option>إيجار</option><option>كهرباء</option><option>إنترنت</option><option>قرطاسية</option><option>وقود</option><option>صيانة</option><option>أخرى</option></select></div><div><label>المبلغ $</label><input id="exp_amount" type="number"></div></div><label>الوصف</label><input id="exp_desc"><button class="btn btn-dark" style="margin-top:12px" onclick="addExpense()">حفظ</button></div>
-        <div class="form-box"><h4>سجل المصروفات</h4><table><thead><tr><th>التاريخ</th><th>البند</th><th>الوصف</th><th>المبلغ</th><th>الفرع</th></tr></thead><tbody id="expTable"></tbody></table></div>
-      </div>
-
-      <div class="page" id="page-employees" style="display:none">
-        <div class="form-box"><h4>👥 موظف</h4><div class="row"><div><label>اسم الموظف</label><input id="emp_name"></div><div><label>المسمى</label><select id="emp_title"><option>مدير فرع</option><option>مالية</option><option>فني حاسوب</option><option>مطور</option><option>استقبال</option><option>سائق</option></select></div></div><div class="row"><div><label>الدرجة</label><select id="emp_grade"><option>الدرجة 1 - $800</option><option>الدرجة 2 - $600</option><option>الدرجة 3 - $450</option><option>الدرجة 4 - $300</option><option>الدرجة 5 - $200</option></select></div><div><label>المرتب $</label><input id="emp_salary" type="number" value="300"></div></div><button class="btn btn-dark" style="margin-top:12px" onclick="addEmployee()">حفظ</button></div>
-        <div class="form-box"><h4>كشف المرتبات</h4><table><thead><tr><th>الموظف</th><th>المسمى</th><th>الدرجة</th><th>المرتب</th><th>السلفيات</th><th>الصافي</th><th>الفرع</th></tr></thead><tbody id="empTable"></tbody></table></div>
-      </div>
-
-      <div class="page" id="page-advances" style="display:none">
-        <div class="form-box"><h4>💳 سلفية</h4><div class="row"><div><label>الموظف</label><select id="adv_emp"></select></div><div><label>المبلغ $</label><input id="adv_amount" type="number"></div></div><label>السبب</label><input id="adv_reason"><button class="btn btn-dark" style="margin-top:12px" onclick="addAdvance()">حفظ السلفية</button></div>
-        <div class="form-box"><h4>سجل السلفيات</h4><table><thead><tr><th>التاريخ</th><th>الموظف</th><th>المبلغ</th><th>السبب</th><th>الفرع</th><th>حالة</th></tr></thead><tbody id="advTable"></tbody></table></div>
-      </div>
-
-      <div class="page" id="page-reports" style="display:none">
-        <div class="form-box"><h4>📈 التقارير</h4><div class="row"><div><label>نوع التقرير</label><select id="rep_type" onchange="genReport()"><option value="daily">يومي</option><option value="weekly">أسبوعي</option><option value="monthly">شهري</option><option value="yearly">سنوي</option></select></div><div><label>التاريخ</label><input id="rep_date" type="date" onchange="genReport()"></div></div><div class="row" style="margin-top:10px"><div><label>الفرع</label><select id="rep_branch" onchange="genReport()"><option value="all">كل الفروع</option><option value="main">Main</option><option value="wau">Wau</option><option value="malakal">Malakal</option><option value="yambio">Yambio</option></select></div><div style="display:flex;align-items:end;gap:8px"><button class="btn btn-dark" onclick="genReport()">تحديث</button><button class="btn btn-outline" onclick="printReport()">طباعة PDF</button><button class="btn" style="background:#FFC107;color:#0A2540;font-weight:800" onclick="exportWhatsAppReport()">واتساب للمدير</button></div></div><div id="reportContent" style="margin-top:20px;background:#F8FAFC;padding:18px;border-radius:12px;border:1px solid #E2E8F0"></div></div>
-      </div>
-
-      <div class="page" id="page-branches" style="display:none"><div class="form-box"><h4>🏢 تقارير الفروع الواردة - للمدير العام فقط</h4><div id="branchReports"></div></div></div>
-
-      <div class="page" id="page-settings" style="display:none"><div class="form-box"><h4>⚙️ إعدادات الفروع</h4><div class="row"><div><label>اسم الفرع الجديد</label><input id="newBranchName"></div><div><label>كود الفرع</label><input id="newBranchCode"></div></div><div class="row"><div><label>يوزر مدير الفرع</label><input id="newBranchUser"></div><div><label>باسورد</label><input id="newBranchPass"></div></div><button class="btn btn-dark" style="margin-top:12px" onclick="addBranch()">إضافة فرع</button><div style="margin-top:20px"><h4>الفروع الحالية</h4><table><thead><tr><th>الفرع</th><th>الكود</th><th>المدير</th><th>حالة</th></tr></thead><tbody id="branchesTable"></tbody></table></div></div></div>
-          </div>
   </div>
 </div>
 <div class="dev-mark">Developed by <b>E-Mutwokil Sadik</b> | ARINA v2.0</div>
