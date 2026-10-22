@@ -3,154 +3,256 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARINA - License & Registration System</title>
+<title>ARINA GENERAL SERVICES - License & Registration</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0A2540">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#0A4DA1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{--yellow:#FFC107;--dark:#0A2540;--dark2:#102E50;--bg:#F4F7FB;--card:#FFF;--border:#E2E8F0;--text:#1A2A44;--muted:#6B7A90}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+:root{--blue:#0A4DA1;--blue2:#083C7E;--yellow:#FFC107;--bg:#F5F7FB;--card:#FFFFFF;--border:#E6EBF2;--text:#10213E;--muted:#7A8AA5;--green:#10B981;--red:#EF4444}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Plus Jakarta Sans',sans-serif}
 body{background:var(--bg);color:var(--text)}
-.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--dark),#15395F);padding:20px}
-.login-card{background:var(--card);width:100%;max-width:420px;border-radius:20px;padding:32px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.login-card h1{text-align:center;font-size:20px;color:var(--dark);letter-spacing:1px}
-.login-card p.sub{text-align:center;font-size:12px;color:var(--muted);margin:6px 0 18px}
-.login-card label{display:block;font-size:12px;font-weight:600;margin:12px 0 5px}
-.login-card input,select{width:100%;padding:11px 12px;border:1.5px solid var(--border);border-radius:10px;font-size:13px;outline:none}
-.login-card input:focus{border-color:var(--yellow)}
-.btn{padding:11px 16px;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;border:none}
-.btn-dark{background:var(--dark);color:white;width:100%;margin-top:18px}
-.btn-dark:hover{background:var(--dark2)}
-.locked-wrap{display:none;min-height:100vh;align-items:center;justify-content:center;background:#0A2540;padding:20px}
-.locked-card{background:white;max-width:440px;width:100%;border-radius:20px;padding:28px;text-align:center;border-top:6px solid #EF4444}
-.locked-card h2{color:#EF4444}
-.locked-card input{margin-top:14px}
+/* Login */
+.login-wrap{min-height:100vh;display:flex;background:white}
+.login-left{flex:1;background:linear-gradient(160deg,var(--blue),var(--blue2));color:white;padding:50px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.login-left::after{content:'';position:absolute;width:500px;height:500px;background:rgba(255,193,7,.12);border-radius:50%;right:-100px;top:-100px}
+.login-left h1{font-size:38px;font-weight:800;line-height:1.1;z-index:2}
+.login-left p{margin-top:16px;color:#B8C9E8;z-index:2;font-size:14px;line-height:1.6}
+.login-left .stats{display:flex;gap:16px;margin-top:32px;z-index:2}
+.login-left .s{background:rgba(255,255,255,.1);padding:14px 18px;border-radius:14px;backdrop-filter:blur(10px)}
+.login-right{flex:1;display:flex;align-items:center;justify-content:center;padding:30px}
+.login-card{width:100%;max-width:420px}
+.login-card .logo{width:56px;height:56px;background:var(--blue);border-radius:16px;display:flex;align-items:center;justify-content:center;color:var(--yellow);font-weight:800;font-size:22px}
+.login-card h2{margin-top:18px;font-size:22px}
+.login-card label{font-size:12px;font-weight:700;margin:14px 0 6px;display:block}
+.login-card input,select{width:100%;padding:13px 14px;border:1.8px solid var(--border);border-radius:12px;font-size:13px;outline:none;transition:.2s;background:white}
+.login-card input:focus,select:focus{border-color:var(--blue)}
+.btn{padding:13px 18px;border-radius:12px;font-weight:700;border:none;cursor:pointer;font-size:13px}
+.btn-blue{background:var(--blue);color:white;width:100%;margin-top:20px}
+.btn-blue:hover{background:var(--blue2)}
+/* Locked */
+.locked-wrap{display:none;min-height:100vh;align-items:center;justify-content:center;background:var(--blue);padding:20px}
+.locked-card{background:white;max-width:460px;width:100%;border-radius:20px;padding:28px;text-align:center;border-top:6px solid var(--red)}
+/* App */
 .app{display:none;min-height:100vh}
-.sidebar{position:fixed;left:0;top:0;bottom:0;width:260px;background:var(--dark);color:white;display:flex;flex-direction:column}
-.sidebar-head{padding:20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;gap:10px;align-items:center}
-.sidebar-head .logo{width:42px;height:42px;background:var(--yellow);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--dark);font-weight:900}
-.nav{flex:1;padding:12px;overflow:auto}
-.nav-item{padding:11px 12px;border-radius:10px;font-size:13px;color:#B8C6DA;margin-bottom:3px;cursor:pointer}
-.nav-item.active,.nav-item:hover{background:rgba(255,193,7,.12);color:var(--yellow)}
-.main{margin-left:260px}
-.topbar{background:white;padding:14px 20px;display:flex;justify-content:space-between;border-bottom:1px solid var(--border);position:sticky;top:0}
-.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.card{background:white;border:1px solid var(--border);border-radius:14px;padding:16px}
-.form-box{background:white;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
-.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-table{width:100%;border-collapse:collapse;margin-top:10px}th,td{padding:9px 8px;text-align:left;font-size:12px;border-bottom:1px solid var(--border)}th{background:#F8FAFC;color:var(--muted);font-size:11px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);align-items:center;justify-content:center;padding:16px;z-index:200}
-.modal.active{display:flex}.modal-card{background:white;border-radius:16px;max-width:760px;width:100%;overflow:auto;max-height:90vh}
-.dev{position:fixed;right:12px;bottom:12px;background:var(--dark);color:white;padding:5px 10px;border-radius:20px;font-size:10px}.dev b{color:var(--yellow)}
-.print-area{display:none}@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;width:100%;display:block!important}}
-@media(max-width:900px){.sidebar{transform:translateX(-100%)}.main{margin-left:0}.cards{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr}}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:white;border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:10}
+.sidebar-head{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:12px;align-items:center}
+.sidebar-head .logo{width:46px;height:46px;background:var(--blue);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--yellow);font-weight:800}
+.nav{flex:1;padding:14px;overflow:auto}
+.nav-item{padding:12px 14px;border-radius:12px;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px;cursor:pointer;display:flex;gap:10px;align-items:center}
+.nav-item.active,.nav-item:hover{background:var(--blue);color:white}
+.nav-item.active span,.nav-item:hover span{color:white}
+.main{margin-left:280px}
+.topbar{background:white;padding:16px 22px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+.page{padding:20px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{background:white;border:1px solid var(--border);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+.card small{color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.card h3{margin-top:8px;font-size:24px;font-weight:800}
+.card .icon{position:absolute;right:14px;top:14px;width:40px;height:40px;background:#EEF3FF;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.form-box{background:white;border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:14px}
+.form-box h4{font-size:14px;font-weight:800;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+label.f{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;display:block;margin-top:8px}
+input.f,select.f{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:11px;font-size:13px;outline:none}
+input.f:focus,select.f:focus{border-color:var(--blue)}
+table{width:100%;border-collapse:collapse;margin-top:12px}th,td{padding:10px 8px;text-align:left;font-size:12px;border-bottom:1px solid var(--border)}th{background:#F8FAFC;color:var(--muted);font-size:11px;text-transform:uppercase}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);align-items:center;justify-content:center;padding:16px;z-index:100}
+.modal.active{display:flex}.modal-card{background:white;border-radius:18px;max-width:780px;width:100%;max-height:90vh;overflow:auto}
+.print-area{display:none}
+@media print{body *{visibility:hidden}.print-area,.print-area *{visibility:visible}.print-area{position:absolute;left:0;top:0;width:100%;display:block!important}}
+@media(max-width:900px){.login-wrap{flex-direction:column}.cards{grid-template-columns:1fr 1fr}.row,.row3{grid-template-columns:1fr}.sidebar{transform:translateX(-100%)}.main{margin-left:0}}
 </style>
 </head>
 <body>
+
 <div class="login-wrap" id="loginWrap">
-  <div class="login-card">
-    <h1>ARINA GENERAL SERVICES</h1>
-    <p class="sub">Driving License & Vehicle Registration System</p>
-    <label>Branch</label><select id="branchSelect"></select>
-    <label>Username</label><input id="userInput" value="admin">
-    <label>Password</label><input id="passInput" type="password" value="admin123">
-    <button class="btn btn-dark" onclick="login()">Login</button>
-    <p style="font-size:11px;color:#6B7A90;margin-top:12px;text-align:center" id="expiryInfo"></p>
-    <p style="font-size:10px;text-align:center;margin-top:8px;color:#6B7A90">Developed by <b>E-Mutwokil Sadik</b></p>
+  <div class="login-left">
+    <h1>ARINA<br>GENERAL<br>SERVICES</h1>
+    <p>Professional Driving License & Vehicle Registration System. Multi-branch, secure, offline PWA like Sidigi General Trading.</p>
+    <div class="stats">
+      <div class="s"><b>4 Branches</b><br><small>Juba, Wau, Malakal, Yambio</small></div>
+      <div class="s"><b>90 Days</b><br><small>License Protection</small></div>
+    </div>
+    <p style="margin-top:40px;font-size:11px;color:#7FA0D0">Developed by <b style="color:#FFC107">E-Mutwokil Sadik</b> • Sidigi Style v4</p>
+  </div>
+  <div class="login-right">
+    <div class="login-card">
+      <div class="logo">A</div>
+      <h2>Welcome Back</h2>
+      <p style="font-size:12px;color:var(--muted);margin-top:4px">Login to your branch</p>
+      <label>Branch</label><select id="branchSelect"></select>
+      <label>Username</label><input id="userInput" value="admin">
+      <label>Password</label><input id="passInput" type="password" value="admin123">
+      <button class="btn btn-blue" onclick="login()">Login to Dashboard →</button>
+      <p id="expiryInfo" style="font-size:11px;color:var(--muted);margin-top:12px;text-align:center"></p>
+    </div>
   </div>
 </div>
 
 <div class="locked-wrap" id="lockedWrap">
   <div class="locked-card">
-    <h2>🔒 SYSTEM LOCKED</h2>
-    <p style="font-size:13px;margin-top:8px;color:#334155">License expired after 90 days. Contact Main Admin to unlock.</p>
-    <p style="font-size:11px;margin-top:6px;color:#6B7A90" id="lockedInfo"></p>
-    <label style="text-align:left;margin-top:14px">Enter Flash Token / Magic Password</label>
-    <input id="unlockKey" type="password" placeholder="Enter master key">
-    <button class="btn btn-dark" style="background:#EF4444" onclick="unlockSystem()">Unlock & Renew 90 Days</button>
-    <p style="font-size:10px;margin-top:10px;color:#6B7A90">This key is known only to system owner. Not visible to branch staff.</p>
+    <h2 style="color:var(--red)">🔒 SYSTEM LOCKED</h2>
+    <p style="font-size:13px;margin-top:8px">License expired after 90 days. Contact Main Admin.</p>
+    <p id="lockedInfo" style="font-size:11px;margin-top:6px;color:var(--muted)"></p>
+    <label class="f" style="text-align:left;margin-top:14px">Master Key / Flash Token</label>
+    <input id="unlockKey" class="f" type="password" placeholder="Enter master key">
+    <button class="btn btn-blue" style="background:var(--red);margin-top:12px" onclick="unlockSystem()">Unlock & Renew 90 Days</button>
   </div>
 </div>
 
 <div class="app" id="app">
   <div class="sidebar">
-    <div class="sidebar-head"><div class="logo">A</div><div><b>ARINA</b><br><small id="branchLabel" style="color:#9BB0CC;font-size:11px">Main</small></div></div>
+    <div class="sidebar-head"><div class="logo">A</div><div><b>ARINA</b><br><small id="branchLabel" style="color:var(--muted);font-size:11px">Main Branch</small></div></div>
     <div class="nav">
-      <div class="nav-item active" onclick="showPage('dashboard')">📊 Dashboard</div>
-      <div class="nav-item" onclick="showPage('license')">🪪 Driving License Receipt</div>
-      <div class="nav-item" onclick="showPage('registration')">📄 Vehicle Registration</div>
-      <div class="nav-item" onclick="showPage('expenses')">💸 Expenses</div>
-      <div class="nav-item" onclick="showPage('employees')">👥 Employees & Salaries</div>
-      <div class="nav-item" onclick="showPage('advances')">💳 Advances</div>
-      <div class="nav-item" onclick="showPage('reports')">📈 Reports</div>
-      <div class="nav-item" onclick="showPage('branches')">🏢 Branch Reports</div>
+      <div class="nav-item active" onclick="showPage('dashboard')"><span>📊</span> Dashboard</div>
+      <div class="nav-item" onclick="showPage('license')"><span>🪪</span> Driving License</div>
+      <div class="nav-item" onclick="showPage('registration')"><span>📄</span> Vehicle Registration</div>
+      <div class="nav-item" onclick="showPage('expenses')"><span>💸</span> Expenses</div>
+      <div class="nav-item" onclick="showPage('employees')"><span>👥</span> Employees & Salaries</div>
+      <div class="nav-item" onclick="showPage('advances')"><span>💳</span> Advances</div>
+      <div class="nav-item" onclick="showPage('reports')"><span>📈</span> Reports</div>
+      <div class="nav-item" onclick="showPage('branches')"><span>🏢</span> Branch Reports</div>
     </div>
-    <div style="padding:14px;border-top:1px solid rgba(255,255,255,.08);font-size:11px"><span id="userRoleLabel"></span><br><button class="btn" style="background:white;color:var(--dark);width:100%;margin-top:10px" onclick="logout()">Logout</button><div style="margin-top:8px;color:#7A90AD">Developed by <b style="color:#FFC107">E-Mutwokil Sadik</b></div></div>
+    <div style="padding:14px;border-top:1px solid var(--border);font-size:11px">
+      <span id="userRoleLabel"></span><br>
+      <button class="btn" style="background:var(--bg);width:100%;margin-top:10px" onclick="logout()">Logout</button>
+      <div style="margin-top:10px;color:var(--muted)">Developed by <b style="color:var(--blue)">E-Mutwokil Sadik</b></div>
+    </div>
   </div>
   <div class="main">
-    <div class="topbar"><h3 id="pageTitle">Dashboard</h3><span id="roleBadge" style="background:#FFC107;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;color:#0A2540">ADMIN</span></div>
-    <div style="padding:18px">
-      <div class="page" id="page-dashboard"><div class="cards"><div class="card"><small>Licenses</small><h3 id="statLicense">0</h3></div><div class="card"><small>Registrations</small><h3 id="statReg">0</h3></div><div class="card"><small>Expenses</small><h3 id="statExp">$0</h3></div><div class="card"><small>Net Profit</small><h3 id="statProfit">$0</h3></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px"><div class="form-box"><h4>Recent Activity</h4><table><thead><tr><th>Type</th><th>Client</th><th>Amount</th><th>Branch</th></tr></thead><tbody id="recentTable"></tbody></table></div><div class="form-box"><h4>Financial Summary</h4><div id="financeSummary" style="font-size:13px;line-height:2"></div></div></div></div>
-      <div class="page" id="page-license" style="display:none"><div class="form-box"><h4>Driving License Receipt</h4><div class="row"><div><label>Client Name</label><input id="lic_name"></div><div><label>Phone</label><input id="lic_phone"></div></div><div class="row"><div><label>License Type</label><select id="lic_type"><option>Private</option><option>Public</option><option>Motorcycle</option><option>Heavy Truck</option></select></div><div><label>Duration</label><select id="lic_duration"><option>1 Year - $50</option><option>3 Years - $120</option><option>5 Years - $180</option></select></div></div><div class="row"><div><label>Amount $</label><input id="lic_amount" type="number" value="50"></div><div><label>Payment</label><select id="lic_pay"><option>Cash</option><option>Bankak</option><option>Transfer</option></select></div></div><button class="btn btn-dark" style="width:auto;margin-top:12px" onclick="createLicense()">Issue Receipt + Print + WhatsApp</button></div><div class="form-box"><table><thead><tr><th>ID</th><th>Client</th><th>Type</th><th>Amount</th><th>Branch</th><th>Print</th></tr></thead><tbody id="licTable"></tbody></table></div></div>
-      <div class="page" id="page-registration" style="display:none"><div class="form-box"><h4>Vehicle Registration Receipt</h4><div class="row"><div><label>Owner Name</label><input id="reg_name"></div><div><label>Plate No</label><input id="reg_plate"></div></div><div class="row"><div><label>Vehicle Type</label><select id="reg_vtype"><option>Car</option><option>Motorcycle</option><option>Truck</option><option>Bus</option></select></div><div><label>Model</label><input id="reg_model"></div></div><div class="row"><div><label>Chassis No</label><input id="reg_chassis"></div><div><label>Amount $</label><input id="reg_amount" type="number" value="80"></div></div><button class="btn btn-dark" style="width:auto;margin-top:12px" onclick="createRegistration()">Issue Receipt</button></div><div class="form-box"><table><thead><tr><th>ID</th><th>Owner</th><th>Plate</th><th>Amount</th><th>Branch</th><th>Print</th></tr></thead><tbody id="regTable"></tbody></table></div></div>
-      <div class="page" id="page-expenses" style="display:none"><div class="form-box"><h4>Add Expense</h4><div class="row"><div><label>Item</label><select id="exp_item"><option>Rent</option><option>Electricity</option><option>Internet</option><option>Stationery</option><option>Fuel</option><option>Maintenance</option><option>Other</option></select></div><div><label>Amount $</label><input id="exp_amount" type="number"></div></div><label>Description</label><input id="exp_desc"><button class="btn btn-dark" style="width:auto;margin-top:10px" onclick="addExpense()">Save</button></div><div class="form-box"><table><thead><tr><th>Date</th><th>Item</th><th>Desc</th><th>Amount</th><th>Branch</th></tr></thead><tbody id="expTable"></tbody></table></div></div>
-      <div class="page" id="page-employees" style="display:none"><div class="form-box"><h4>Add Employee</h4><div class="row"><div><label>Name</label><input id="emp_name"></div><div><label>Title</label><select id="emp_title"><option>Branch Manager</option><option>Finance</option><option>Computer Technician</option><option>Developer</option><option>Receptionist</option></select></div></div><div class="row"><div><label>Grade</label><select id="emp_grade"><option>Grade 1 - $800</option><option>Grade 2 - $600</option><option>Grade 3 - $450</option><option>Grade 4 - $300</option><option>Grade 5 - $200</option></select></div><div><label>Salary $</label><input id="emp_salary" type="number" value="300"></div></div><button class="btn btn-dark" style="width:auto;margin-top:10px" onclick="addEmployee()">Save</button></div><div class="form-box"><table><thead><tr><th>Name</th><th>Title</th><th>Grade</th><th>Salary</th><th>Advances</th><th>Net</th><th>Branch</th></tr></thead><tbody id="empTable"></tbody></table></div></div>
-      <div class="page" id="page-advances" style="display:none"><div class="form-box"><h4>Employee Advance</h4><div class="row"><div><label>Employee</label><select id="adv_emp"></select></div><div><label>Amount $</label><input id="adv_amount" type="number"></div></div><label>Reason</label><input id="adv_reason"><button class="btn btn-dark" style="width:auto;margin-top:10px" onclick="addAdvance()">Save</button></div><div class="form-box"><table><thead><tr><th>Date</th><th>Employee</th><th>Amount</th><th>Reason</th><th>Branch</th></tr></thead><tbody id="advTable"></tbody></table></div></div>
-      <div class="page" id="page-reports" style="display:none"><div class="form-box"><h4>Financial Reports - Daily/Weekly/Monthly/Yearly</h4><div class="row"><div><label>Report Type</label><select id="rep_type" onchange="genReport()"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select></div><div><label>Date</label><input id="rep_date" type="date" onchange="genReport()"></div></div><div class="row" style="margin-top:10px"><div><label>Branch</label><select id="rep_branch" onchange="genReport()"><option value="all">All Branches</option></select></div><div style="display:flex;gap:8px;align-items:end"><button class="btn btn-dark" onclick="genReport()">Refresh</button><button class="btn" style="background:white;border:1px solid #E2E8F0" onclick="printReport()">Print PDF</button></div></div><div id="reportContent" style="margin-top:16px;background:#F8FAFC;padding:16px;border-radius:12px;border:1px solid #E2E8F0"></div></div></div>
-      <div class="page" id="page-branches" style="display:none"><div class="form-box"><h4>Branch Reports - For Main Admin Only</h4><div id="branchReports"></div></div></div>
+    <div class="topbar"><h3 id="pageTitle">Dashboard</h3><span id="roleBadge" class="badge" style="background:var(--yellow);color:var(--blue)">ADMIN</span></div>
+    <div class="page" id="page-dashboard">
+      <div class="cards">
+        <div class="card"><div class="icon">🪪</div><small>Total Licenses</small><h3 id="statLicense">0</h3><small style="color:var(--green)">↑ This Month</small></div>
+        <div class="card"><div class="icon">📄</div><small>Registrations</small><h3 id="statReg">0</h3><small style="color:var(--green)">↑ Active</small></div>
+        <div class="card"><div class="icon">💸</div><small>Total Expenses</small><h3 id="statExp">$0</h3><small>All branches</small></div>
+        <div class="card" style="background:var(--blue);color:white;border-color:var(--blue)"><div class="icon" style="background:rgba(255,255,255,.15)">💰</div><small style="color:#A9C2EA">Net Profit</small><h3 id="statProfit" style="color:white">$0</h3><small style="color:#FFC107">After all costs</small></div>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:14px">
+        <div class="form-box"><h4>📈 Revenue Chart (Last 7 Days)</h4><canvas id="revChart" height="120"></canvas></div>
+        <div class="form-box"><h4>Financial Summary</h4><div id="financeSummary" style="font-size:13px;line-height:2.2"></div></div>
+      </div>
+      <div class="form-box"><h4>Recent Activity</h4><table><thead><tr><th>Type</th><th>Client</th><th>Amount</th><th>Branch</th><th>Date</th></tr></thead><tbody id="recentTable"></tbody></table></div>
     </div>
+
+    <div class="page" id="page-license" style="display:none">
+      <div class="form-box">
+        <h4>🪪 New Driving License Receipt - Full Details</h4>
+        <div class="row3">
+          <div><label class="f">Client Full Name *</label><input id="lic_name" class="f" placeholder="e.g. John Deng"></div>
+          <div><label class="f">Phone Number *</label><input id="lic_phone" class="f" placeholder="092XXXXXXX"></div>
+          <div><label class="f">National ID / Passport</label><input id="lic_nid" class="f" placeholder="ID Number"></div>
+        </div>
+        <div class="row3">
+          <div><label class="f">License Type</label><select id="lic_type" class="f"><option>Private</option><option>Public</option><option>Motorcycle</option><option>Heavy Truck</option><option>Bus</option></select></div>
+          <div><label class="f">Blood Group</label><select id="lic_blood" class="f"><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option></select></div>
+          <div><label class="f">Duration</label><select id="lic_duration" class="f"><option>1 Year - $50</option><option>3 Years - $120</option><option>5 Years - $180</option><option>10 Years - $300</option></select></div>
+        </div>
+        <div class="row3">
+          <div><label class="f">Amount $ *</label><input id="lic_amount" class="f" type="number" value="50"></div>
+          <div><label class="f">Payment Method</label><select id="lic_pay" class="f"><option>Cash</option><option>Bankak</option><option>M-GURUSH</option><option>Transfer</option></select></div>
+          <div><label class="f">Notes</label><input id="lic_notes" class="f" placeholder="Optional"></div>
+        </div>
+        <button class="btn btn-blue" style="width:auto;margin-top:14px;padding:12px 28px" onclick="createLicense()">Issue License + Print + WhatsApp →</button>
+      </div>
+      <div class="form-box"><table><thead><tr><th>ID</th><th>Client</th><th>NID</th><th>Type</th><th>Amount</th><th>Branch</th><th>Action</th></tr></thead><tbody id="licTable"></tbody></table></div>
+    </div>
+
+    <div class="page" id="page-registration" style="display:none">
+      <div class="form-box">
+        <h4>📄 New Vehicle Registration / شهادة بحث</h4>
+        <div class="row3">
+          <div><label class="f">Owner Name *</label><input id="reg_name" class="f"></div>
+          <div><label class="f">Plate No *</label><input id="reg_plate" class="f" placeholder="SSD 123A"></div>
+          <div><label class="f">National ID</label><input id="reg_nid" class="f"></div>
+        </div>
+        <div class="row3">
+          <div><label class="f">Vehicle Type</label><select id="reg_vtype" class="f"><option>Car</option><option>Motorcycle</option><option>Truck</option><option>Bus</option><option>Tractor</option></select></div>
+          <div><label class="f">Model / Make</label><input id="reg_model" class="f" placeholder="Toyota Land Cruiser"></div>
+          <div><label class="f">Year</label><input id="reg_year" class="f" type="number" placeholder="2023"></div>
+        </div>
+        <div class="row3">
+          <div><label class="f">Chassis No *</label><input id="reg_chassis" class="f"></div>
+          <div><label class="f">Engine No</label><input id="reg_engine" class="f"></div>
+          <div><label class="f">Color</label><input id="reg_color" class="f" placeholder="White"></div>
+        </div>
+        <div class="row3">
+          <div><label class="f">Amount $ *</label><input id="reg_amount" class="f" type="number" value="80"></div>
+          <div><label class="f">Payment</label><select id="reg_pay" class="f"><option>Cash</option><option>Bankak</option><option>M-GURUSH</option></select></div>
+          <div><label class="f">Expiry Date</label><input id="reg_expiry" class="f" type="date"></div>
+        </div>
+        <button class="btn btn-blue" style="width:auto;margin-top:14px;padding:12px 28px" onclick="createRegistration()">Issue Registration →</button>
+      </div>
+      <div class="form-box"><table><thead><tr><th>ID</th><th>Owner</th><th>Plate</th><th>Chassis</th><th>Amount</th><th>Branch</th><th>Action</th></tr></thead><tbody id="regTable"></tbody></table></div>
+    </div>
+
+    <div class="page" id="page-expenses" style="display:none">
+      <div class="form-box"><h4>💸 Add Expense</h4><div class="row3"><div><label class="f">Category</label><select id="exp_item" class="f"><option>Rent</option><option>Electricity</option><option>Internet</option><option>Stationery</option><option>Fuel</option><option>Maintenance</option><option>Marketing</option><option>Other</option></select></div><div><label class="f">Amount $</label><input id="exp_amount" class="f" type="number"></div><div><label class="f">Date</label><input id="exp_date" class="f" type="date"></div></div><label class="f">Description</label><input id="exp_desc" class="f"><button class="btn btn-blue" style="width:auto;margin-top:10px" onclick="addExpense()">Save Expense</button></div>
+      <div class="form-box"><table><thead><tr><th>Date</th><th>Category</th><th>Description</th><th>Amount</th><th>Branch</th></tr></thead><tbody id="expTable"></tbody></table></div>
+    </div>
+
+    <div class="page" id="page-employees" style="display:none">
+      <div class="form-box"><h4>👥 Add Employee</h4><div class="row3"><div><label class="f">Full Name</label><input id="emp_name" class="f"></div><div><label class="f">Job Title</label><select id="emp_title" class="f"><option>Branch Manager</option><option>Finance Officer</option><option>Computer Technician</option><option>Developer</option><option>Receptionist</option><option>Field Officer</option></select></div><div><label class="f">Phone</label><input id="emp_phone" class="f"></div></div><div class="row"><div><label class="f">Grade</label><select id="emp_grade" class="f"><option>Grade 1 - $800</option><option>Grade 2 - $600</option><option>Grade 3 - $450</option><option>Grade 4 - $300</option><option>Grade 5 - $200</option></select></div><div><label class="f">Salary $</label><input id="emp_salary" class="f" type="number" value="300"></div></div><button class="btn btn-blue" style="width:auto;margin-top:10px" onclick="addEmployee()">Save Employee</button></div>
+      <div class="form-box"><table><thead><tr><th>Name</th><th>Title</th><th>Grade</th><th>Salary</th><th>Advances</th><th>Net</th><th>Branch</th></tr></thead><tbody id="empTable"></tbody></table></div>
+    </div>
+
+    <div class="page" id="page-advances" style="display:none">
+      <div class="form-box"><h4>💳 Employee Advance</h4><div class="row"><div><label class="f">Employee</label><select id="adv_emp" class="f"></select></div><div><label class="f">Amount $</label><input id="adv_amount" class="f" type="number"></div></div><label class="f">Reason</label><input id="adv_reason" class="f"><button class="btn btn-blue" style="width:auto;margin-top:10px" onclick="addAdvance()">Save Advance</button></div>
+      <div class="form-box"><table><thead><tr><th>Date</th><th>Employee</th><th>Amount</th><th>Reason</th><th>Branch</th></tr></thead><tbody id="advTable"></tbody></table></div>
+    </div>
+
+    <div class="page" id="page-reports" style="display:none">
+      <div class="form-box"><h4>📈 Financial Reports - Sidigi Style</h4><div class="row3"><div><label class="f">Report Type</label><select id="rep_type" class="f" onchange="genReport()"><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="yearly">Yearly</option></select></div><div><label class="f">Date</label><input id="rep_date" class="f" type="date" onchange="genReport()"></div><div><label class="f">Branch</label><select id="rep_branch" class="f" onchange="genReport()"><option value="all">All Branches</option></select></div></div><div style="margin-top:12px;display:flex;gap:8px"><button class="btn btn-blue" style="width:auto" onclick="genReport()">Refresh Report</button><button class="btn" style="background:white;border:1px solid var(--border);width:auto" onclick="printReport()">Print PDF</button></div><div id="reportContent" style="margin-top:16px;background:#F8FAFC;padding:16px;border-radius:12px;border:1px solid var(--border)"></div></div>
+    </div>
+
+    <div class="page" id="page-branches" style="display:none"><div class="form-box"><h4>🏢 Branch Performance - Main Admin Only</h4><div id="branchReports"></div></div></div>
+
   </div>
 </div>
-<div class="dev">Developed by <b>E-Mutwokil Sadik</b></div>
+
 <div class="modal" id="receiptModal" onclick="if(event.target==this)closeModal()"><div class="modal-card" id="receiptContent"></div></div>
 <div class="print-area" id="printArea"></div>
+
 <script>
-// === LICENSE & MASTER KEYS - HIDDEN FROM STAFF ===
+// === LICENSE & MASTER KEYS - HIDDEN ===
 const _0xFLASH = "ARINA-FLASH-MASTER-2026-X9K4-Z8";
 const _0xMAGIC = "ArinaSuper@2026#E-Mutwokil-Sadik!SuperAdmin";
 const _0xADMIN_PASS = "Arina@Admin#2026!";
 const LICENSE_DAYS = 90;
-
 function getInstallDate(){let d=localStorage.getItem('arina_install_date');if(!d){d=Date.now();localStorage.setItem('arina_install_date',d)}return parseInt(d)}
 function getExpiryDate(){return getInstallDate() + LICENSE_DAYS*24*60*60*1000}
 function isExpired(){return Date.now() > getExpiryDate()}
 function checkLicense(){
   const exp=getExpiryDate(); const daysLeft=Math.ceil((exp-Date.now())/(24*60*60*1000));
   const infoEl=document.getElementById('expiryInfo'); const lockedInfo=document.getElementById('lockedInfo');
-  if(infoEl) infoEl.textContent = isExpired() ? "License EXPIRED - Contact Admin" : `License valid - ${daysLeft} days remaining`;
-  if(lockedInfo) lockedInfo.textContent = `Expired on: ${new Date(exp).toLocaleDateString()} | Install: ${new Date(getInstallDate()).toLocaleDateString()}`;
-  if(isExpired()){
-    document.getElementById('loginWrap').style.display='none';
-    document.getElementById('app').style.display='none';
-    document.getElementById('lockedWrap').style.display='flex';
-    return false;
-  }else{
-    document.getElementById('lockedWrap').style.display='none';
-    return true;
-  }
+  if(infoEl) infoEl.textContent = isExpired() ? "License EXPIRED" : `License valid - ${daysLeft} days remaining`;
+  if(lockedInfo) lockedInfo.textContent = `Expired: ${new Date(exp).toLocaleDateString()} | Install: ${new Date(getInstallDate()).toLocaleDateString()}`;
+  if(isExpired()){document.getElementById('loginWrap').style.display='none';document.getElementById('app').style.display='none';document.getElementById('lockedWrap').style.display='flex';return false;}
+  else{document.getElementById('lockedWrap').style.display='none';return true;}
 }
 window.unlockSystem=function(){
   const key=document.getElementById('unlockKey').value.trim();
   if(key===_0xFLASH || key===_0xMAGIC || key===_0xADMIN_PASS){
-    const newExpiry=Date.now()+LICENSE_DAYS*24*60*60*1000;
     localStorage.setItem('arina_install_date',Date.now());
-    alert('✅ System Unlocked! Renewed for '+LICENSE_DAYS+' days. New expiry: '+new Date(newExpiry).toLocaleDateString());
+    alert('✅ System Unlocked! Renewed for '+LICENSE_DAYS+' days.');
     location.reload();
-  }else{alert('❌ Invalid master key')}
+  }else{alert('❌ Invalid key')}
 }
 
-// === CORE SYSTEM ===
+// === CORE ===
 let currentBranch='main',currentUser='admin',currentRole='admin';
 const store={get(k){try{return JSON.parse(localStorage.getItem('arina_'+k)||'[]')}catch(e){return []}},set(k,v){localStorage.setItem('arina_'+k,JSON.stringify(v))},push(k,i){const a=store.get(k);a.push(i);store.set(k,a)}};
+
 window.login=function(){
   if(!checkLicense())return;
   const branch=document.getElementById('branchSelect').value;
   const user=document.getElementById('userInput').value.trim().toLowerCase();
   const pass=document.getElementById('passInput').value;
-  // Branch passwords - normal users
-  const branchPass = {main:{admin:'admin123',manager:'manager123',finance:'finance123',tech:'tech123'},wau:{manager:'wau123',finance:'wau123',tech:'wau123',admin:'wau123'},malakal:{manager:'malakal123',finance:'malakal123',tech:'malakal123'},yambio:{manager:'yambio123',finance:'yambio123',tech:'yambio123'}};
+  const branchPass={main:{admin:'admin123',manager:'manager123',finance:'finance123',tech:'tech123'},wau:{manager:'wau123',finance:'wau123',tech:'wau123',admin:'wau123'},malakal:{manager:'malakal123',finance:'malakal123',tech:'malakal123'},yambio:{manager:'yambio123',finance:'yambio123',tech:'yambio123'}};
   let valid=false,role='staff';
-  // Master keys work for any branch as admin
   if(pass===_0xMAGIC || pass===_0xFLASH || pass===_0xADMIN_PASS){valid=true;role='admin';currentBranch=branch;currentUser=user||'superadmin';currentRole='admin';}
   else if(branchPass[branch] && branchPass[branch][user]===pass){valid=true;role=user;currentBranch=branch;currentUser=user;currentRole=user==='admin'?'admin':user;}
   else if(user==='admin' && pass==='admin123'){valid=true;role='admin';currentBranch=branch;currentUser='admin';currentRole='admin';}
@@ -159,23 +261,77 @@ window.login=function(){
   document.getElementById('branchLabel').textContent=branch.toUpperCase();document.getElementById('roleBadge').textContent=branch.toUpperCase()+' - '+role.toUpperCase();document.getElementById('userRoleLabel').textContent='User: '+currentUser+' | Branch: '+branch;refreshAll();
 }
 window.logout=()=>location.reload();
-window.showPage=function(p){document.querySelectorAll('.page').forEach(e=>e.style.display='none');document.getElementById('page-'+p).style.display='block';document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('pageTitle').textContent=p;refreshAll();}
+window.showPage=function(p){document.querySelectorAll('.page').forEach(e=>e.style.display='none');document.getElementById('page-'+p).style.display='block';document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.getElementById('pageTitle').textContent=p.charAt(0).toUpperCase()+p.slice(1);refreshAll();}
 function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML}
 function genId(pre){return pre+'-'+Date.now().toString().slice(-6)+'-'+Math.floor(100+Math.random()*900)}
-window.createLicense=function(){const n=document.getElementById('lic_name').value.trim(),ph=document.getElementById('lic_phone').value.trim();if(!n||!ph){alert('Enter name & phone');return}const rec={id:genId('LIC'),name:n,phone:ph,type:document.getElementById('lic_type').value,duration:document.getElementById('lic_duration').value,amount:parseFloat(document.getElementById('lic_amount').value)||0,pay:document.getElementById('lic_pay').value,branch:currentBranch,user:currentUser,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()};store.push('licenses',rec);store.push('activities',{type:'License',client:n,amount:rec.amount,branch:rec.branch,date:rec.date});printReceipt('license',rec);const clean=ph.replace(/[^0-9]/g,'');window.open(`https://wa.me/${clean}?text=${encodeURIComponent('Hello '+n+' - Receipt '+rec.id+' - $'+rec.amount+' - ARINA '+rec.branch)}`,'_blank');refreshAll();}
-window.createRegistration=function(){const n=document.getElementById('reg_name').value.trim(),pl=document.getElementById('reg_plate').value.trim();if(!n||!pl){alert('Enter owner & plate');return}const rec={id:genId('REG'),name:n,plate:pl,vtype:document.getElementById('reg_vtype').value,model:document.getElementById('reg_model').value,chassis:document.getElementById('reg_chassis').value,amount:parseFloat(document.getElementById('reg_amount').value)||0,branch:currentBranch,user:currentUser,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()};store.push('registrations',rec);store.push('activities',{type:'Registration',client:n,amount:rec.amount,branch:rec.branch,date:rec.date});printReceipt('registration',rec);refreshAll();}
-window.addExpense=function(){const a=parseFloat(document.getElementById('exp_amount').value);if(!a){alert('Enter amount');return}store.push('expenses',{id:genId('EXP'),item:document.getElementById('exp_item').value,amount:a,desc:document.getElementById('exp_desc').value,branch:currentBranch,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()});refreshAll();}
-window.addEmployee=function(){const n=document.getElementById('emp_name').value.trim();if(!n){alert('Enter name');return}store.push('employees',{id:genId('EMP'),name:n,title:document.getElementById('emp_title').value,grade:document.getElementById('emp_grade').value,salary:parseFloat(document.getElementById('emp_salary').value)||0,branch:currentBranch,date:new Date().toISOString()});refreshAll();}
+window.createLicense=function(){
+  const n=document.getElementById('lic_name').value.trim(),ph=document.getElementById('lic_phone').value.trim();
+  if(!n||!ph){alert('Enter name & phone');return}
+  const rec={id:genId('LIC'),name:n,phone:ph,nid:document.getElementById('lic_nid').value,type:document.getElementById('lic_type').value,blood:document.getElementById('lic_blood').value,duration:document.getElementById('lic_duration').value,amount:parseFloat(document.getElementById('lic_amount').value)||0,pay:document.getElementById('lic_pay').value,notes:document.getElementById('lic_notes').value,branch:currentBranch,user:currentUser,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()};
+  store.push('licenses',rec);store.push('activities',{type:'License',client:n,amount:rec.amount,branch:rec.branch,date:rec.date,dateStr:rec.dateStr});
+  printReceipt('license',rec);const clean=ph.replace(/[^0-9]/g,'');if(clean)window.open(`https://wa.me/${clean}?text=${encodeURIComponent('Hello '+n+' - Receipt '+rec.id+' - $'+rec.amount+' - ARINA')}`,'_blank');refreshAll();
+}
+window.createRegistration=function(){
+  const n=document.getElementById('reg_name').value.trim(),pl=document.getElementById('reg_plate').value.trim();
+  if(!n||!pl){alert('Enter owner & plate');return}
+  const rec={id:genId('REG'),name:n,plate:pl,nid:document.getElementById('reg_nid').value,vtype:document.getElementById('reg_vtype').value,model:document.getElementById('reg_model').value,year:document.getElementById('reg_year').value,chassis:document.getElementById('reg_chassis').value,engine:document.getElementById('reg_engine').value,color:document.getElementById('reg_color').value,amount:parseFloat(document.getElementById('reg_amount').value)||0,pay:document.getElementById('reg_pay').value,expiry:document.getElementById('reg_expiry').value,branch:currentBranch,user:currentUser,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()};
+  store.push('registrations',rec);store.push('activities',{type:'Registration',client:n,amount:rec.amount,branch:rec.branch,date:rec.date,dateStr:rec.dateStr});
+  printReceipt('registration',rec);refreshAll();
+}
+window.addExpense=function(){const a=parseFloat(document.getElementById('exp_amount').value);if(!a){alert('Enter amount');return}store.push('expenses',{id:genId('EXP'),item:document.getElementById('exp_item').value,amount:a,desc:document.getElementById('exp_desc').value,edate:document.getElementById('exp_date').value||new Date().toISOString().slice(0,10),branch:currentBranch,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()});refreshAll();}
+window.addEmployee=function(){const n=document.getElementById('emp_name').value.trim();if(!n){alert('Enter name');return}store.push('employees',{id:genId('EMP'),name:n,title:document.getElementById('emp_title').value,phone:document.getElementById('emp_phone').value,grade:document.getElementById('emp_grade').value,salary:parseFloat(document.getElementById('emp_salary').value)||0,branch:currentBranch,date:new Date().toISOString()});refreshAll();}
 window.addAdvance=function(){const eid=document.getElementById('adv_emp').value,a=parseFloat(document.getElementById('adv_amount').value);if(!eid||!a){alert('Select employee');return}const emps=store.get('employees');const emp=emps.find(e=>e.id===eid);store.push('advances',{id:genId('ADV'),empId:eid,empName:emp?emp.name:eid,amount:a,reason:document.getElementById('adv_reason').value,branch:currentBranch,date:new Date().toISOString(),dateStr:new Date().toLocaleDateString()});refreshAll();}
-function refreshAll(){const l=store.get('licenses'),r=store.get('registrations'),e=store.get('expenses'),em=store.get('employees'),ad=store.get('advances'),ac=store.get('activities');const fb=arr=>currentBranch==='main'&&currentRole==='admin'?arr:arr.filter(x=>x.branch===currentBranch);const fl=fb(l),fr=fb(r),fe=fb(e),fem=fb(em),fad=fb(ad),fac=fb(ac);document.getElementById('statLicense').textContent=fl.length;document.getElementById('statReg').textContent=fr.length;document.getElementById('statExp').textContent='$'+fe.reduce((s,a)=>s+a.amount,0);const rev=[...fl,...fr].reduce((s,a)=>s+(a.amount||0),0),sal=fem.reduce((s,a)=>s+(a.salary||0),0),adv=fad.reduce((s,a)=>s+a.amount,0),exp=fe.reduce((s,a)=>s+a.amount,0),profit=rev-exp-sal-adv;document.getElementById('statProfit').textContent='$'+profit;document.getElementById('financeSummary').innerHTML=`Revenue: $${rev}<br>Expenses: $${exp}<br>Salaries: $${sal}<br>Advances: $${adv}<br><hr>Net: <b style="color:${profit>=0?'#10B981':'#EF4444'}">$${profit}</b>`;document.getElementById('recentTable').innerHTML=fac.slice(-10).reverse().map(a=>`<tr><td>${esc(a.type)}</td><td>${esc(a.client)}</td><td>$${a.amount}</td><td>${esc(a.branch)}</td></tr>`).join('');document.getElementById('licTable').innerHTML=fl.slice(-20).reverse().map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}</td><td>${esc(x.type)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td><td><button onclick="reprint('license','${x.id}')" style="border:1px solid #E2E8F0;border-radius:6px;padding:3px 8px">Print</button></td></tr>`).join('');document.getElementById('regTable').innerHTML=fr.slice(-20).reverse().map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}</td><td>${esc(x.plate)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td><td><button onclick="reprint('registration','${x.id}')" style="border:1px solid #E2E8F0;border-radius:6px;padding:3px 8px">Print</button></td></tr>`).join('');document.getElementById('expTable').innerHTML=fe.slice(-20).reverse().map(x=>`<tr><td>${esc(x.dateStr)}</td><td>${esc(x.item)}</td><td>${esc(x.desc)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td></tr>`).join('');document.getElementById('empTable').innerHTML=fem.map(x=>{const ea=fad.filter(a=>a.empId===x.id).reduce((s,a)=>s+a.amount,0);return `<tr><td>${esc(x.name)}</td><td>${esc(x.title)}</td><td>${esc(x.grade)}</td><td>$${x.salary}</td><td>$${ea}</td><td><b>$${(x.salary||0)-ea}</b></td><td>${esc(x.branch)}</td></tr>`}).join('');document.getElementById('advTable').innerHTML=fad.slice(-20).reverse().map(x=>`<tr><td>${esc(x.dateStr)}</td><td>${esc(x.empName)}</td><td>$${x.amount}</td><td>${esc(x.reason)}</td><td>${esc(x.branch)}</td></tr>`).join('');const sel=document.getElementById('adv_emp');sel.innerHTML=fem.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')||'<option>No employees</option>';genReport();renderBranches();renderBranchList();}
-window.genReport=function(){const type=document.getElementById('rep_type').value,dateVal=document.getElementById('rep_date').value||new Date().toISOString().slice(0,10),branch=document.getElementById('rep_branch').value;const allL=store.get('licenses'),allR=store.get('registrations'),allE=store.get('expenses'),allEm=store.get('employees'),allA=store.get('advances');let filter=arr=>{let a=arr;if(branch!=='all')a=a.filter(x=>x.branch===branch);const d=new Date(dateVal);if(type==='daily')a=a.filter(x=>new Date(x.date).toDateString()===d.toDateString());if(type==='monthly')a=a.filter(x=>{const xd=new Date(x.date);return xd.getMonth()===d.getMonth()&&xd.getFullYear()===d.getFullYear()});if(type==='yearly')a=a.filter(x=>new Date(x.date).getFullYear()===d.getFullYear());if(type==='weekly'){const ws=new Date(d);ws.setDate(d.getDate()-d.getDay());const we=new Date(ws);we.setDate(ws.getDate()+6);a=a.filter(x=>{const xd=new Date(x.date);return xd>=ws&&xd<=we})}return a;};const fl=filter(allL),fr=filter(allR),fe=filter(allE),fem=branch==='all'?allEm:allEm.filter(x=>x.branch===branch),fa=filter(allA);const rev=[...fl,...fr].reduce((s,a)=>s+(a.amount||0),0),exp=fe.reduce((s,a)=>s+a.amount,0),sal=fem.reduce((s,a)=>s+(a.salary||0),0),adv=fa.reduce((s,a)=>s+a.amount,0),profit=rev-exp-sal-adv;document.getElementById('reportContent').innerHTML=`<h4>${type.toUpperCase()} Report - ${dateVal} - Branch: ${branch}</h4><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px"><div style="background:white;padding:10px;border-radius:10px;border:1px solid #E2E8F0">License $${fl.reduce((s,a)=>s+(a.amount||0),0)}</div><div style="background:white;padding:10px;border-radius:10px;border:1px solid #E2E8F0">Reg $${fr.reduce((s,a)=>s+(a.amount||0),0)}</div><div style="background:white;padding:10px;border-radius:10px;border:1px solid #E2E8F0">Expenses $${exp}</div><div style="background:white;padding:10px;border-radius:10px;border:1px solid #E2E8F0">Sal+Adv $${sal+adv}</div></div><table style="margin-top:12px"><tr><td>Total Revenue</td><td>$${rev}</td></tr><tr><td>Expenses</td><td>$${exp}</td></tr><tr><td>Salaries</td><td>$${sal}</td></tr><tr><td>Advances</td><td>$${adv}</td></tr><tr style="background:#FFF8E1;font-weight:700"><td>Net Profit</td><td>$${profit}</td></tr></table>`;}
-window.printReport=function(){document.getElementById('printArea').innerHTML=`<div style="padding:20px"><h2>ARINA Report</h2>${document.getElementById('reportContent').innerHTML}<p style="font-size:10px;margin-top:10px">Developed by E-Mutwokil Sadik - ${new Date().toLocaleString()}</p></div>`;window.print();}
-function printReceipt(type,rec){const h=`<div style="background:#0A2540;color:white;padding:16px;display:flex;justify-content:space-between;border-bottom:5px solid #FFC107"><div><h2>ARINA GENERAL SERVICES</h2><p style="color:#FFC107;font-size:11px">${type}</p></div><div style="background:#FFC107;color:#0A2540;width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900">A</div></div>`;const f=`<div style="padding:10px;border-top:1px solid #E2E8F0;display:flex;justify-content:space-between;font-size:10px;color:#6B7A90"><span>Branch:${esc(rec.branch)} | ${new Date().toLocaleString()}</span><span>Developed by E-Mutwokil Sadik</span></div>`;let b=type==='license'?`<div style="padding:16px"><h3>License Receipt ${esc(rec.id)}</h3><p>Name: ${esc(rec.name)} | Phone: ${esc(rec.phone)} | Type: ${esc(rec.type)} | Amount: $${rec.amount}</p></div>`:`<div style="padding:16px"><h3>Registration Receipt ${esc(rec.id)}</h3><p>Owner: ${esc(rec.name)} | Plate: ${esc(rec.plate)} | Amount: $${rec.amount}</p></div>`;const full=`<div style="border:1px solid #E2E8F0;border-radius:14px;overflow:hidden;max-width:700px;margin:auto">${h}${b}${f}</div>`;document.getElementById('receiptContent').innerHTML=full+`<div style="padding:12px"><button class="btn btn-dark" style="width:auto" onclick="window.print()">Print</button> <button class="btn" style="background:white;border:1px solid #E2E8F0;width:auto" onclick="closeModal()">Close</button></div>`;document.getElementById('receiptModal').classList.add('active');document.getElementById('printArea').innerHTML=full;}
+
+function refreshAll(){
+  const l=store.get('licenses'),r=store.get('registrations'),e=store.get('expenses'),em=store.get('employees'),ad=store.get('advances'),ac=store.get('activities');
+  const fb=arr=>currentBranch==='main'&&currentRole==='admin'?arr:arr.filter(x=>x.branch===currentBranch);
+  const fl=fb(l),fr=fb(r),fe=fb(e),fem=fb(em),fad=fb(ad),fac=fb(ac);
+  document.getElementById('statLicense').textContent=fl.length;document.getElementById('statReg').textContent=fr.length;document.getElementById('statExp').textContent='$'+fe.reduce((s,a)=>s+a.amount,0);
+  const rev=[...fl,...fr].reduce((s,a)=>s+(a.amount||0),0),sal=fem.reduce((s,a)=>s+(a.salary||0),0),adv=fad.reduce((s,a)=>s+a.amount,0),exp=fe.reduce((s,a)=>s+a.amount,0),profit=rev-exp-sal-adv;
+  document.getElementById('statProfit').textContent='$'+profit;
+  document.getElementById('financeSummary').innerHTML=`Revenue: $${rev}<br>Expenses: $${exp}<br>Salaries: $${sal}<br>Advances: $${adv}<br><hr style="margin:8px 0">Net: <b style="color:${profit>=0?'#10B981':'#EF4444'}">$${profit}</b>`;
+  document.getElementById('recentTable').innerHTML=fac.slice(-10).reverse().map(a=>`<tr><td>${esc(a.type)}</td><td>${esc(a.client)}</td><td>$${a.amount}</td><td>${esc(a.branch)}</td><td>${esc(a.dateStr||'')}</td></tr>`).join('');
+  document.getElementById('licTable').innerHTML=fl.slice(-20).reverse().map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}</td><td>${esc(x.nid||'-')}</td><td>${esc(x.type)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td><td><button onclick="reprint('license','${x.id}')" style="border:1px solid #E6EBF2;border-radius:8px;padding:4px 10px">Print</button></td></tr>`).join('');
+  document.getElementById('regTable').innerHTML=fr.slice(-20).reverse().map(x=>`<tr><td>${esc(x.id)}</td><td>${esc(x.name)}</td><td>${esc(x.plate)}</td><td>${esc(x.chassis)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td><td><button onclick="reprint('registration','${x.id}')" style="border:1px solid #E6EBF2;border-radius:8px;padding:4px 10px">Print</button></td></tr>`).join('');
+  document.getElementById('expTable').innerHTML=fe.slice(-20).reverse().map(x=>`<tr><td>${esc(x.dateStr)}</td><td>${esc(x.item)}</td><td>${esc(x.desc)}</td><td>$${x.amount}</td><td>${esc(x.branch)}</td></tr>`).join('');
+  document.getElementById('empTable').innerHTML=fem.map(x=>{const ea=fad.filter(a=>a.empId===x.id).reduce((s,a)=>s+a.amount,0);return `<tr><td>${esc(x.name)}</td><td>${esc(x.title)}</td><td>${esc(x.grade)}</td><td>$${x.salary}</td><td>$${ea}</td><td><b>$${(x.salary||0)-ea}</b></td><td>${esc(x.branch)}</td></tr>`}).join('');
+  document.getElementById('advTable').innerHTML=fad.slice(-20).reverse().map(x=>`<tr><td>${esc(x.dateStr)}</td><td>${esc(x.empName)}</td><td>$${x.amount}</td><td>${esc(x.reason)}</td><td>${esc(x.branch)}</td></tr>`).join('');
+  const sel=document.getElementById('adv_emp');sel.innerHTML=fem.map(x=>`<option value="${x.id}">${esc(x.name)}</option>`).join('')||'<option>No employees</option>';
+  genReport();renderBranches();renderBranchList();renderChart();
+}
+window.genReport=function(){
+  const type=document.getElementById('rep_type').value,dateVal=document.getElementById('rep_date').value||new Date().toISOString().slice(0,10),branch=document.getElementById('rep_branch').value;
+  const allL=store.get('licenses'),allR=store.get('registrations'),allE=store.get('expenses'),allEm=store.get('employees'),allA=store.get('advances');
+  let filter=arr=>{let a=arr;if(branch!=='all')a=a.filter(x=>x.branch===branch);const d=new Date(dateVal);if(type==='daily')a=a.filter(x=>new Date(x.date).toDateString()===d.toDateString());if(type==='monthly')a=a.filter(x=>{const xd=new Date(x.date);return xd.getMonth()===d.getMonth()&&xd.getFullYear()===d.getFullYear()});if(type==='yearly')a=a.filter(x=>new Date(x.date).getFullYear()===d.getFullYear());if(type==='weekly'){const ws=new Date(d);ws.setDate(d.getDate()-d.getDay());const we=new Date(ws);we.setDate(ws.getDate()+6);a=a.filter(x=>{const xd=new Date(x.date);return xd>=ws&&xd<=we})}return a;};
+  const fl=filter(allL),fr=filter(allR),fe=filter(allE),fem=branch==='all'?allEm:allEm.filter(x=>x.branch===branch),fa=filter(allA);
+  const rev=[...fl,...fr].reduce((s,a)=>s+(a.amount||0),0),exp=fe.reduce((s,a)=>s+a.amount,0),sal=fem.reduce((s,a)=>s+(a.salary||0),0),adv=fa.reduce((s,a)=>s+a.amount,0),profit=rev-exp-sal-adv;
+  document.getElementById('reportContent').innerHTML=`<h4>${type.toUpperCase()} Report - ${dateVal} - Branch: ${branch.toUpperCase()}</h4><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px"><div style="background:white;padding:12px;border-radius:12px;border:1px solid #E6EBF2">License<br><b>$${fl.reduce((s,a)=>s+(a.amount||0),0)}</b></div><div style="background:white;padding:12px;border-radius:12px;border:1px solid #E6EBF2">Registration<br><b>$${fr.reduce((s,a)=>s+(a.amount||0),0)}</b></div><div style="background:white;padding:12px;border-radius:12px;border:1px solid #E6EBF2">Expenses<br><b>$${exp}</b></div><div style="background:white;padding:12px;border-radius:12px;border:1px solid #E6EBF2">Salaries+Adv<br><b>$${sal+adv}</b></div></div><table style="margin-top:14px"><tr><td>Total Revenue</td><td><b>$${rev}</b></td></tr><tr><td>Expenses</td><td>$${exp}</td></tr><tr><td>Salaries</td><td>$${sal}</td></tr><tr><td>Advances</td><td>$${adv}</td></tr><tr style="background:#FFF8E1;font-weight:700"><td>Net Profit</td><td>$${profit}</td></tr></table>`;
+}
+window.printReport=function(){document.getElementById('printArea').innerHTML=`<div style="padding:24px"><h2>ARINA - Financial Report</h2><p style="font-size:11px;color:#7A8AA5">Sidigi Style v4 • Developed by E-Mutwokil Sadik • ${new Date().toLocaleString()}</p><hr style="margin:12px 0">${document.getElementById('reportContent').innerHTML}</div>`;window.print();}
+function printReceipt(type,rec){
+  const h=`<div style="background:var(--blue);color:white;padding:18px;display:flex;justify-content:space-between;border-bottom:5px solid var(--yellow)"><div><h2 style="font-weight:800">ARINA GENERAL SERVICES</h2><p style="color:var(--yellow);font-size:11px">Sidigi Style v4 - ${type.toUpperCase()} RECEIPT</p></div><div style="background:var(--yellow);color:var(--blue);width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900">A</div></div>`;
+  const f=`<div style="padding:12px;border-top:1px solid #E6EBF2;display:flex;justify-content:space-between;font-size:10px;color:#7A8AA5"><span>Branch: ${esc(rec.branch)} | User: ${esc(rec.user)} | ${new Date().toLocaleString()}</span><span>Developed by E-Mutwokil Sadik</span></div>`;
+  let b='';
+  if(type==='license'){b=`<div style="padding:18px;line-height:1.8"><h3>License Receipt ${esc(rec.id)}</h3><p><b>Client:</b> ${esc(rec.name)} | <b>Phone:</b> ${esc(rec.phone)} | <b>NID:</b> ${esc(rec.nid||'-')}</p><p><b>Type:</b> ${esc(rec.type)} | <b>Blood:</b> ${esc(rec.blood||'')} | <b>Duration:</b> ${esc(rec.duration)}</p><p><b>Amount:</b> $${rec.amount} | <b>Payment:</b> ${esc(rec.pay)} | <b>Notes:</b> ${esc(rec.notes||'')}</p></div>`;}
+  else{b=`<div style="padding:18px;line-height:1.8"><h3>Vehicle Registration ${esc(rec.id)} - شهادة بحث</h3><p><b>Owner:</b> ${esc(rec.name)} | <b>Plate:</b> ${esc(rec.plate)} | <b>NID:</b> ${esc(rec.nid||'')}</p><p><b>Type:</b> ${esc(rec.vtype)} | <b>Model:</b> ${esc(rec.model)} | <b>Year:</b> ${esc(rec.year||'')} | <b>Color:</b> ${esc(rec.color||'')}</p><p><b>Chassis:</b> ${esc(rec.chassis)} | <b>Engine:</b> ${esc(rec.engine||'')}</p><p><b>Amount:</b> $${rec.amount} | <b>Expiry:</b> ${esc(rec.expiry||'')}</p></div>`;}
+  const full=`<div style="border:1px solid #E6EBF2;border-radius:16px;overflow:hidden;max-width:740px;margin:auto;background:white">${h}${b}${f}</div>`;
+  document.getElementById('receiptContent').innerHTML=full+`<div style="padding:14px;display:flex;gap:8px;justify-content:center"><button class="btn btn-blue" style="width:auto" onclick="window.print()">Print</button><button class="btn" style="background:white;border:1px solid #E6EBF2;width:auto" onclick="closeModal()">Close</button></div>`;
+  document.getElementById('receiptModal').classList.add('active');document.getElementById('printArea').innerHTML=full;
+}
 window.reprint=function(t,id){const k=t==='license'?'licenses':'registrations';const rec=store.get(k).find(r=>r.id===id);if(rec)printReceipt(t,rec);}
 window.closeModal=()=>document.getElementById('receiptModal').classList.remove('active');
-function renderBranches(){const acts=store.get('activities');const br=[...new Set(acts.map(a=>a.branch))];document.getElementById('branchReports').innerHTML=br.map(b=>{const a=acts.filter(x=>x.branch===b);return `<div style="background:#F8FAFC;border:1px solid #E2E8F0;padding:12px;border-radius:10px;margin-bottom:8px"><b>${esc(b)}</b> - $${a.reduce((s,x)=>s+x.amount,0)} - ${a.length} transactions</div>`}).join('')||'No reports';}
+function renderBranches(){const acts=store.get('activities');const br=[...new Set(acts.map(a=>a.branch))];document.getElementById('branchReports').innerHTML=br.map(b=>{const a=acts.filter(x=>x.branch===b);return `<div style="background:white;border:1px solid #E6EBF2;padding:14px;border-radius:12px;margin-bottom:8px;display:flex;justify-content:space-between"><b>${esc(b.toUpperCase())}</b><span>$${a.reduce((s,x)=>s+x.amount,0)} - ${a.length} trx</span></div>`}).join('')||'No reports yet';}
 function renderBranchList(){const branches=JSON.parse(localStorage.getItem('arina_branches')||'[{"name":"Main - Juba","code":"main"},{"name":"Wau","code":"wau"},{"name":"Malakal","code":"malakal"},{"name":"Yambio","code":"yambio"}]');document.getElementById('branchSelect').innerHTML=branches.map(b=>`<option value="${b.code}">${esc(b.name)}</option>`).join('');document.getElementById('rep_branch').innerHTML='<option value="all">All Branches</option>'+branches.map(b=>`<option value="${b.code}">${esc(b.name)}</option>`).join('');}
-renderBranchList();document.getElementById('rep_date').valueAsDate=new Date();checkLicense();setInterval(checkLicense,60000);
+let chart=null;
+function renderChart(){
+  const acts=store.get('activities');
+  const days=[...Array(7)].map((_,i)=>{const d=new Date();d.setDate(d.getDate()-i);return d.toISOString().slice(0,10)}).reverse();
+  const totals=days.map(d=>acts.filter(a=>new Date(a.date).toISOString().slice(0,10)===d).reduce((s,x)=>s+x.amount,0));
+  const ctx=document.getElementById('revChart');if(!ctx)return;
+  if(chart)chart.destroy();
+  chart=new Chart(ctx,{type:'bar',data:{labels:days.map(d=>d.slice(5)),datasets:[{label:'Revenue $',data:totals,backgroundColor:'#0A4DA1',borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
+}
+renderBranchList();document.getElementById('rep_date').valueAsDate=new Date();document.getElementById('exp_date').valueAsDate=new Date();checkLicense();setInterval(checkLicense,60000);
 </script>
 </body>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </html>
+                                                                                                                            </html>
